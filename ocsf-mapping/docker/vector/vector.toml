@@ -1,0 +1,113 @@
+# Vector configuration for log ingestion
+[sources.file_logs]
+type = "file"
+include = ["/var/log/security-logs/*.log"]
+ignore_older_secs = 600  # Ignore files older than 10 minutes
+
+[sources.syslog]
+type = "syslog"
+address = "0.0.0.0:514"
+mode = "tcp"
+max_length = 65536  # Maximum length for syslog messages
+
+[sources.windows_events]
+type = "windows_event_log"
+channel = [
+    "Security",           # Security events
+    "System",            # System events
+    "Application",       # Application events
+    "Directory Service", # AD events
+    "DNS Server",        # DNS events
+    "File Replication Service" # FRS events
+]
+poll_interval_secs = 1
+
+[transforms.normalize]
+type = "remap"
+inputs = ["file_logs", "syslog", "windows_events"]
+source = '''
+# Parse JSON if possible
+. = parse_json!(.message) ?? .
+
+# Normalize timestamp
+.timestamp = format_timestamp!(.timestamp, format: "%Y-%m-%dT%H:%M:%S%.3fZ")
+
+# Add source identifier
+.source_type = get_source_type!()
+.normalized = true
+
+# Ensure consistent field names
+if exists(.eventID) {
+    .event_id = .eventID
+    del(.eventID)
+}
+'''
+
+[transforms.filter_logs]
+type = "filter"
+inputs = ["normalize"]
+condition = '''
+exists(.timestamp) &&
+exists(.message) &&
+!is_null(.message)
+'''
+
+[transforms.windows_events_transform]
+type = "remap"
+inputs = ["windows_events"]
+source = '''
+# Ensure all Windows Event fields are captured
+. = parse_xml!(.message) ?? .
+
+# Extract key fields
+.event_id = to_int!(.System.EventID)
+.provider = .System.Provider
+.level = to_int!(.System.Level)
+.task = to_int!(.System.Task)
+.opcode = to_int!(.System.Opcode)
+.keywords = .System.Keywords
+.channel = .System.Channel
+.computer = .System.Computer
+.execution = {
+    "process_id": to_int!(.System.Execution.ProcessID),
+    "thread_id": to_int!(.System.Execution.ThreadID)
+}
+.correlation = {
+    "activity_id": .System.Correlation.ActivityID,
+    "related_activity_id": .System.Correlation.RelatedActivityID
+}
+
+# Normalize timestamp
+.timestamp = format_timestamp!(.System.TimeCreated."@SystemTime", format: "%Y-%m-%dT%H:%M:%S%.3fZ")
+'''
+
+[transforms.filter_critical_events]
+type = "filter"
+inputs = ["windows_events_transform"]
+condition = '''
+# Always forward high criticality events
+to_int!(.event_id) in [4618, 4649, 4719, 4765, 4766, 4794, 4897, 4964, 1102]
+'''
+
+[sinks.ingestion_service]
+type = "http"
+inputs = ["filter_logs"]
+uri = "http://ingestion-service:8080/ingest"
+encoding.codec = "json"
+compression = "gzip"
+
+# Batch configuration for better performance
+batch.max_events = 100
+batch.timeout_secs = 1
+
+# Health check and retry configuration
+healthcheck.enabled = true
+request.retry_attempts = 5
+request.timeout_secs = 30
+request.rate_limit_num = 100
+request.rate_limit_secs = 1
+
+# Buffer configuration for reliability
+buffer.type = "disk"
+buffer.when_full = "block"
+buffer.max_size = 104900000  # 100MB 

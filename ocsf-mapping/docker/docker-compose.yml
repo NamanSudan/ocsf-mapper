@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  vector:
+    image: timberio/vector:latest-alpine
+    volumes:
+      - ./vector/vector.toml:/etc/vector/vector.toml:ro
+      - /var/log:/var/log:ro  # Mount host logs (adjust path as needed)
+    ports:
+      - "514:514"  # Syslog
+    networks:
+      - log-network
+
+  ingestion-service:
+    build: 
+      context: ../ingestion-service
+    ports:
+      - "8080:8080"
+    environment:
+      - FLASK_ENV=development
+      - PORT=8080
+    networks:
+      - log-network
+    depends_on:
+      - vector
+
+  classification-service:
+    build:
+      context: ../classification-service
+    ports:
+      - "8081:8080"
+    environment:
+      - TRIEVE_API_KEY=${TRIEVE_API_KEY}
+      - TRIEVE_DATASET_ID=${DATASET_ID}
+
+  clickhouse:
+    image: clickhouse/clickhouse-server
+    ports:
+      - "8123:8123"
+      - "9000:9000"
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379" 
+
+networks:
+  log-network:
+    driver: bridge 
