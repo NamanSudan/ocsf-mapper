@@ -8,121 +8,214 @@ This document provides an in-depth look at how to build a modular, maintainable 
 --------------------------------------------------------------------------------
 ## 2. Repository Structure
 
-Below is a suggested structure for the repository, along with a high-level description of each component. Note that this design can be adapted to your organization’s preferred patterns (e.g., monorepo vs. multiple repos). For simplicity, we’ll use a single repository with distinct directories.
+Below is the detailed structure for the repository:
 
 ```
 ocsf-mapping/
-├── docs/
-│   └── design-docs/
-│       └── detailed-design.md
-│       └── user-stories.md
-│       └── architecture-diagrams.svg
-├── ingestion-service/
+├── backend/
+│   ├── ingestion_service/
+│   │   ├── Dockerfile
+│   │   ├── requirements.txt
+│   │   ├── gunicorn.conf.py
+│   │   ├── src/
+│   │   │   ├── __init__.py
+│   │   │   ├── app.py
+│   │   │   ├── config.py
+│   │   │   ├── routes/
+│   │   │   │   ├── __init__.py
+│   │   │   │   └── ingestion.py
+│   │   │   ├── services/
+│   │   │   │   ├── __init__.py
+│   │   │   │   └── log_processor.py
+│   │   │   └── utils/
+│   │   │       ├── __init__.py
+│   │   │       └── normalizer.py
+│   │   └── tests/
+│   │       ├── __init__.py
+│   │       └── test_ingestion.py
+│   │
+│   ├── classification_service/
+│   │   ├── Dockerfile
+│   │   ├── requirements.txt
+│   │   ├── gunicorn.conf.py
+│   │   ├── src/
+│   │   │   ├── __init__.py
+│   │   │   ├── app.py
+│   │   │   ├── config.py
+│   │   │   ├── routes/
+│   │   │   │   ├── __init__.py
+│   │   │   │   └── classification.py
+│   │   │   ├── services/
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── trieve_client.py
+│   │   │   │   └── ml_reranker.py
+│   │   │   └── utils/
+│   │   │       ├── __init__.py
+│   │   │       └── helpers.py
+│   │   └── tests/
+│   │       ├── __init__.py
+│   │       └── test_classification.py
+│   │
+│   └── knowledge_base/
+│       ├── Dockerfile
+│       ├── requirements.txt
+│       ├── src/
+│       │   ├── __init__.py
+│       │   ├── app.py
+│   │   ├── config.py
+│   │   ├── routes/
+│   │   │   ├── __init__.py
+│   │   │   └── chunks.py
+│   │   ├── services/
+│   │   │   ├── __init__.py
+│   │   │   ├── chunk_manager.py
+│   │   │   └── ocsf_parser.py
+│   │   └── utils/
+│   │       ├── __init__.py
+│   │       └── helpers.py
+│   └── tests/
+│       ├── __init__.py
+│       └── test_chunks.py
+│
+├── frontend/
 │   ├── Dockerfile
-│   ├── src/
-│   │   └── ingest_logs.ts  # or ingest_logs.py, main entry
-│   ├── README.md
-│   └── package.json        # (if using Node.js)
-├── knowledge-base/
-│   ├── Dockerfile
-│   ├── src/
-│   │   ├── parse_ocsf_specs.ts
-│   │   ├── create_chunks.ts
-│   │   └── ...
-│   ├── README.md
-│   └── package.json
-├── classification-service/
-│   ├── Dockerfile
-│   ├── src/
-│   │   ├── classification_pipeline.ts
-│   │   ├── cross_encoder_reranker.ts
-│   │   └── ...
-│   └── package.json
-├── ui/
-│   ├── Dockerfile
+│   ├── package.json
 │   ├── public/
+│   │   ├── index.html
+│   │   └── assets/
 │   ├── src/
 │   │   ├── components/
+│   │   │   ├── common/
+│   │   │   ├── dashboard/
+│   │   │   └── classification/
 │   │   ├── pages/
-│   │   └── main.tsx
-│   ├── package.json
-│   └── README.md
-├── docker/
-│   ├── docker-compose.yml
-│   ├── trieve.env
-│   ├── clickhouse.env
-│   └── ...
+│   │   ├── services/
+│   │   ├── utils/
+│   │   ├── App.tsx
+│   │   └── index.tsx
+│   └── tests/
+│       └── components/
+│
+├── infrastructure/
+│   ├── docker/
+│   │   ├── docker-compose.yml
+│   │   ├── docker-compose.prod.yml
+│   │   └── env/
+│   │       ├── trieve.env.example
+│   │       ├── clickhouse.env.example
+│   │       └── redis.env.example
+│   │
+│   ├── k8s/
+│   │   ├── base/
+│   │   │   ├── deployments/
+│   │   │   ├── services/
+│   │   │   └── kustomization.yaml
+│   │   └── overlays/
+│   │       ├── dev/
+│   │       └── prod/
+│   │
+│   └── nginx/
+│       ├── Dockerfile
+│       └── nginx.conf
+│
 ├── scripts/
-│   ├── local_dev_setup.sh
-│   ├── load_sample_data.sh
-│   └── run_tests.sh
-├── .env.example
+│   ├── setup/
+│   │   ├── local_dev_setup.sh
+│   │   └── install_dependencies.sh
+│   ├── test/
+│   │   └── run_tests.sh
+│   └── deployment/
+│       ├── deploy_prod.sh
+│       └── rollback.sh
+│
+├── docs/
+│   ├── architecture/
+│   │   ├── high-level-design.md
+│   │   └── tech-stack.md
+│   ├── api/
+│   │   └── swagger.yaml
+│   └── guides/
+│       ├── development.md
+│       └── deployment.md
+│
+├── .github/
+│   └── workflows/
+│       ├── ci.yml
+│       └── cd.yml
+│
 ├── .gitignore
-├── package.json (optional root-level if needed)
 ├── README.md
-└── LICENSE
+├── LICENSE
+├── Makefile
+└── pyproject.toml
 ```
 
-Each sub-directory (e.g., `ingestion-service`, `knowledge-base`) stands alone—potentially containerized via Docker—and has minimal dependencies on the others, besides environment variables or well-defined API contracts.
+Each service is containerized and follows a clean, modular Python structure with proper separation of concerns. The backend services use FastAPI/Flask with gunicorn, while the frontend uses React/TypeScript.
 
 --------------------------------------------------------------------------------
 ## 3. Detailed Components and Responsibilities
 
 ### 3.1 Ingestion Service
-- **Directory**: `ingestion-service/`  
+- **Directory**: `backend/ingestion_service/`  
 - **Purpose**: Accepts logs from Vector.dev (or another aggregator) and normalizes them into a consistent JSON structure.  
 - **Key Tasks**:  
-  1. Listen for new log events.  
-  2. Normalize raw data fields (e.g., timestamps, hostnames).  
-  3. Add simple heuristics or ML-based tags if desired (optional).  
-  4. Forward the normalized logs to the Classification Service, or queue them in a message broker (RabbitMQ, Redis, or Kafka).  
+  1. Listen for new log events via Flask endpoints.
+  2. Normalize raw data fields (e.g., timestamps, hostnames).
+  3. Add simple heuristics or ML-based tags if desired (optional).
+  4. Forward the normalized logs to the Classification Service, or queue them in a message broker.
 
 **Technologies**:  
-- Node.js or Python (whatever your team prefers).  
-- Dockerfile: Builds a container that can run continuously.  
-- Configuration: Usually references an `.env` or environment variables for external connections.  
+- Python Flask with Gunicorn for production deployment
+- RESTful API endpoints defined in `routes/ingestion.py`
+- Core processing logic in `services/log_processor.py`
+- Utility functions for normalization in `utils/normalizer.py`
+- Unit tests in `tests/` directory
 
 ### 3.2 Knowledge Base
-- **Directory**: `knowledge-base/`  
-- **Purpose**: Converts OCSF specification documents (from the OCSF GitHub, or internal docs) into chunks for ingestion into Trieve.  
+- **Directory**: `backend/knowledge_base/`  
+- **Purpose**: Converts OCSF specification documents into chunks for ingestion into Trieve.  
 - **Key Tasks**:  
-  1. Parse each OCSF class specification (e.g., “Authentication,” “NetworkActivity,” etc.).  
-  2. Convert them into robust textual chunks, possibly one chunk per subtopic or example.  
-  3. Call the Trieve “create chunk” or “upsert chunk” endpoints to store OCSF references.  
-  4. Manage chunk metadata (e.g., OCSF class ID, links, categories).  
+  1. Parse each OCSF class specification via `services/ocsf_parser.py`
+  2. Convert them into robust textual chunks using `services/chunk_manager.py`
+  3. Call the Trieve "create chunk" or "upsert chunk" endpoints via `trieve-py-client`
+  4. Manage chunk metadata (e.g., OCSF class ID, links, categories)
 
 **Technologies**:  
-- Node.js or Python script that uses the “trieve-ts-sdk” or “trieve-py-client” to create/update chunks.  
-- This can run periodically or be a one-time ingestion job.  
+- Python Flask application with RESTful endpoints
+- Trieve Python client ("trieve-py-client") for chunk management
+- Structured service layer for OCSF parsing and chunk creation
+- Comprehensive test coverage with pytest
 
 ### 3.3 Classification Service
-- **Directory**: `classification-service/`  
-- **Purpose**: Receives normalized logs from the Ingestion Service (or message queue) and determines the best OCSF class via Trieve. Potentially also calls an LLM re-ranker or cross-encoder.  
+- **Directory**: `backend/classification_service/`  
+- **Purpose**: Receives normalized logs and determines the best OCSF class via Trieve.  
 - **Key Tasks**:  
-  1. Perform a “hybrid search” on the log text or relevant fields (SPLADE + Embeddings) using Trieve.  
-  2. Retrieve top N candidate OCSF classes.  
-  3. (Optional) Re-rank with a cross-encoder or short LLM-based prompt to ensure best match.  
-  4. Output final classification + confidence score, store to a database like ClickHouse.  
+  1. Expose RESTful endpoints in `routes/classification.py`
+  2. Use `services/trieve_client.py` for hybrid search
+  3. Optional re-ranking via `services/ml_reranker.py`
+  4. Store results to ClickHouse
 
 **Technologies**:  
-- Node.js (using “trieve-ts-sdk”) or Rust (calling Trieve’s REST endpoints).  
-- The classification-service might also have an LLM microservice or a local model to re-rank.  
+- Python Flask with Gunicorn for high-performance serving
+- Integration with Trieve via Python client
+- ML/LLM integration for re-ranking when needed
+- Structured error handling and logging
 
-### 3.4 UI
-- **Directory**: `ui/`  
-- **Purpose**: Provide a front-end interface for security analysts to:  
-  1. Review classification results in near real-time.  
-  2. Override or correct misclassifications.  
-  3. Inspect OCSF references and chunk highlights for transparency.  
-- **Key Tasks**:  
-  - Interactive dashboard: Show logs, predicted OCSF class, confidence, reference snippet.  
-  - Batch review: Analysts can see suspicious or low-confidence mappings.  
-  - Feedback loops: Overridden mappings feed back into future training or incremental improvement.  
+### 3.4 Frontend
+- **Directory**: `frontend/`  
+- **Purpose**: React/TypeScript interface for security analysts
+- **Key Components**:  
+  - `components/dashboard/`: Real-time event monitoring
+  - `components/classification/`: Review and override UI
+  - `components/common/`: Shared UI elements
+  - `services/`: API integration with backend
+  - `utils/`: Helper functions and types
 
 **Technologies**:  
-- Any modern framework (React, Vue, Solid.js).  
-- Possibly includes “TrieveSearch” (the Web Component or React component from “trieve-ts-sdk”).  
-- Docker container for hosting if needed.  
+- React with TypeScript
+- Modern component architecture
+- Integration with Trieve's React components
+- Comprehensive test coverage
 
 ### 3.5 docker/
 - **Directory**: `docker/`  
@@ -246,3 +339,4 @@ Below is a typical step-by-step example illustrating how logs flow through the s
 
 By structuring the repository into modular services—Ingestion, Knowledge Base, Classification, UI—the solution remains clean, extensible, and easy to reason about. Each piece interacts minimally with the others, primarily through well-defined API calls and environment variables. Trieve provides the bedrock search and RAG capabilities you need for robust classification while letting you scale features like cross-encoder re-ranking, LLM classification, or advanced analytics in a controlled manner.
 ```
+

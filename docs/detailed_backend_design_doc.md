@@ -3,65 +3,152 @@
 
 ## 1. Overview
 
-This document provides an in-depth look at how to build a modular, maintainable repository for a “dynamic security log mapping” tool that uses Trieve’s hybrid search and RAG features to map incoming logs to OCSF classes. By separating each layer (ingestion, knowledge base, search/classification, etc.) into its own module, we facilitate maintainability, extensibility, and clarity on the backend side.
+This document provides an in-depth look at how to build a modular, maintainable repository for a "dynamic security log mapping" tool that uses Trieve's hybrid search and RAG features to map incoming logs to OCSF classes. By separating each layer (ingestion, knowledge base, search/classification, etc.) into its own module, we facilitate maintainability, extensibility, and clarity on the backend side.
 
 ---
 
 ## 2. Repository Structure
 
-Below is a suggested structure for the repository, with a high-level description of each backend component. Note that this design can be adapted to your organization’s preferred patterns (e.g., monorepo vs. multiple repos). For simplicity, we’ll use a single repository with distinct directories.
+Below is a suggested structure for the repository, with a high-level description of each backend component. Note that this design can be adapted to your organization's preferred patterns (e.g., monorepo vs. multiple repos). For simplicity, we'll use a single repository with distinct directories.
 
 ```
 ocsf-mapping/
-├── docs/
-│   └── design-docs/
-│       └── detailed-design.md
-│       └── user-stories.md
-│       └── architecture-diagrams.svg
-├── ingestion-service/
+├── backend/
+│   ├── ingestion_service/
+│   │   ├── Dockerfile
+│   │   ├── requirements.txt
+│   │   ├── gunicorn.conf.py
+│   │   ├── src/
+│   │   │   ├── __init__.py
+│   │   │   ├── app.py
+│   │   │   ├── config.py
+│   │   │   ├── routes/
+│   │   │   │   ├── __init__.py
+│   │   │   │   └── ingestion.py
+│   │   │   ├── services/
+│   │   │   │   ├── __init__.py
+│   │   │   │   └── log_processor.py
+│   │   │   └── utils/
+│   │   │       ├── __init__.py
+│   │   │       └── normalizer.py
+│   │   └── tests/
+│   │       ├── __init__.py
+│   │       └── test_ingestion.py
+│   │
+│   ├── classification_service/
+│   │   ├── Dockerfile
+│   │   ├── requirements.txt
+│   │   ├── gunicorn.conf.py
+│   │   ├── src/
+│   │   │   ├── __init__.py
+│   │   │   ├── app.py
+│   │   │   ├── config.py
+│   │   │   ├── routes/
+│   │   │   │   ├── __init__.py
+│   │   │   │   └── classification.py
+│   │   │   ├── services/
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── trieve_client.py
+│   │   │   │   └── ml_reranker.py
+│   │   │   └── utils/
+│   │   │       ├── __init__.py
+│   │   │       └── helpers.py
+│   │   └── tests/
+│   │       ├── __init__.py
+│   │       └── test_classification.py
+│   │
+│   └── knowledge_base/
+│       ├── Dockerfile
+│       ├── requirements.txt
+│       ├── src/
+│       │   ├── __init__.py
+│       │   ├── app.py
+│       │   ├── config.py
+│       │   ├── routes/
+│       │   │   ├── __init__.py
+│       │   │   └── chunks.py
+│       │   ├── services/
+│       │   │   ├── __init__.py
+│       │   │   ├── chunk_manager.py
+│       │   │   └── ocsf_parser.py
+│       │   └── utils/
+│       │       ├── __init__.py
+│       │       └── helpers.py
+│       └── tests/
+│           ├── __init__.py
+│           └── test_chunks.py
+│
+├── frontend/
 │   ├── Dockerfile
-│   ├── src/
-│   │   └── ingest_logs.ts  # or ingest_logs.py, main entry
-│   ├── README.md
-│   └── package.json        # (if using Node.js)
-├── knowledge-base/
-│   ├── Dockerfile
-│   ├── src/
-│   │   ├── parse_ocsf_specs.ts
-│   │   ├── create_chunks.ts
-│   │   └── ...
-│   ├── README.md
-│   └── package.json
-├── classification-service/
-│   ├── Dockerfile
-│   ├── src/
-│   │   ├── classification_pipeline.ts
-│   │   ├── cross_encoder_reranker.ts
-│   │   └── ...
-│   └── package.json
-├── ui/
-│   ├── Dockerfile
+│   ├── package.json
 │   ├── public/
+│   │   ├── index.html
+│   │   └── assets/
 │   ├── src/
 │   │   ├── components/
+│   │   │   ├── common/
+│   │   │   ├── dashboard/
+│   │   │   └── classification/
 │   │   ├── pages/
-│   │   └── main.tsx
-│   ├── package.json
-│   └── README.md
-├── docker/
-│   ├── docker-compose.yml
-│   ├── trieve.env
-│   ├── clickhouse.env
-│   └── ...
+│   │   ├── services/
+│   │   ├── utils/
+│   │   ├── App.tsx
+│   │   └── index.tsx
+│   └── tests/
+│       └── components/
+│
+├── infrastructure/
+│   ├── docker/
+│   │   ├── docker-compose.yml
+│   │   ├── docker-compose.prod.yml
+│   │   └── env/
+│   │       ├── trieve.env.example
+│   │       ├── clickhouse.env.example
+│   │       └── redis.env.example
+│   │
+│   ├── k8s/
+│   │   ├── base/
+│   │   │   ├── deployments/
+│   │   │   ├── services/
+│   │   │   └── kustomization.yaml
+│   │   └── overlays/
+│   │       ├── dev/
+│   │       └── prod/
+│   │
+│   └── nginx/
+│       ├── Dockerfile
+│       └── nginx.conf
+│
 ├── scripts/
-│   ├── local_dev_setup.sh
-│   ├── load_sample_data.sh
-│   └── run_tests.sh
-├── .env.example
+│   ├── setup/
+│   │   ├── local_dev_setup.sh
+│   │   └── install_dependencies.sh
+│   ├── test/
+│   │   └── run_tests.sh
+│   └── deployment/
+│       ├── deploy_prod.sh
+│       └── rollback.sh
+│
+├── docs/
+│   ├── architecture/
+│   │   ├── high-level-design.md
+│   │   └── tech-stack.md
+│   ├── api/
+│   │   └── swagger.yaml
+│   └── guides/
+│       ├── development.md
+│       └── deployment.md
+│
+├── .github/
+│   └── workflows/
+│       ├── ci.yml
+│       └── cd.yml
+│
 ├── .gitignore
-├── package.json (optional root-level if needed)
 ├── README.md
-└── LICENSE
+├── LICENSE
+├── Makefile
+└── pyproject.toml
 ```
 
 Each sub-directory (e.g., `ingestion-service`, `knowledge-base`) stands alone—potentially containerized via Docker—and has minimal dependencies on the others, besides environment variables or well-defined API contracts.

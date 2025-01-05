@@ -1,0 +1,9 @@
+flask==3.0.0
+gunicorn==21.2.0
+python-dotenv==1.0.0
+pydantic==2.5.2
+pytest==7.4.3
+trieve-python-client==0.1.0
+beautifulsoup4==4.12.2  # For parsing OCSF docs
+markdown==3.5.1
+structlog==24.1.0 

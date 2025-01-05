@@ -1,0 +1,77 @@
+version: '3.8'
+
+services:
+  ingestion_service:
+    build: 
+      context: ../../backend/ingestion_service
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./env/ingestion.env
+    depends_on:
+      - redis
+
+  classification_service:
+    build:
+      context: ../../backend/classification_service
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8000"
+    env_file:
+      - ./env/classification.env
+    depends_on:
+      - clickhouse
+      - trieve
+
+  knowledge_base:
+    build:
+      context: ../../backend/knowledge_base
+      dockerfile: Dockerfile
+    ports:
+      - "8002:8000"
+    env_file:
+      - ./env/knowledge.env
+    depends_on:
+      - trieve
+
+  frontend:
+    build:
+      context: ../../frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./env/frontend.env
+    depends_on:
+      - ingestion_service
+      - classification_service
+      - knowledge_base
+
+  trieve:
+    image: devflowinc/trieve:latest
+    ports:
+      - "8080:8080"
+    env_file:
+      - ./env/trieve.env
+
+  clickhouse:
+    image: clickhouse/clickhouse-server:latest
+    ports:
+      - "8123:8123"
+      - "9000:9000"
+    env_file:
+      - ./env/clickhouse.env
+    volumes:
+      - clickhouse_data:/var/lib/clickhouse
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+volumes:
+  clickhouse_data:
+  redis_data: 
