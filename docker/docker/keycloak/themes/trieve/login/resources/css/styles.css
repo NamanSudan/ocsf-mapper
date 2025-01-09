@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400..900&display=swap');
+
+* {
+  box-sizing: border-box !important;
+}
+
+body {
+  background: #ededed;
+}
+
+:root {
+  --textColor: #7c858d;
+  --textOffColor: #f6f5f7;
+  --baseColor: #ededed !important;
+  --baseDarkColor: #1e2b36;
+  --baseLightColor: rgb(255 255 255);
+  --secColor: rgb(64 64 64);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --textColor: #f6f5f7;
+    --textOffColor: #7c858d;
+    --baseColor: rgb(18, 18, 18);
+    --baseDarkColor: #1e2b36;
+    --baseLightColor: #262626;
+    --secColor: rgb(64 64 64);
+  }
+}
+
+body {
+  background: var(--baseColor) !important;
+  color: var(--textColor) !important;
+  font-size: 14px;
+  font-family: 'Maven Pro', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+input {
+  border-color: #d4d4d4 !important;
+}
+
+button.pf-m-control::after {
+  border-color: #d4d4d4 !important;
+  /* margin-left: 20px; */
+  border-width: 1px !important;
+  border-left-color: transparent !important;
+  border-radius: 0px 4px 4px 0px !important;
+}
+
+input#username,
+input#lastName,
+input#email,
+input#firstName {
+  border-radius: 4px !important;
+  box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.05);
+}
+
+input#password,
+input#password-confirm {
+  box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.05);
+  border-radius: 4px 0px 0px 4px !important;
+  border-right-color: transparent !important;
+  border-right: none !important;
+  border-width: 1px !important;
+}
+
+#rememberMe {
+  accent-color: #B557C5 !important;
+  border: 1px solid red !important;
+}
+
+.checkbox {
+  margin: 0px;
+}
+
+.alert-error {
+  margin-bottom: 20px !important;
+  border: 1px solid #f87171;
+}
+
+/* Login Card */
+.login-pf-page-header {
+  color: black;
+  text-transform: capitalize;
+}
+
+.login-pf-page .card-pf {
+  border-radius: 6px;
+  border-bottom-color: red !important;
+  border-color: #d4d4d4 !important;
+  border-width: 1px !important;
+  border-inline-width: 2px !important;
+  border-left: 1px solid #d4d4d4 !important;
+  border-right: 1px solid #d4d4d4 !important;
+  border-bottom: 1px solid #d4d4d4 !important;
+  padding: 32px !important;
+  box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.05);
+}
+
+.login-pf-page-header {
+  margin-bottom: 50px !important;
+}
+
+/* Card Title */
+.card-pf {
+  max-width: 500px;
+  margin: auto;
+  background: white !important;
+  color: black !important;
+}
+
+#kc-page-title {
+  margin-top: 0px !important;
+  margin-bottom: 20px !important;
+}
+
+
+#kc-header {
+  display: flex;
+  gap: 200px !important;
+  justify-content: center;
+  align-items: center !important;
+}
+
+#kc-header-wrapper {
+  font-weight: 400;
+  font-size: 28px;
+}
+
+#kc-header-wrapper::before {
+  content: '';
+  display: inline-block;
+  width: 65px !important;
+  min-width: 65px;
+  /* Adjust to your image width */
+  height: 65px;
+  margin-right: 10px !important;
+  min-height: 65px;
+  /* Adjust to your image height */
+  background-image: url('https://cdn.trieve.ai/trieve-logo.png');
+  background-size: contain;
+  transform: translateY(25px);
+  background-repeat: no-repeat;
+}
+
+button#kc-login {
+  background-color: purple !important;
+}
+
+.signin-active {
+  background-color: rgb(232 121 249) !important;
+}
+
+.pf-c-button.pf-m-primary {
+  font-weight: 500;
+  border-radius: 6px;
+  color: black;
+  background-color: #E4C1EA;
+  border: 1px solid #DDB2E5 !important;
+}
+
+.pf-c-button.pf-m-primary:hover {
+  background-color: rgb(232 121 249) !important;
+}
+
+hr {
+  margin-top: 30px !important;
+  border-color: #e5e5e5 !important;
+}
+
+.login-pf-signup {
+  margin-top: 20px !important;
+}
+
+h4 {
+  font-weight: 400;
+  text-align: center;
+  padding-top: 10px;
+}
+
+span>a {
+  color: #7D308B;
+}
+
+span>a:hover {
+  color: #0C050E;
+}
+
+
+
+#kc-social-providers .pf-c-button.pf-m-control::after {
+  border: none !important;
+}
+
+
+#social-google {
+  background-color: #4285F4 !important;
+  color: white !important;
+}
+
+#kc-social-providers > ul > li:nth-child(1) {
+  margin-right: 10px !important;
+}
+
+#social-google:hover {
+  background-color: #357AE8 !important;
+}
+
+#social-github {
+  background-color: #333 !important;
+  color: white !important;
+}
+
+#kc-social-providers > h2 {
+  align-items: center !important;
+}
+
+#kc-registration-container {
+  text-align: center !important;  
+}
+
+#kc-registration-container > h3 {
+  margin-top: 20px !important;
+}
+
+#kc-registration > a {
+    font-weight: 500;
+    text-align: center;
+    white-space: nowrap;
+    user-select: none;
+    padding: 6px 10px;
+    font-size: 14px;
+    line-height: 1.3333333;
+    -webkit-appearance: button;
+    appearance: button;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    border-radius: 6px;
+    color: black;
+    background-color: #E4C1EA !important;
+    border: 1px solid #DDB2E5 !important;
+}
+
+#kc-registration > a:hover {
+  background-color: rgb(232 121 249) !important;
+  text-decoration: none;
+}
+
+#kc-form-buttons {
+  margin-bottom: 10px !important;
+}

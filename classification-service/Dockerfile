@@ -10,7 +10,7 @@ RUN apt-get update && \
 
 # Copy requirements and install Python packages
 COPY requirements.txt .
-RUN pip install --no-install-recommends -r requirements.txt
+RUN pip install -r requirements.txt
 
 # Copy application code
 COPY src/ .

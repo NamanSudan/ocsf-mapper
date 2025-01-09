@@ -10,10 +10,10 @@ RUN apt-get update && \
 
 # Copy requirements and install Python packages
 COPY requirements.txt .
-RUN pip install --no-install-recommends -r requirements.txt
+RUN pip install -r requirements.txt
 
 # Copy application code
 COPY src/ .
 
 # Run with Gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:8080", "--workers", "4", "--access-logfile", "-", "ingest_logs:app"] 
+CMD ["gunicorn", "--bind", "0.0.0.0:8080", "--workers", "4", "--access-logfile", "-", "app:app"] 

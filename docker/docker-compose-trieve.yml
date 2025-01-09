@@ -1,0 +1,366 @@
+services:
+  db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: trieve
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+
+  redis:
+    image: redis:7.2.2
+    restart: always
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD}", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - app-network
+    command: redis-server --requirepass ${REDIS_PASSWORD}
+
+  qdrant-database:
+    image: qdrant/qdrant:v1.12.2
+    environment:
+      - QDRANT__SERVICE__API_KEY=${QDRANT_API_KEY}
+    ports:
+      - 6333:6333
+      - 6334:6334
+    volumes:
+      - qdrant_data:/qdrant/storage
+    networks:
+      - app-network
+
+  s3:
+    image: minio/minio:RELEASE.2023-09-27T15-22-50Z
+    ports:
+      - 9000:9000
+      - 42625:42625
+    environment:
+      - MINIO_ROOT_USER=${MINIO_ROOT_USER}
+      - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://s3:9000/minio/health/live"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    volumes:
+      - s3-data:/data
+    command: server --console-address ":42625" /data
+    networks:
+      - app-network
+
+  s3-client:
+    image: minio/mc
+    depends_on:
+      s3:
+        condition: service_healthy
+    restart: on-failure
+    networks:
+      - app-network
+    entrypoint: >
+      /bin/sh -c "
+      mc config host add myminio http://s3:9000 ${MINIO_ROOT_USER} ${MINIO_ROOT_PASSWORD};
+      mc alias set myminio http://s3:9000 ${MINIO_ROOT_USER} ${MINIO_ROOT_PASSWORD};
+
+      mc admin user add myminio ${S3_ACCESS_KEY} ${S3_SECRET_KEY};
+      mc admin policy attach myminio readwrite --user ${S3_ACCESS_KEY};
+
+      mc mb myminio/${S3_BUCKET};
+
+
+      exit 0;
+      "
+
+  tika:
+    image: apache/tika:2.9.1.0-full
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "wget -qO- -S 'http://tika:9998/version' 2>&1 | grep 'HTTP/' | awk '{print $2}' | grep 200 || exit 1",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks:
+      - app-network
+    ports:
+      - 9998:9998
+
+  server:
+    image: trieve/server:latest-arm
+    build:
+      context: ./server/
+      dockerfile: Dockerfile.server
+    depends_on:
+      tika:
+        condition: service_healthy
+      db:
+        condition: service_healthy
+      qdrant-database:
+        condition: service_started
+      redis:
+        condition: service_healthy
+      keycloak:
+        condition: service_healthy
+    network_mode: "host"
+    restart: always
+    environment:
+      - ADMIN_API_KEY=${ADMIN_API_KEY}
+      - BASE_SERVER_URL=${BASE_SERVER_URL}
+      - REDIS_URL=${REDIS_URL}
+      - QDRANT_URL=${QDRANT_URL}
+      - QDRANT_API_KEY=${QDRANT_API_KEY}
+      - CREATE_QDRANT_COLLECTIONS=${CREATE_QDRANT_COLLECTIONS}
+      - DATABASE_URL=${DATABASE_URL}
+      - SMTP_RELAY=${SMTP_RELAY}
+      - SMTP_USERNAME=${SMTP_USERNAME}
+      - SMTP_PASSWORD=${SMTP_PASSWORD}
+      - SMTP_EMAIL_ADDRESS=${SMTP_EMAIL_ADDRESS}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - LLM_API_KEY=${LLM_API_KEY}
+      - SECRET_KEY=${SECRET_KEY}
+      - SALT=${SALT}
+      - S3_ENDPOINT=${S3_ENDPOINT}
+      - S3_ACCESS_KEY=${S3_ACCESS_KEY}
+      - S3_SECRET_KEY=${S3_SECRET_KEY}
+      - S3_BUCKET=${S3_BUCKET}
+      - COOKIE_SECURE=${COOKIE_SECURE}
+      - TIKA_URL=${TIKA_URL}
+      - OPENAI_BASE_URL=${OPENAI_BASE_URL}
+      - STRIPE_SECRET=${STRIPE_SECRET}
+      - STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET}
+      - ADMIN_DASHBOARD_URL=${ADMIN_DASHBOARD_URL}
+      - OIDC_CLIENT_SECRET=${OIDC_CLIENT_SECRET}
+      - OIDC_CLIENT_ID=${OIDC_CLIENT_ID}
+      - OIDC_AUTH_REDIRECT_URL=${OIDC_AUTH_REDIRECT_URL}
+      - OIDC_ISSUER_URL=${OIDC_ISSUER_URL}
+      - GPU_SERVER_ORIGIN=${GPU_SERVER_ORIGIN}
+      - AWS_REGION=${AWS_REGION}
+      - SPARSE_SERVER_QUERY_ORIGIN=${SPARSE_SERVER_QUERY_ORIGIN}
+      - EMBEDDING_SERVER_ORIGIN=${EMBEDDING_SERVER_ORIGIN}
+      - EMBEDDING_SERVER_ORIGIN_BGEM3=${EMBEDDING_SERVER_ORIGIN_BGEM3}
+      - RERANKER_SERVER_ORIGIN=${RERANKER_SERVER_ORIGIN}
+      - UNLIMITED=${UNLIMITED}
+      - REDIS_CONNECTIONS=${REDIS_CONNECTIONS}
+      - RUST_LOG=${RUST_LOG}
+      - CLICKHOUSE_URL=${CLICKHOUSE_URL}
+      - CLICKHOUSE_DB=${CLICKHOUSE_DB}
+      - CLICKHOUSE_USER=${CLICKHOUSE_USER}
+      - CLICKHOUSE_PASSWORD=${CLICKHOUSE_PASSWORD}
+
+  ingestion-worker:
+    image: trieve/ingest:latest-arm
+    build:
+      context: ./server/
+      dockerfile: Dockerfile.ingestion-worker
+    restart: always
+    network_mode: "host"
+    depends_on:
+      tika:
+        condition: service_healthy
+      db:
+        condition: service_healthy
+      qdrant-database:
+        condition: service_started
+      redis:
+        condition: service_healthy
+    env_file: .env
+
+  file-worker:
+    image: trieve/file_worker:latest-arm
+    build:
+      context: ./server/
+      dockerfile: Dockerfile.file-worker
+    restart: always
+    network_mode: "host"
+    depends_on:
+      tika:
+        condition: service_healthy
+      db:
+        condition: service_healthy
+      qdrant-database:
+        condition: service_started
+      redis:
+        condition: service_healthy
+    env_file: .env
+
+  csv-jsonl-worker:
+    image: trieve/file_worker:latest-arm
+    build:
+      context: ./server/
+      dockerfile: Dockerfile.csv-jsonl-worker
+    restart: always
+    network_mode: "host"
+    depends_on:
+      tika:
+        condition: service_healthy
+      db:
+        condition: service_healthy
+      qdrant-database:
+        condition: service_started
+      redis:
+        condition: service_healthy
+    env_file: .env
+
+  delete-worker:
+    image: trieve/delete_worker:latest-arm
+    build:
+      context: ./server/
+      dockerfile: Dockerfile.delete-worker
+    restart: always
+    network_mode: "host"
+    depends_on:
+      tika:
+        condition: service_healthy
+      db:
+        condition: service_healthy
+      qdrant-database:
+        condition: service_started
+      redis:
+        condition: service_healthy
+    env_file: .env
+
+  dashboard:
+    image: trieve/dashboard:latest-arm
+    build:
+      context: ./frontends
+      dockerfile: ./dashboard/Dockerfile
+    networks:
+      - app-network
+    ports:
+      - 5173:80
+    environment:
+      - VITE_API_HOST=${VITE_API_HOST}
+      - VITE_SEARCH_UI_URL=${VITE_SEARCH_UI_URL}
+      - VITE_CHAT_UI_URL=${VITE_CHAT_UI_URL}
+      - VITE_ANALYTICS_UI_URL=${VITE_ANALYTICS_UI_URL}
+      - VITE_BM25_ACTIVE=${VITE_BM25_ACTIVE}
+
+  chat:
+    image: trieve/chat:latest-arm
+    build:
+      context: ./frontends
+      dockerfile: ./chat/Dockerfile
+    networks:
+      - app-network
+    ports:
+      - 5175:80
+    environment:
+      - VITE_API_HOST=${VITE_API_HOST}
+      - VITE_SEARCH_UI_URL=${VITE_SEARCH_UI_URL}
+      - VITE_DASHBOARD_URL=${VITE_DASHBOARD_URL}
+
+  search:
+    image: trieve/search:latest-arm
+    build:
+      context: ./frontends
+      dockerfile: ./search/Dockerfile
+    networks:
+      - app-network
+    ports:
+      - 5174:80
+    environment:
+      - VITE_API_HOST=${VITE_API_HOST}
+      - VITE_DASHBOARD_URL=${VITE_DASHBOARD_URL}
+      - VITE_BM25_ACTIVE=${VITE_BM25_ACTIVE}
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:23.0.7
+    depends_on:
+      keycloak-db:
+        condition: service_healthy
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=aintsecure
+      - KC_DB=postgres
+      - KC_DB_URL=jdbc:postgresql://keycloak-db:5432/keycloak
+      - KC_DB_USERNAME=postgres
+      - KC_DB_PASSWORD=password
+      - KC_HEALTH_ENABLED=true
+      - KC_PROXY=${KC_PROXY}
+      - KC_HOSTNAME=${KC_HOSTNAME}
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "exec 3<>/dev/tcp/127.0.0.1/8080;echo -e \"GET /health/ready HTTP/1.1\r\nhost: http://localhost\r\nConnection: close\r\n\r\n\" >&3;grep \"HTTP/1.1 200 OK\" <&3",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 20 # Account for keycloak db starting up and taking time.
+    entrypoint: "/opt/keycloak/bin/kc.sh start-dev --import-realm --spi-theme-static-max-age=-1 --spi-theme-cache-themes=false --spi-theme-cache-templates=false"
+    volumes:
+      - keycloak-data:/opt/keycloak/data
+      - ./docker/keycloak/realm-export.json:/opt/keycloak/data/import/realm-export.json
+      - ./docker/keycloak/themes/trieve:/opt/keycloak/themes/trieve
+    ports:
+      - 8080:8080
+    networks:
+      - app-network
+
+  keycloak-db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: keycloak
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d keycloak"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    volumes:
+      - pg-keycloak-data:/var/lib/postgresql/data
+    ports:
+      - "5434:5432"
+    networks:
+      - app-network
+
+  clickhouse-db:
+    image: trieve/clickhouse:latest
+    restart: always
+    environment:
+      - CLICKHOUSE_USER=clickhouse
+      - CLICKHOUSE_PASSWORD=password
+      - CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT=1
+      - EMBEDDING_SERVER_URL=${EMBEDDING_SERVER_ORIGIN}
+    volumes:
+      - clickhouse-data:/var/lib/clickhouse
+    ports:
+      - "8123:8123"
+      - "9001:9000"
+      - "9009:9009"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  redis-data:
+  script-redis-data:
+  pgdata:
+  qdrant_data:
+  s3-data:
+  keycloak-data:
+  pg-keycloak-data:
+  clickhouse-data:

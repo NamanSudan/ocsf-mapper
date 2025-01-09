@@ -13,7 +13,7 @@ class TrieveClient:
         # Read environment variables
         self.api_key = os.getenv("TRIEVE_API_KEY")
         self.dataset_id = os.getenv("TRIEVE_DATASET_ID")
-        self.host = os.getenv("TRIEVE_HOST", "https://api.trieve.ai")
+        self.host = os.getenv("TRIEVE_HOST", "http://host.docker.internal:8090")
 
         # Configure Trieve client
         config = Configuration(
