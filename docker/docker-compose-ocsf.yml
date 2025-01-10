@@ -15,6 +15,18 @@ services:
       - ORGANIZATION_ID=${ORGANIZATION_ID}
     network_mode: "host"  # This will allow direct localhost access
 
+  extraction-service:
+    build:
+      context: ../extraction-service
+    ports:
+      - "8083:8083"  # Using 8083 as defined in our service
+    environment:
+      - FLASK_ENV=development
+      - PORT=8083
+    volumes:
+      - ../extraction-service/data:/app/data  # Mounting data directory to persist extracted files
+    network_mode: "host"  # Using host network mode for consistency
+
 networks:
   default:
     name: host 
