@@ -200,6 +200,62 @@ def generate_field_reference():
     except Exception as e:
         return jsonify({"status": "error", "error": str(e)}), 500
 
+# Data serving endpoints
+@app.route('/data/ocsf/categories', methods=['GET'])
+def serve_categories():
+    try:
+        logger.info("Serving categories data")
+        data = load_schema_file('ocsf_categories.json')
+        return jsonify({"status": "success", "data": data}), 200
+    except Exception as e:
+        logger.error(f"Error serving categories data: {str(e)}")
+        return jsonify({"status": "error", "error": str(e)}), 500
+
+@app.route('/data/ocsf/classes', methods=['GET'])
+def serve_classes():
+    try:
+        logger.info("Serving classes data")
+        data = load_schema_file('ocsf_classes.json')
+        return jsonify({"status": "success", "data": data}), 200
+    except Exception as e:
+        logger.error(f"Error serving classes data: {str(e)}")
+        return jsonify({"status": "error", "error": str(e)}), 500
+
+@app.route('/data/ocsf/base-event', methods=['GET'])
+def serve_base_event():
+    try:
+        logger.info("Serving base event data")
+        data = load_schema_file('ocsf_base_events.json')
+        return jsonify({"status": "success", "data": data}), 200
+    except Exception as e:
+        logger.error(f"Error serving base event data: {str(e)}")
+        return jsonify({"status": "error", "error": str(e)}), 500
+
+@app.route('/data/ocsf/schema', methods=['GET'])
+def serve_schema():
+    try:
+        logger.info("Serving schema data")
+        data = load_schema_file('ocsf_schema.json')
+        return jsonify({"status": "success", "data": data}), 200
+    except Exception as e:
+        logger.error(f"Error serving schema data: {str(e)}")
+        return jsonify({"status": "error", "error": str(e)}), 500
+
+@app.route('/data/ocsf/all', methods=['GET'])
+def serve_all_data():
+    try:
+        logger.info("Serving all OCSF data")
+        data = {
+            "categories": load_schema_file('ocsf_categories.json'),
+            "classes": load_schema_file('ocsf_classes.json'),
+            "base_event": load_schema_file('ocsf_base_events.json'),
+            "schema": load_schema_file('ocsf_schema.json')
+        }
+        return jsonify({"status": "success", "data": data}), 200
+    except Exception as e:
+        logger.error(f"Error serving all data: {str(e)}")
+        return jsonify({"status": "error", "error": str(e)}), 500
+
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 8083))
     app.run(host='0.0.0.0', port=port) 
