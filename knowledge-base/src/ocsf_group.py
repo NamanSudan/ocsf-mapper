@@ -1,7 +1,7 @@
 from typing import Dict, Any, List, Optional
 from trieve_client import TrieveClient
 from ocsf_data_client import OCSFDataClient
-from ocsf_chunks import OCSFCategoryChunk
+from ocsf_chunks import OCSFCategoryChunk, OCSFClassChunk
 import logging
 import hashlib
 import json
@@ -14,6 +14,27 @@ class OCSFGroup:
     def __init__(self, trieve_client: TrieveClient, data_client: OCSFDataClient):
         self.trieve_client = trieve_client
         self.data_client = data_client
+    
+    def delete_group_chunks(self, group_tracking_id: str) -> None:
+        """Delete all chunks associated with a group"""
+        try:
+            # Get all chunks in the group
+            chunks = self.trieve_client.search_chunks(
+                group_tracking_ids=[group_tracking_id],
+                page_size=100  # Get up to 100 chunks at a time
+            )
+            
+            # Delete each chunk
+            for chunk in chunks.get("chunks", []):
+                chunk_tracking_id = chunk.get("tracking_id")
+                if chunk_tracking_id:
+                    logger.info(f"Deleting chunk: {chunk_tracking_id}")
+                    self.trieve_client.delete_chunk(chunk_tracking_id)
+                    
+            logger.info(f"Successfully deleted all chunks in group: {group_tracking_id}")
+        except Exception as e:
+            logger.error(f"Failed to delete chunks in group {group_tracking_id}: {str(e)}")
+            raise
     
     def _calculate_hash(self, data: Dict[str, Any]) -> str:
         """Calculate a hash of the data to detect changes"""
@@ -291,3 +312,267 @@ class OCSFCategoryGroup(OCSFGroup):
         tags.extend(class_names)
         
         return list(set(tags))  # Remove duplicates 
+
+class OCSFCategorySpecificGroup:
+    """Handles creation and management of category-specific OCSF groups.
+    Each group represents a specific OCSF category (e.g. System Activity) and contains
+    chunks of information about the classes that belong to that category."""
+    
+    def __init__(self, trieve_client: TrieveClient, data_client: OCSFDataClient):
+        self.trieve_client = trieve_client
+        self.data_client = data_client
+        
+    def _build_group_metadata(self, category_data: Dict[str, Any]) -> Dict[str, Any]:
+        """Build metadata for a category-specific group"""
+        return {
+            "type": "category_specific",
+            "name": category_data["name"],
+            "uid": category_data["uid"],
+            "caption": category_data["caption"],
+            "description": category_data["description"],
+            "class_count": len(category_data["classes"])
+        }
+        
+    def _build_group_tag_set(self, category_data: Dict[str, Any]) -> List[str]:
+        """Build tag set for a category-specific group"""
+        tags = ["ocsf"]  # Base tag
+        
+        # Add category name and caption
+        if category_data.get("name"):
+            tags.append(category_data["name"])
+        if category_data.get("caption"):
+            tags.append(category_data["caption"])
+            
+        # Add class names and captions
+        for class_name, class_data in category_data.get("classes", {}).items():
+            if class_name:
+                tags.append(class_name)
+            if class_data.get("caption"):
+                tags.append(class_data["caption"])
+        
+        return list(set(tags))  # Remove duplicates
+        
+    def create_category_group(self, category_name: str) -> Dict[str, Any]:
+        """Create a category-specific group containing class information chunks"""
+        # Fetch categories data
+        response = self.data_client.fetch_data("categories")
+        logger.debug(f"Full response from data client: {response}")
+        
+        # Check if response is successful and contains data
+        if response.get("status") != "success" or not response.get("data"):
+            raise ValueError("Failed to fetch categories data")
+            
+        # Get the specified category from the attributes section
+        categories_data = response["data"]["attributes"]
+        if not categories_data:
+            raise ValueError("No categories data found in response")
+            
+        # Get the specified category
+        category_data = categories_data.get(category_name)
+        if not category_data:
+            raise ValueError(f"Category {category_name} not found")
+            
+        # Build group metadata
+        group_metadata = self._build_group_metadata(category_data)
+        
+        # Create the group with the category-specific naming convention
+        group_name = f"OCSF Category: {category_data['caption']}"
+        tracking_id = f"ocsf_category_{category_name}"
+        
+        # Build dynamic tag set
+        tag_set = self._build_group_tag_set(category_data)
+        
+        group = self.trieve_client.create_chunk_group(
+            name=group_name,
+            description=category_data["description"],
+            metadata=group_metadata,
+            tracking_id=tracking_id,
+            tag_set=tag_set,
+            upsert_by_tracking_id=True
+        )
+
+        # Create chunks for each class in this category using OCSFClassChunk
+        chunks_results = []
+        chunks_updated = False
+        
+        # Initialize the class chunk creator
+        class_chunk_creator = OCSFClassChunk(self.trieve_client)
+        
+        for class_name, class_data in category_data.get("classes", {}).items():
+            try:
+                # Create/update the chunk using the dedicated chunk class
+                chunk_result = class_chunk_creator.create_or_update_class_chunk(
+                    class_name=class_name,
+                    class_data=class_data,
+                    category_data=category_data,
+                    group_tracking_id=tracking_id
+                )
+                
+                chunks_results.append(chunk_result)
+                chunks_updated = True
+                
+            except Exception as e:
+                logger.error(f"Failed to process chunk for class {class_name}: {str(e)}")
+        
+        return {
+            "group": group,
+            "chunks": chunks_results,
+            "updates": {
+                "group_updated": True,
+                "chunks_updated": chunks_updated
+            }
+        } 
+
+class OCSFBaseEventGroup(OCSFGroup):
+    """Handles OCSF base event group operations"""
+    
+    def __init__(self, trieve_client: TrieveClient, data_client: OCSFDataClient):
+        super().__init__(trieve_client, data_client)
+        self.group_type = "base_event"
+        self.tracking_id = "ocsf_base_event"
+    
+    def _build_metadata(self, data: Dict[str, Any]) -> Dict[str, Any]:
+        """Build metadata from base event data"""
+        attributes = data.get("attributes", [])
+        attribute_groups = {}
+        required_attributes = []
+        
+        # Process attributes which are a list of single-key dictionaries
+        for attr_dict in attributes:
+            # Each attr_dict has a single key-value pair
+            for attr_name, attr_data in attr_dict.items():
+                group = attr_data.get("group", "Other")
+                if group not in attribute_groups:
+                    attribute_groups[group] = []
+                    
+                attribute_info = {
+                    "name": attr_name,
+                    "caption": attr_data.get("caption"),
+                    "type": attr_data.get("type"),
+                    "required": attr_data.get("requirement") == "required"
+                }
+                
+                attribute_groups[group].append(attribute_info)
+                
+                if attr_data.get("requirement") == "required":
+                    required_attributes.append(attr_name)
+        
+        return {
+            "type": self.group_type,
+            "name": data.get("name"),
+            "caption": data.get("caption"),
+            "description": data.get("description"),
+            "uid": data.get("uid"),
+            "category": data.get("category"),
+            "category_uid": data.get("category_uid"),
+            "profiles": data.get("profiles", []),
+            "attribute_groups": attribute_groups,
+            "attribute_count": len(attributes),
+            "required_attributes": required_attributes
+        }
+        
+    def _build_tag_set(self, data: Dict[str, Any]) -> List[str]:
+        """Build tag set from base event data"""
+        tags = set(["ocsf", self.group_type, "base_event"])
+        
+        # Add name and caption
+        if data.get("name"):
+            tags.add(data["name"])
+        if data.get("caption"):
+            tags.add(data["caption"])
+        
+        # Add profile tags
+        tags.update(data.get("profiles", []))
+        
+        # Add attribute groups and types
+        attributes = data.get("attributes", [])
+        for attr_dict in attributes:
+            for attr_data in attr_dict.values():
+                # Add group
+                if "group" in attr_data:
+                    tags.add(f"group:{attr_data['group']}")
+                
+                # Add type
+                if "type" in attr_data:
+                    tags.add(f"type:{attr_data['type']}")
+                    
+                # Add requirement status
+                if attr_data.get("requirement") == "required":
+                    tags.add("required_attribute")
+        
+        return list(tags)
+    
+    def update_from_data(self, create_chunks: bool = False) -> Dict[str, Any]:
+        """Update base event group from extracted data"""
+        # Fetch base event data
+        response = self.data_client.fetch_data("base-event")
+        logger.debug("Raw response from data client:")
+        logger.debug(f"Response structure: {response}")
+        
+        if not response or not response.get("data"):
+            logger.error(f"Invalid response structure: {response}")
+            raise ValueError("No base event data received from extraction service")
+        
+        data = response["data"]
+        logger.debug("Processing extracted data:")
+        logger.debug(f"Data keys: {data.keys()}")
+        
+        # Build group parameters from data
+        metadata = self._build_metadata(data)
+        tag_set = self._build_tag_set(data)
+        
+        logger.debug("Built group parameters:")
+        logger.debug(f"Metadata: {metadata}")
+        logger.debug(f"Tag set: {tag_set}")
+        
+        # Delete existing chunks if we're creating new ones
+        if create_chunks:
+            logger.info("Deleting existing chunks...")
+            # self.delete_group_chunks(self.tracking_id)  # Commented out as chunks were manually deleted
+        
+        # Create/update the group
+        logger.info("Creating/updating OCSF Base Event group...")
+        group_result = self.create_or_update(
+            name="OCSF Base Event",
+            description=data.get("description", "The base event class that defines attributes available in most event classes"),
+            group_type=self.group_type,
+            metadata=metadata,
+            tag_set=tag_set,
+            tracking_id=self.tracking_id
+        )
+        logger.info(f"Successfully created/updated group with tracking_id: {self.tracking_id}")
+        
+        chunks_results = []
+        chunks_updated = False
+        
+        # Create chunks for each attribute if requested
+        if create_chunks:
+            logger.info("Creating chunks for base event attributes...")
+            from ocsf_chunks import OCSFBaseEventAttributeChunk
+            chunk_creator = OCSFBaseEventAttributeChunk(self.trieve_client)
+            
+            # Process attributes which are a list of single-key dictionaries
+            for attr_dict in data.get("attributes", []):
+                try:
+                    # Each attr_dict has a single key-value pair
+                    for attr_name, attr_data in attr_dict.items():
+                        logger.info(f"Creating/updating chunks for attribute: {attr_name}")
+                        # Create all chunks for this attribute (main + enum values if present)
+                        attr_chunks = chunk_creator.create_attribute_chunks(
+                            attr_name=attr_name,
+                            attr_data=attr_data,
+                            group_tracking_id=self.tracking_id
+                        )
+                        chunks_results.extend(attr_chunks)
+                        chunks_updated = True
+                except Exception as e:
+                    logger.error(f"Failed to process chunks for attribute {attr_name}: {str(e)}")
+        
+        return {
+            "group": group_result,
+            "chunks": chunks_results,
+            "updates": {
+                "group_updated": True,
+                "chunks_updated": chunks_updated
+            }
+        } 
