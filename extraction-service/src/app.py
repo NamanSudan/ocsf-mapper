@@ -32,13 +32,51 @@ def load_schema_file(filename: str) -> dict:
     file_path = data_dir / filename
     try:
         logger.info(f"Loading file from: {file_path}")
+        # Read file in chunks to handle large files
         with open(file_path, 'r') as f:
-            data = json.load(f)
+            # Read first character to determine if it's an array or object
+            first_char = f.read(1)
+            f.seek(0)  # Reset to start
+            
+            if first_char == '{':
+                # Process as object
+                data = {}
+                decoder = json.JSONDecoder()
+                buffer = ''
+                
+                while True:
+                    chunk = f.read(8192)  # Read 8KB at a time
+                    if not chunk:
+                        break
+                    buffer += chunk
+                    try:
+                        data, index = decoder.raw_decode(buffer)
+                        break
+                    except json.JSONDecodeError:
+                        continue
+                        
+            elif first_char == '[':
+                # Process as array
+                data = []
+                decoder = json.JSONDecoder()
+                buffer = ''
+                
+                while True:
+                    chunk = f.read(8192)
+                    if not chunk:
+                        break
+                    buffer += chunk
+                    try:
+                        data, index = decoder.raw_decode(buffer)
+                        break
+                    except json.JSONDecodeError:
+                        continue
+            else:
+                raise ValueError(f"Unexpected JSON format starting with: {first_char}")
+                
             logger.info(f"Loaded data type: {type(data)}")
-            if isinstance(data, str):
-                # If data is a string, try parsing it again
-                data = json.loads(data)
             return data
+            
     except Exception as e:
         logger.error(f"Error loading {filename}: {str(e)}")
         raise
@@ -126,6 +164,31 @@ def analyze_base_event():
         return jsonify({"status": "success", "analysis": result}), 200
     except Exception as e:
         logger.error(f"Error in base event analysis: {str(e)}")
+        return jsonify({"status": "error", "error": str(e)}), 500
+
+@app.route('/analyze/ocsf/schema-structure', methods=['GET'])
+def analyze_schema_structure():
+    """Analyze the complete schema structure"""
+    try:
+        logger.info("Starting unified schema analysis")
+        schema_data = load_schema_file('ocsf_schema.json')
+        analyzer = SchemaAnalyzer()
+        result = analyzer.analyze_schema(schema_data)
+        return jsonify({"status": "success", "analysis": result}), 200
+    except Exception as e:
+        logger.error(f"Error analyzing schema structure: {str(e)}")
+        return jsonify({"status": "error", "error": str(e)}), 500
+
+@app.route('/analyze/ocsf/schema-deep', methods=['GET'])
+def analyze_schema_deep_structure():
+    try:
+        logger.info("Starting deep schema structure analysis")
+        data = load_schema_file('ocsf_schema.json')
+        result = analyzer.analyze_schema_deep_structure(data)
+        logger.info(f"Deep schema structure analysis completed")
+        return jsonify({"status": "success", "analysis": result}), 200
+    except Exception as e:
+        logger.error(f"Error in deep schema structure analysis: {str(e)}")
         return jsonify({"status": "error", "error": str(e)}), 500
 
 # Validation endpoints

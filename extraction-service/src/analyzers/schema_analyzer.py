@@ -1,4 +1,4 @@
-from typing import Dict, List
+from typing import Dict, List, Any
 import logging
 import json
 
@@ -266,3 +266,495 @@ class SchemaAnalyzer:
             # This is a simplified version
             current = {'extends': None}  # Placeholder for parent lookup
         return depth 
+
+    def analyze_schema(self, schema_data: Dict) -> Dict:
+        """Comprehensive analysis of the schema structure combining basic and deep analysis"""
+        try:
+            self.logger.info("Starting unified schema analysis")
+            
+            stats = {
+                "metadata": {
+                    "version": str(schema_data.get("version", "unknown")),
+                    "total_keys": 0,
+                    "unique_keys": [],
+                    "max_depth": 0
+                },
+                "structure_metrics": {
+                    "top_level_objects_count": len(schema_data.get("objects", {})),
+                    "total_objects_count": 0,
+                    "max_nesting_depth": 0
+                },
+                "ocsf_summary": {
+                    "categories": {
+                        "total_count": 0,
+                        "with_classes": 0,
+                        "distribution": {},
+                        "class_counts": {
+                            "min": float('inf'),
+                            "max": 0,
+                            "avg": 0
+                        }
+                    },
+                    "classes": {
+                        "total_count": 0,
+                        "base_classes": 0,
+                        "derived_classes": 0,
+                        "with_examples": 0,
+                        "inheritance_depth": {
+                            "max": 0,
+                            "avg": 0
+                        },
+                        "category_distribution": {}
+                    },
+                    "events": {
+                        "total_types": 0,
+                        "base_event_fields": 0,
+                        "extension_points": [],
+                        "field_groups": {
+                            "classification": [],
+                            "context": [],
+                            "occurrence": [],
+                            "primary": []
+                        }
+                    },
+                    "profiles": {
+                        "total_count": 0,
+                        "usage_distribution": {},
+                        "most_used": [],
+                        "least_used": []
+                    }
+                },
+                "objects_summary": {
+                    "total_count": 0,
+                    "with_attributes": 0,
+                    "with_profiles": 0,
+                    "with_constraints": 0,
+                    "inheritance": {
+                        "base_objects": 0,
+                        "derived_objects": 0,
+                        "inheritance_chains": []
+                    }
+                },
+                "attributes_analysis": {
+                    "total_fields": 0,
+                    "required_fields": 0,
+                    "recommended_fields": 0,
+                    "optional_fields": 0,
+                    "field_types": {},
+                    "avg_fields_per_object": 0,
+                    "field_groups": {},
+                    "field_relationships": []
+                },
+                "structure_analysis": {
+                    "branching_factor": {},
+                    "leaf_depths": [],
+                    "complex_objects": [],
+                    "circular_refs": [],
+                    "composition_patterns": [],
+                    "reuse_patterns": {}
+                },
+                "key_analysis": {
+                    "frequency": {},
+                    "depth_distribution": {},
+                    "parent_child_relationships": [],
+                    "value_types": {},
+                    "key_paths": [],
+                    "patterns": {
+                        "prefixes": {},
+                        "suffixes": {},
+                        "compounds": {}
+                    }
+                },
+                "value_analysis": {
+                    "type_distribution": {},
+                    "requirements_distribution": {},
+                    "constraints_types": {},
+                    "profiles_usage": {},
+                    "deprecated_items": [],
+                    "examples_count": 0,
+                    "descriptions_count": 0,
+                    "common_patterns": {
+                        "enums": {},
+                        "ranges": {},
+                        "formats": {},
+                        "defaults": {}
+                    }
+                }
+            }
+            
+            unique_keys = set()
+            key_paths = set()
+            field_groups = {}
+            seen_patterns = set()
+            
+            def analyze_key_patterns(key: str):
+                """Analyze patterns in key names"""
+                parts = key.split('_')
+                if len(parts) > 1:
+                    prefix = parts[0]
+                    suffix = parts[-1]
+                    stats["key_analysis"]["patterns"]["prefixes"][prefix] = \
+                        stats["key_analysis"]["patterns"]["prefixes"].get(prefix, 0) + 1
+                    stats["key_analysis"]["patterns"]["suffixes"][suffix] = \
+                        stats["key_analysis"]["patterns"]["suffixes"].get(suffix, 0) + 1
+                    if '_' in key:
+                        stats["key_analysis"]["patterns"]["compounds"][key] = \
+                            stats["key_analysis"]["patterns"]["compounds"].get(key, 0) + 1
+
+            def analyze_value_patterns(value: Any, path: str):
+                """Analyze patterns in values"""
+                if isinstance(value, dict):
+                    # Check for common object patterns
+                    pattern_key = frozenset(value.keys())
+                    if pattern_key not in seen_patterns:
+                        seen_patterns.add(pattern_key)
+                        if len(value) > 2:
+                            stats["structure_analysis"]["composition_patterns"].append({
+                                "keys": list(value.keys()),
+                                "path": path
+                            })
+                    
+                    # Track field relationships
+                    if len(value) > 1:
+                        related_fields = list(value.keys())
+                        stats["attributes_analysis"]["field_relationships"].append({
+                            "fields": related_fields,
+                            "path": path
+                        })
+                    
+                    # Analyze field groups
+                    if "group" in value:
+                        group = str(value["group"])
+                        if group not in field_groups:
+                            field_groups[group] = []
+                        field_groups[group].append(path)
+                    
+                    # Track value patterns
+                    if "enum" in value:
+                        stats["value_analysis"]["common_patterns"]["enums"][path] = value["enum"]
+                    if "format" in value:
+                        stats["value_analysis"]["common_patterns"]["formats"][path] = value["format"]
+                    if "default" in value:
+                        stats["value_analysis"]["common_patterns"]["defaults"][path] = value["default"]
+                    if all(k in value for k in ["minimum", "maximum"]):
+                        stats["value_analysis"]["common_patterns"]["ranges"][path] = {
+                            "min": value["minimum"],
+                            "max": value["maximum"]
+                        }
+
+            def update_key_stats(key: str, value: Any, depth: int, path: str, parent_key: str = None):
+                """Update statistics about a key"""
+                # Track unique keys
+                unique_keys.add(key)
+                
+                # Update key frequency
+                stats["key_analysis"]["frequency"][key] = \
+                    stats["key_analysis"]["frequency"].get(key, 0) + 1
+                
+                # Track depth distribution
+                if key not in stats["key_analysis"]["depth_distribution"]:
+                    stats["key_analysis"]["depth_distribution"][key] = []
+                if depth not in stats["key_analysis"]["depth_distribution"][key]:
+                    stats["key_analysis"]["depth_distribution"][key].append(depth)
+                
+                # Track key paths
+                key_paths.add(path)
+                
+                # Track parent-child relationship
+                if parent_key:
+                    stats["key_analysis"]["parent_child_relationships"].append({
+                        "parent": str(parent_key),
+                        "child": str(key),
+                        "depth": depth,
+                        "path": path
+                    })
+                
+                # Track value types
+                value_type = type(value).__name__
+                if key not in stats["key_analysis"]["value_types"]:
+                    stats["key_analysis"]["value_types"][key] = []
+                if value_type not in stats["key_analysis"]["value_types"][key]:
+                    stats["key_analysis"]["value_types"][key].append(value_type)
+                
+                # Update branching factor
+                if depth not in stats["structure_analysis"]["branching_factor"]:
+                    stats["structure_analysis"]["branching_factor"][depth] = 0
+                if isinstance(value, (dict, list)):
+                    stats["structure_analysis"]["branching_factor"][depth] += 1
+                
+                # Analyze key patterns
+                analyze_key_patterns(key)
+                
+                # Analyze value patterns
+                analyze_value_patterns(value, path)
+            
+            def analyze_ocsf_elements(node: Dict, path: str):
+                """Analyze OCSF-specific elements in the schema"""
+                if isinstance(node, dict):
+                    # Category analysis
+                    if "category_uid" in node or "category_name" in node:
+                        category = str(node.get("category_name", node.get("category_uid")))
+                        stats["ocsf_summary"]["categories"]["distribution"][category] = \
+                            stats["ocsf_summary"]["categories"]["distribution"].get(category, 0) + 1
+                    
+                    # Class analysis
+                    if "class_uid" in node:
+                        stats["ocsf_summary"]["classes"]["total_count"] += 1
+                        if "extends" in node:
+                            stats["ocsf_summary"]["classes"]["derived_classes"] += 1
+                        else:
+                            stats["ocsf_summary"]["classes"]["base_classes"] += 1
+                        
+                        if "example" in node or "examples" in node:
+                            stats["ocsf_summary"]["classes"]["with_examples"] += 1
+                        
+                        category = str(node.get("category_name", "unknown"))
+                        stats["ocsf_summary"]["classes"]["category_distribution"][category] = \
+                            stats["ocsf_summary"]["classes"]["category_distribution"].get(category, 0) + 1
+                    
+                    # Event analysis
+                    if "activity_id" in node or "activity_name" in node:
+                        stats["ocsf_summary"]["events"]["total_types"] += 1
+                    
+                    # Profile analysis
+                    if "profiles" in node:
+                        profiles = node["profiles"]
+                        if isinstance(profiles, list):
+                            for profile in profiles:
+                                profile = str(profile)
+                                stats["ocsf_summary"]["profiles"]["usage_distribution"][profile] = \
+                                    stats["ocsf_summary"]["profiles"]["usage_distribution"].get(profile, 0) + 1
+                    
+                    # Field group categorization
+                    if "group" in node:
+                        group = str(node["group"])
+                        field_name = path.split(".")[-1]
+                        if group in stats["ocsf_summary"]["events"]["field_groups"]:
+                            stats["ocsf_summary"]["events"]["field_groups"][group].append(field_name)
+                    
+                    # Extension point detection
+                    if path.endswith("_ext"):
+                        stats["ocsf_summary"]["events"]["extension_points"].append(path)
+
+            def analyze_node(node: Any, depth: int = 0, path: str = "", parent_key: str = None, visited=None) -> None:
+                """Recursively analyze a node and its children"""
+                if visited is None:
+                    visited = set()
+                
+                # Check for circular references
+                node_id = id(node)
+                if node_id in visited:
+                    stats["structure_analysis"]["circular_refs"].append(path)
+                    return
+                visited.add(node_id)
+                
+                # Update structural metrics
+                if isinstance(node, dict):
+                    stats["structure_metrics"]["total_objects_count"] += 1
+                    stats["structure_metrics"]["max_nesting_depth"] = max(
+                        stats["structure_metrics"]["max_nesting_depth"],
+                        depth
+                    )
+                
+                stats["metadata"]["max_depth"] = max(stats["metadata"]["max_depth"], depth)
+                
+                if isinstance(node, dict):
+                    # Analyze OCSF-specific elements
+                    analyze_ocsf_elements(node, path)
+                    
+                    # Special key handling
+                    if "type" in node:
+                        type_val = str(node["type"])
+                        stats["value_analysis"]["type_distribution"][type_val] = \
+                            stats["value_analysis"]["type_distribution"].get(type_val, 0) + 1
+                    
+                    if "requirement" in node:
+                        req = str(node["requirement"])
+                        stats["value_analysis"]["requirements_distribution"][req] = \
+                            stats["value_analysis"]["requirements_distribution"].get(req, 0) + 1
+                        if req == "required":
+                            stats["attributes_analysis"]["required_fields"] += 1
+                        elif req == "recommended":
+                            stats["attributes_analysis"]["recommended_fields"] += 1
+                        else:
+                            stats["attributes_analysis"]["optional_fields"] += 1
+                    
+                    if "constraints" in node:
+                        for constraint_type in node["constraints"].keys():
+                            constraint_type = str(constraint_type)
+                            stats["value_analysis"]["constraints_types"][constraint_type] = \
+                                stats["value_analysis"]["constraints_types"].get(constraint_type, 0) + 1
+                    
+                    if "profiles" in node:
+                        for profile in node["profiles"]:
+                            profile = str(profile)
+                            stats["value_analysis"]["profiles_usage"][profile] = \
+                                stats["value_analysis"]["profiles_usage"].get(profile, 0) + 1
+                    
+                    if "extends" in node:
+                        base = str(node["extends"])
+                        derived = str(node.get("name", path))
+                        stats["objects_summary"]["inheritance"]["derived_objects"] += 1
+                        
+                        # Track inheritance chain
+                        chain = [derived, base]
+                        stats["objects_summary"]["inheritance"]["inheritance_chains"].append({
+                            "chain": chain,
+                            "path": path
+                        })
+                    
+                    if "@deprecated" in node:
+                        stats["value_analysis"]["deprecated_items"].append({
+                            "path": path,
+                            "details": str(node["@deprecated"])
+                        })
+                    
+                    if "example" in node or "examples" in node:
+                        stats["value_analysis"]["examples_count"] += 1
+                    
+                    if "description" in node:
+                        stats["value_analysis"]["descriptions_count"] += 1
+                    
+                    # Track complex objects
+                    if depth > 3 and len(node) > 5:
+                        stats["structure_analysis"]["complex_objects"].append({
+                            "path": path,
+                            "depth": depth,
+                            "size": len(node),
+                            "keys": list(node.keys())
+                        })
+                    
+                    # Process all keys in the dictionary
+                    for key, value in node.items():
+                        stats["metadata"]["total_keys"] += 1
+                        new_path = f"{path}.{key}" if path else str(key)
+                        update_key_stats(str(key), value, depth, new_path, parent_key)
+                        analyze_node(value, depth + 1, new_path, str(key), visited.copy())
+                
+                elif isinstance(node, list):
+                    for i, item in enumerate(node):
+                        new_path = f"{path}[{i}]"
+                        analyze_node(item, depth + 1, new_path, parent_key, visited.copy())
+                
+                else:  # Leaf node
+                    stats["structure_analysis"]["leaf_depths"].append(depth)
+                
+            # Start the recursive analysis
+            analyze_node(schema_data)
+            
+            # Process objects specifically
+            objects = schema_data.get("objects", {})
+            stats["objects_summary"]["total_count"] = len(objects)
+            
+            for obj_name, obj_data in objects.items():
+                # Track inheritance
+                if not obj_data.get("extends"):
+                    stats["objects_summary"]["inheritance"]["base_objects"] += 1
+                
+                # Track profiles
+                if obj_data.get("profiles"):
+                    stats["objects_summary"]["with_profiles"] += 1
+                
+                # Track constraints
+                if "constraints" in obj_data:
+                    stats["objects_summary"]["with_constraints"] += 1
+                
+                # Process attributes
+                attributes = obj_data.get("attributes", {})
+                if attributes:
+                    stats["objects_summary"]["with_attributes"] += 1
+                    stats["attributes_analysis"]["total_fields"] += len(attributes)
+            
+            # Post-processing
+            stats["metadata"]["unique_keys"] = sorted(list(unique_keys))
+            stats["key_analysis"]["key_paths"] = sorted(list(key_paths))
+            stats["attributes_analysis"]["field_groups"] = field_groups
+            
+            # Calculate averages
+            if stats["objects_summary"]["with_attributes"] > 0:
+                stats["attributes_analysis"]["avg_fields_per_object"] = \
+                    stats["attributes_analysis"]["total_fields"] / stats["objects_summary"]["with_attributes"]
+            
+            if stats["structure_analysis"]["leaf_depths"]:
+                avg_leaf_depth = sum(stats["structure_analysis"]["leaf_depths"]) / \
+                    len(stats["structure_analysis"]["leaf_depths"])
+                stats["structure_analysis"]["average_leaf_depth"] = avg_leaf_depth
+            
+            # Sort all distributions by frequency
+            for section in ["value_analysis", "key_analysis"]:
+                for key, value in stats[section].items():
+                    if isinstance(value, dict) and not key == "common_patterns":
+                        stats[section][key] = dict(sorted(
+                            value.items(),
+                            key=lambda x: x[1] if isinstance(x[1], (int, float)) else len(x[1]),
+                            reverse=True
+                        ))
+            
+            # Sort key patterns
+            for pattern_type in ["prefixes", "suffixes", "compounds"]:
+                stats["key_analysis"]["patterns"][pattern_type] = dict(sorted(
+                    stats["key_analysis"]["patterns"][pattern_type].items(),
+                    key=lambda x: x[1],
+                    reverse=True
+                ))
+            
+            # Sort complex objects by depth and size
+            stats["structure_analysis"]["complex_objects"].sort(
+                key=lambda x: (x["depth"], x["size"]),
+                reverse=True
+            )
+            
+            # Analyze reuse patterns
+            reuse_counts = {}
+            for pattern in stats["structure_analysis"]["composition_patterns"]:
+                pattern_key = tuple(sorted(pattern["keys"]))
+                if pattern_key not in reuse_counts:
+                    reuse_counts[pattern_key] = []
+                reuse_counts[pattern_key].append(pattern["path"])
+            
+            # Only keep patterns that are reused
+            stats["structure_analysis"]["reuse_patterns"] = {
+                str(k): paths for k, paths in reuse_counts.items()
+                if len(paths) > 1
+            }
+            
+            # Post-processing for OCSF-specific stats
+            if stats["ocsf_summary"]["categories"]["distribution"]:
+                class_counts = list(stats["ocsf_summary"]["categories"]["distribution"].values())
+                stats["ocsf_summary"]["categories"].update({
+                    "total_count": len(stats["ocsf_summary"]["categories"]["distribution"]),
+                    "with_classes": sum(1 for count in class_counts if count > 0),
+                    "class_counts": {
+                        "min": min(class_counts),
+                        "max": max(class_counts),
+                        "avg": sum(class_counts) / len(class_counts)
+                    }
+                })
+            
+            # Sort profile usage
+            profile_usage = stats["ocsf_summary"]["profiles"]["usage_distribution"]
+            stats["ocsf_summary"]["profiles"].update({
+                "total_count": len(profile_usage),
+                "most_used": sorted(profile_usage.items(), key=lambda x: x[1], reverse=True)[:5],
+                "least_used": sorted(profile_usage.items(), key=lambda x: x[1])[:5]
+            })
+            
+            # Sort category distribution
+            stats["ocsf_summary"]["categories"]["distribution"] = dict(sorted(
+                stats["ocsf_summary"]["categories"]["distribution"].items(),
+                key=lambda x: x[1],
+                reverse=True
+            ))
+            
+            # Sort class category distribution
+            stats["ocsf_summary"]["classes"]["category_distribution"] = dict(sorted(
+                stats["ocsf_summary"]["classes"]["category_distribution"].items(),
+                key=lambda x: x[1],
+                reverse=True
+            ))
+            
+            return stats
+            
+        except Exception as e:
+            self.logger.error(f"Error in schema analysis: {str(e)}")
+            raise 
