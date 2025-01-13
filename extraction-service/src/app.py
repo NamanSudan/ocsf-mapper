@@ -295,14 +295,62 @@ def serve_base_event():
         return jsonify({"status": "error", "error": str(e)}), 500
 
 @app.route('/data/ocsf/schema', methods=['GET'])
-def serve_schema():
+def get_ocsf_schema():
+    """Serve the extracted OCSF schema"""
     try:
-        logger.info("Serving schema data")
-        data = load_schema_file('ocsf_schema.json')
-        return jsonify({"status": "success", "data": data}), 200
+        logger.info("Serving OCSF schema data")
+        schema_path = os.path.join('data', 'ocsf', 'ocsf_schema.json')
+        
+        if not os.path.exists(schema_path):
+            return jsonify({
+                "error": "OCSF schema data not found. Please run extraction first.",
+                "status": "error"
+            }), 404
+            
+        with open(schema_path, 'r') as f:
+            schema_data = json.load(f)
+            
+        return jsonify({
+            "status": "success",
+            "schema": schema_data
+        }), 200
+        
     except Exception as e:
-        logger.error(f"Error serving schema data: {str(e)}")
-        return jsonify({"status": "error", "error": str(e)}), 500
+        logger.error(f"Error serving OCSF schema: {str(e)}")
+        return jsonify({
+            "error": str(e),
+            "status": "error"
+        }), 500
+
+@app.route('/data/ocsf/analytics', methods=['GET'])
+def get_ocsf_analytics():
+    """Serve the OCSF schema analytics"""
+    try:
+        logger.info("Serving OCSF schema analytics")
+        analytics_path = os.path.join('data', 'analysis', 'ocsf_schema_analysis.json')
+        
+        if not os.path.exists(analytics_path):
+            return jsonify({
+                "error": "OCSF schema analytics not found. Please run analysis first.",
+                "status": "error"
+            }), 404
+            
+        with open(analytics_path, 'r') as f:
+            analytics_data = json.load(f)
+            
+        return jsonify({
+            "status": "success",
+            "analytics": analytics_data,
+            "schema_version": "1.3.0",
+            "analysis_timestamp": analytics_data.get("metadata", {}).get("analysis_timestamp", None)
+        }), 200
+        
+    except Exception as e:
+        logger.error(f"Error serving OCSF schema analytics: {str(e)}")
+        return jsonify({
+            "error": str(e),
+            "status": "error"
+        }), 500
 
 @app.route('/data/ocsf/all', methods=['GET'])
 def serve_all_data():
