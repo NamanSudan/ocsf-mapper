@@ -32,13 +32,51 @@ def load_schema_file(filename: str) -> dict:
     file_path = data_dir / filename
     try:
         logger.info(f"Loading file from: {file_path}")
+        # Read file in chunks to handle large files
         with open(file_path, 'r') as f:
-            data = json.load(f)
+            # Read first character to determine if it's an array or object
+            first_char = f.read(1)
+            f.seek(0)  # Reset to start
+            
+            if first_char == '{':
+                # Process as object
+                data = {}
+                decoder = json.JSONDecoder()
+                buffer = ''
+                
+                while True:
+                    chunk = f.read(8192)  # Read 8KB at a time
+                    if not chunk:
+                        break
+                    buffer += chunk
+                    try:
+                        data, index = decoder.raw_decode(buffer)
+                        break
+                    except json.JSONDecodeError:
+                        continue
+                        
+            elif first_char == '[':
+                # Process as array
+                data = []
+                decoder = json.JSONDecoder()
+                buffer = ''
+                
+                while True:
+                    chunk = f.read(8192)
+                    if not chunk:
+                        break
+                    buffer += chunk
+                    try:
+                        data, index = decoder.raw_decode(buffer)
+                        break
+                    except json.JSONDecodeError:
+                        continue
+            else:
+                raise ValueError(f"Unexpected JSON format starting with: {first_char}")
+                
             logger.info(f"Loaded data type: {type(data)}")
-            if isinstance(data, str):
-                # If data is a string, try parsing it again
-                data = json.loads(data)
             return data
+            
     except Exception as e:
         logger.error(f"Error loading {filename}: {str(e)}")
         raise
@@ -126,6 +164,31 @@ def analyze_base_event():
         return jsonify({"status": "success", "analysis": result}), 200
     except Exception as e:
         logger.error(f"Error in base event analysis: {str(e)}")
+        return jsonify({"status": "error", "error": str(e)}), 500
+
+@app.route('/analyze/ocsf/schema-structure', methods=['GET'])
+def analyze_schema_structure():
+    """Analyze the complete schema structure"""
+    try:
+        logger.info("Starting unified schema analysis")
+        schema_data = load_schema_file('ocsf_schema.json')
+        analyzer = SchemaAnalyzer()
+        result = analyzer.analyze_schema(schema_data)
+        return jsonify({"status": "success", "analysis": result}), 200
+    except Exception as e:
+        logger.error(f"Error analyzing schema structure: {str(e)}")
+        return jsonify({"status": "error", "error": str(e)}), 500
+
+@app.route('/analyze/ocsf/schema-deep', methods=['GET'])
+def analyze_schema_deep_structure():
+    try:
+        logger.info("Starting deep schema structure analysis")
+        data = load_schema_file('ocsf_schema.json')
+        result = analyzer.analyze_schema_deep_structure(data)
+        logger.info(f"Deep schema structure analysis completed")
+        return jsonify({"status": "success", "analysis": result}), 200
+    except Exception as e:
+        logger.error(f"Error in deep schema structure analysis: {str(e)}")
         return jsonify({"status": "error", "error": str(e)}), 500
 
 # Validation endpoints
@@ -232,14 +295,62 @@ def serve_base_event():
         return jsonify({"status": "error", "error": str(e)}), 500
 
 @app.route('/data/ocsf/schema', methods=['GET'])
-def serve_schema():
+def get_ocsf_schema():
+    """Serve the extracted OCSF schema"""
     try:
-        logger.info("Serving schema data")
-        data = load_schema_file('ocsf_schema.json')
-        return jsonify({"status": "success", "data": data}), 200
+        logger.info("Serving OCSF schema data")
+        schema_path = os.path.join('data', 'ocsf', 'ocsf_schema.json')
+        
+        if not os.path.exists(schema_path):
+            return jsonify({
+                "error": "OCSF schema data not found. Please run extraction first.",
+                "status": "error"
+            }), 404
+            
+        with open(schema_path, 'r') as f:
+            schema_data = json.load(f)
+            
+        return jsonify({
+            "status": "success",
+            "schema": schema_data
+        }), 200
+        
     except Exception as e:
-        logger.error(f"Error serving schema data: {str(e)}")
-        return jsonify({"status": "error", "error": str(e)}), 500
+        logger.error(f"Error serving OCSF schema: {str(e)}")
+        return jsonify({
+            "error": str(e),
+            "status": "error"
+        }), 500
+
+@app.route('/data/ocsf/analytics', methods=['GET'])
+def get_ocsf_analytics():
+    """Serve the OCSF schema analytics"""
+    try:
+        logger.info("Serving OCSF schema analytics")
+        analytics_path = os.path.join('data', 'analysis', 'ocsf_schema_analysis.json')
+        
+        if not os.path.exists(analytics_path):
+            return jsonify({
+                "error": "OCSF schema analytics not found. Please run analysis first.",
+                "status": "error"
+            }), 404
+            
+        with open(analytics_path, 'r') as f:
+            analytics_data = json.load(f)
+            
+        return jsonify({
+            "status": "success",
+            "analytics": analytics_data,
+            "schema_version": "1.3.0",
+            "analysis_timestamp": analytics_data.get("metadata", {}).get("analysis_timestamp", None)
+        }), 200
+        
+    except Exception as e:
+        logger.error(f"Error serving OCSF schema analytics: {str(e)}")
+        return jsonify({
+            "error": str(e),
+            "status": "error"
+        }), 500
 
 @app.route('/data/ocsf/all', methods=['GET'])
 def serve_all_data():
