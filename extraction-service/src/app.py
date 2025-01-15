@@ -134,6 +134,42 @@ def extract_schema():
         logger.error(f"Error in schema extraction: {str(e)}")
         return jsonify({"status": "error", "error": str(e)}), 500
 
+@app.route('/extract/ocsf/dictionary', methods=['POST'])
+def extract_dictionary():
+    try:
+        logger.info("Starting dictionary extraction")
+        extractor = OCSFSchemaExtractor()
+        result = extractor.extract_dictionary()
+        logger.info(f"Dictionary extraction result: {result}")
+        return jsonify(result), 200 if result["status"] == "success" else 500
+    except Exception as e:
+        logger.error(f"Error in dictionary extraction: {str(e)}")
+        return jsonify({"status": "error", "error": str(e)}), 500
+
+@app.route('/extract/ocsf/data-types', methods=['POST'])
+def extract_data_types():
+    try:
+        logger.info("Starting data types extraction")
+        extractor = OCSFSchemaExtractor()
+        result = extractor.extract_data_types()
+        logger.info(f"Data types extraction result: {result}")
+        return jsonify(result), 200 if result["status"] == "success" else 500
+    except Exception as e:
+        logger.error(f"Error in data types extraction: {str(e)}")
+        return jsonify({"status": "error", "error": str(e)}), 500
+
+@app.route('/extract/ocsf/objects', methods=['POST'])
+def extract_objects():
+    try:
+        logger.info("Starting objects extraction")
+        extractor = OCSFSchemaExtractor()
+        result = extractor.extract_objects()
+        logger.info(f"Objects extraction result: {result}")
+        return jsonify(result), 200 if result["status"] == "success" else 500
+    except Exception as e:
+        logger.error(f"Error in objects extraction: {str(e)}")
+        return jsonify({"status": "error", "error": str(e)}), 500
+
 # Analysis endpoints
 @app.route('/analyze/categories', methods=['GET'])
 def analyze_categories():
@@ -189,6 +225,19 @@ def analyze_schema_deep_structure():
         return jsonify({"status": "success", "analysis": result}), 200
     except Exception as e:
         logger.error(f"Error in deep schema structure analysis: {str(e)}")
+        return jsonify({"status": "error", "error": str(e)}), 500
+
+@app.route('/analyze/ocsf/dictionary', methods=['GET'])
+def analyze_dictionary():
+    try:
+        logger.info("Starting dictionary analysis")
+        data = load_schema_file('ocsf_dictionary.json')
+        analyzer = SchemaAnalyzer()
+        result = analyzer.analyze_dictionary(data)
+        logger.info(f"Dictionary analysis completed")
+        return jsonify({"status": "success", "analysis": result}), 200
+    except Exception as e:
+        logger.error(f"Error in dictionary analysis: {str(e)}")
         return jsonify({"status": "error", "error": str(e)}), 500
 
 # Validation endpoints
@@ -322,6 +371,54 @@ def get_ocsf_schema():
             "status": "error"
         }), 500
 
+@app.route('/data/ocsf/data-types', methods=['GET'])
+def serve_data_types():
+    try:
+        logger.info("Serving data types data")
+        data = load_schema_file('ocsf_data_types.json')
+        return jsonify({"status": "success", "data": data}), 200
+    except Exception as e:
+        logger.error(f"Error serving data types data: {str(e)}")
+        return jsonify({"status": "error", "error": str(e)}), 500
+
+@app.route('/data/ocsf/dictionary', methods=['GET'])
+def serve_dictionary():
+    try:
+        logger.info("Serving dictionary data")
+        data = load_schema_file('ocsf_dictionary.json')
+        return jsonify({"status": "success", "data": data}), 200
+    except Exception as e:
+        logger.error(f"Error serving dictionary data: {str(e)}")
+        return jsonify({"status": "error", "error": str(e)}), 500
+
+@app.route('/data/ocsf/objects', methods=['GET'])
+def serve_objects():
+    try:
+        logger.info("Serving objects data")
+        data = load_schema_file('ocsf_objects.json')
+        return jsonify({"status": "success", "data": data}), 200
+    except Exception as e:
+        logger.error(f"Error serving objects data: {str(e)}")
+        return jsonify({"status": "error", "error": str(e)}), 500
+
+@app.route('/data/ocsf/all', methods=['GET'])
+def serve_all_data():
+    try:
+        logger.info("Serving all OCSF data")
+        data = {
+            "categories": load_schema_file('ocsf_categories.json'),
+            "classes": load_schema_file('ocsf_classes.json'),
+            "base_event": load_schema_file('ocsf_base_events.json'),
+            "schema": load_schema_file('ocsf_schema.json'),
+            "data_types": load_schema_file('ocsf_data_types.json'),
+            "dictionary": load_schema_file('ocsf_dictionary.json'),
+            "objects": load_schema_file('ocsf_objects.json')
+        }
+        return jsonify({"status": "success", "data": data}), 200
+    except Exception as e:
+        logger.error(f"Error serving all data: {str(e)}")
+        return jsonify({"status": "error", "error": str(e)}), 500
+
 @app.route('/data/ocsf/analytics', methods=['GET'])
 def get_ocsf_analytics():
     """Serve the OCSF schema analytics"""
@@ -351,21 +448,6 @@ def get_ocsf_analytics():
             "error": str(e),
             "status": "error"
         }), 500
-
-@app.route('/data/ocsf/all', methods=['GET'])
-def serve_all_data():
-    try:
-        logger.info("Serving all OCSF data")
-        data = {
-            "categories": load_schema_file('ocsf_categories.json'),
-            "classes": load_schema_file('ocsf_classes.json'),
-            "base_event": load_schema_file('ocsf_base_events.json'),
-            "schema": load_schema_file('ocsf_schema.json')
-        }
-        return jsonify({"status": "success", "data": data}), 200
-    except Exception as e:
-        logger.error(f"Error serving all data: {str(e)}")
-        return jsonify({"status": "error", "error": str(e)}), 500
 
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 8083))
