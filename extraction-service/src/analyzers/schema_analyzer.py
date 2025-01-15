@@ -758,3 +758,143 @@ class SchemaAnalyzer:
         except Exception as e:
             self.logger.error(f"Error in schema analysis: {str(e)}")
             raise 
+
+    def analyze_dictionary(self, dictionary_data: Dict) -> Dict:
+        """Analyze dictionary data structure and contents"""
+        try:
+            self.logger.info(f"Analyzing dictionary data of type: {type(dictionary_data)}")
+            
+            stats = {
+                "metadata": {
+                    "total_entries": 0,
+                    "total_enums": 0,
+                    "total_mappings": 0,
+                    "nesting_depth": 0
+                },
+                "structure": {
+                    "top_level_keys": [],
+                    "nested_objects": [],
+                    "value_types": {},
+                    "enum_distribution": {},
+                    "mapping_types": {}
+                },
+                "enums": {
+                    "total_values": 0,
+                    "unique_values": set(),
+                    "distribution": {},
+                    "categories": {}
+                },
+                "mappings": {
+                    "source_types": {},
+                    "target_types": {},
+                    "complexity": {
+                        "simple": 0,
+                        "complex": 0
+                    }
+                },
+                "relationships": {
+                    "parent_child": [],
+                    "references": [],
+                    "dependencies": []
+                }
+            }
+
+            def analyze_value(value: Any, path: str = "", depth: int = 0) -> None:
+                """Recursively analyze a value in the dictionary"""
+                # Update nesting depth
+                stats["metadata"]["nesting_depth"] = max(stats["metadata"]["nesting_depth"], depth)
+                
+                if isinstance(value, dict):
+                    # Track nested object structure
+                    if depth > 0:
+                        stats["structure"]["nested_objects"].append({
+                            "path": path,
+                            "depth": depth,
+                            "keys": list(value.keys())
+                        })
+                    
+                    # Analyze dictionary entries
+                    for key, val in value.items():
+                        new_path = f"{path}.{key}" if path else key
+                        
+                        # Track value types
+                        val_type = type(val).__name__
+                        stats["structure"]["value_types"][val_type] = \
+                            stats["structure"]["value_types"].get(val_type, 0) + 1
+                        
+                        # Check for enum-like structures
+                        if isinstance(val, dict) and all(isinstance(v, (str, int)) for v in val.values()):
+                            stats["metadata"]["total_enums"] += 1
+                            stats["enums"]["distribution"][new_path] = len(val)
+                            stats["enums"]["total_values"] += len(val)
+                            stats["enums"]["unique_values"].update(val.values())
+                        
+                        # Check for mapping structures
+                        if isinstance(val, dict) and "source" in val and "target" in val:
+                            stats["metadata"]["total_mappings"] += 1
+                            complexity = "complex" if len(val) > 2 else "simple"
+                            stats["mappings"]["complexity"][complexity] += 1
+                            
+                            # Track source and target types
+                            if "source_type" in val:
+                                source_type = str(val["source_type"])
+                                stats["mappings"]["source_types"][source_type] = \
+                                    stats["mappings"]["source_types"].get(source_type, 0) + 1
+                            if "target_type" in val:
+                                target_type = str(val["target_type"])
+                                stats["mappings"]["target_types"][target_type] = \
+                                    stats["mappings"]["target_types"].get(target_type, 0) + 1
+                        
+                        # Track relationships
+                        if isinstance(val, dict):
+                            for ref_key in ["extends", "references", "depends_on"]:
+                                if ref_key in val:
+                                    stats["relationships"]["references"].append({
+                                        "from": new_path,
+                                        "to": val[ref_key],
+                                        "type": ref_key
+                                    })
+                        
+                        analyze_value(val, new_path, depth + 1)
+                
+                elif isinstance(value, list):
+                    for i, item in enumerate(value):
+                        new_path = f"{path}[{i}]"
+                        analyze_value(item, new_path, depth + 1)
+            
+            # Start analysis from root
+            if isinstance(dictionary_data, dict):
+                stats["structure"]["top_level_keys"] = list(dictionary_data.keys())
+                stats["metadata"]["total_entries"] = len(dictionary_data)
+                analyze_value(dictionary_data)
+            
+            # Convert unique values set to list for JSON serialization
+            stats["enums"]["unique_values"] = list(stats["enums"]["unique_values"])
+            
+            # Sort distributions by frequency
+            stats["structure"]["value_types"] = dict(sorted(
+                stats["structure"]["value_types"].items(),
+                key=lambda x: x[1],
+                reverse=True
+            ))
+            stats["enums"]["distribution"] = dict(sorted(
+                stats["enums"]["distribution"].items(),
+                key=lambda x: x[1],
+                reverse=True
+            ))
+            stats["mappings"]["source_types"] = dict(sorted(
+                stats["mappings"]["source_types"].items(),
+                key=lambda x: x[1],
+                reverse=True
+            ))
+            stats["mappings"]["target_types"] = dict(sorted(
+                stats["mappings"]["target_types"].items(),
+                key=lambda x: x[1],
+                reverse=True
+            ))
+            
+            return stats
+            
+        except Exception as e:
+            self.logger.error(f"Error analyzing dictionary: {str(e)}")
+            raise 

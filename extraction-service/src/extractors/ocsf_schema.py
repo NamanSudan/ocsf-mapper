@@ -103,6 +103,39 @@ class OCSFSchemaExtractor:
             self.logger.error(f"Failed to extract schema: {str(e)}")
             return {"status": "error", "error": str(e)}
     
+    def extract_dictionary(self) -> Dict[str, Any]:
+        """Extract dictionary data containing mappings and enumerations"""
+        try:
+            self.logger.info("Starting dictionary extraction")
+            data = self._get("dictionary")
+            self._save_to_file(data, "ocsf_dictionary.json")
+            return {"status": "success", "message": "Dictionary extracted successfully"}
+        except Exception as e:
+            self.logger.error(f"Failed to extract dictionary: {str(e)}")
+            return {"status": "error", "error": str(e)}
+    
+    def extract_data_types(self) -> Dict[str, Any]:
+        """Extract data types information from OCSF schema"""
+        try:
+            self.logger.info("Starting data types extraction")
+            data = self._get("data_types")
+            self._save_to_file(data, "ocsf_data_types.json")
+            return {"status": "success", "message": "Data types extracted successfully"}
+        except Exception as e:
+            self.logger.error(f"Failed to extract data types: {str(e)}")
+            return {"status": "error", "error": str(e)}
+    
+    def extract_objects(self) -> Dict[str, Any]:
+        """Extract objects information from OCSF schema"""
+        try:
+            self.logger.info("Starting objects extraction")
+            data = self._get("objects")
+            self._save_to_file(data, "ocsf_objects.json")
+            return {"status": "success", "message": "Objects extracted successfully"}
+        except Exception as e:
+            self.logger.error(f"Failed to extract objects: {str(e)}")
+            return {"status": "error", "error": str(e)}
+    
     def __del__(self):
         """Cleanup client session"""
         self.client.close() 
