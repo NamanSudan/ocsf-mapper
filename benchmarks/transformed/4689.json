@@ -1,17 +1,11 @@
 {
   "activity_id": 2,
+  "action_id": 1,
+  "category_uid": 1,
   "class_uid": 1007,
   "type_uid": 100702,
-  "category_uid": 1,
-  "time": "2019-09-05T11:22:49Z",
   "severity_id": 1,
-  "metadata": {
-    "version": "1.0.0",
-    "product": {
-      "name": "Microsoft Windows Security Auditing",
-      "vendor_name": "Microsoft"
-    }
-  },
+  "time": "2019-09-05T11:22:49Z",
   "device": {
     "hostname": "dcc1.Logistics.local",
     "type_id": 1
@@ -28,5 +22,14 @@
     "pid": "0x5f4",
     "name": "C:\\\\Generate_Security_Events1\\\\auditon.exe",
     "exit_status": "0x0"
+  },
+  "metadata": {
+    "version": "1.0.0",
+    "product": {
+      "name": "Microsoft Windows",
+      "feature": {
+        "name": "Security Auditing"
+      }
+    }
   }
 }

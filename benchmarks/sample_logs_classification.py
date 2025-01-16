@@ -6,6 +6,10 @@ from dotenv import load_dotenv
 import requests
 import re
 import difflib
+import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
 
 load_dotenv()
 
@@ -161,34 +165,34 @@ def process_log_files(sample_logs_path: Path):
     transformed_dir = Path('./transformed')
     os.makedirs(transformed_dir, exist_ok=True)
     
-    # for event_file in sorted(event_files):
-    #     try:
-    #         with open(event_file, 'r') as f:
-    #             log_message = f.read()
-    #             search_results = search_trieve(log_message)
-    #             classification = classify(search_results, log_message)
-    #             if classification:
-    #                 print(f"\nFile: {event_file.name}")
-    #                 print(f"Classification: {classification}")
-    #                 try:
-    #                     template = get_template(classification)
-    #                     transformation = get_ocsf_transformation(log_message, template)
-    #                     if transformation:
-    #                         # Extract event code from filename (e.g., "4624" from "4624_0.event")
-    #                         event_code = event_file.stem.split('_')[0]
+    for event_file in sorted(event_files):
+        try:
+            with open(event_file, 'r') as f:
+                log_message = f.read()
+                search_results = search_trieve(log_message)
+                classification = classify(search_results, log_message)
+                if classification:
+                    print(f"\nFile: {event_file.name}")
+                    print(f"Classification: {classification}")
+                    try:
+                        template = get_template(classification)
+                        transformation = get_ocsf_transformation(log_message, template)
+                        if transformation:
+                            # Extract event code from filename (e.g., "4624" from "4624_0.event")
+                            event_code = event_file.stem.split('_')[0]
                             
-    #                         # Save transformation to file
-    #                         output_file = transformed_dir / f"{event_code}.json"
-    #                         with open(output_file, 'w') as f:
-    #                             json.dump(transformation, f, indent=2)
-    #                             print(f"Saved transformation to: {output_file}")
-    #                 except FileNotFoundError as e:
-    #                     print(f"Warning: {str(e)}")
-    #             else:
-    #                 print(f"\nFile: {event_file.name}")
-    #                 print("No valid classification found")
-    #     except Exception as e:
-    #         print(f"Error processing {event_file.name}: {e}")
+                            # Save transformation to file
+                            output_file = transformed_dir / f"{event_code}.json"
+                            with open(output_file, 'w') as f:
+                                json.dump(transformation, f, indent=2)
+                                print(f"Saved transformation to: {output_file}")
+                    except FileNotFoundError as e:
+                        print(f"Warning: {str(e)}")
+                else:
+                    print(f"\nFile: {event_file.name}")
+                    print("No valid classification found")
+        except Exception as e:
+            print(f"Error processing {event_file.name}: {e}")
 
     total_fields = {}
     matching_fields_counts = {}
@@ -220,6 +224,83 @@ def process_log_files(sample_logs_path: Path):
     print(f"Total fields: {total_fields}")
     print(f"Matching fields: {matching_fields_counts}")
     print(f"Class UID matches: {class_uid_matches}")
+
+    """
+    Total fields: {'4663': 11, '4624': 17, '4625': 16, '4661': 11, '4689': 10, '4673': 9, '4688': 11}
+    Matching fields: {'4663': 3, '4624': 11, '4625': 5, '4661': 3, '4689': 5, '4673': 2, '4688': 5}
+    Class UID matches: {'4663': True, '4624': True, '4625': True, '4661': True, '4689': True, '4673': True, '4688': True}
+    """
+
+    # Set the style
+    sns.set_style("whitegrid")
+    plt.rcParams['figure.figsize'] = (15, 12)
+
+    # Create figure with subplots
+    fig = plt.figure(constrained_layout=True)
+    gs = fig.add_gridspec(2, 2)
+
+    # Prepare data for fields comparison
+    df_fields = pd.DataFrame({
+        'Event Code': list(total_fields.keys()),
+        'Total Fields': list(total_fields.values()),
+        'Matching Fields': [matching_fields_counts.get(code, 0) for code in total_fields.keys()]
+    })
+
+    # Calculate match percentage
+    df_fields['Match Percentage'] = (df_fields['Matching Fields'] / df_fields['Total Fields'] * 100).round(1)
+
+    # Plot 1: Bar plot comparing total vs matching fields
+    ax1 = fig.add_subplot(gs[0, :])
+    x = np.arange(len(df_fields['Event Code']))
+    width = 0.35
+
+    ax1.bar(x - width/2, df_fields['Total Fields'], width, label='Total Fields', color='#2ecc71')
+    ax1.bar(x + width/2, df_fields['Matching Fields'], width, label='Matching Fields', color='#3498db')
+
+    # Add percentage labels on top of bars
+    for i, pct in enumerate(df_fields['Match Percentage']):
+        ax1.text(i, df_fields['Total Fields'].iloc[i], f'{pct}%', 
+                ha='center', va='bottom')
+
+    ax1.set_ylabel('Number of Fields')
+    ax1.set_title('Field Matching Analysis by Event Code', pad=20)
+    ax1.set_xticks(x)
+    ax1.set_xticklabels(df_fields['Event Code'])
+    ax1.legend()
+
+    # Plot 2: Pie chart of class UID matches
+    ax2 = fig.add_subplot(gs[1, :])
+    match_counts = pd.Series(class_uid_matches).value_counts()
+    colors = ['#2ecc71' if x else '#e74c3c' for x in match_counts.index]
+    
+    # Check if there are any non-matching events before creating labels
+    matching_count = match_counts.get(True, 0)
+    non_matching_count = match_counts.get(False, 0)
+    
+    if non_matching_count == 0:
+        # If all events match, only show one slice
+        ax2.pie([matching_count], labels=[f'Matching ({matching_count} events)'],
+                colors=['#2ecc71'], autopct='%1.1f%%', startangle=90)
+    else:
+        # Show both matching and non-matching slices
+        ax2.pie([matching_count, non_matching_count], 
+                labels=[f'Matching ({matching_count} events)', 
+                       f'Non-matching ({non_matching_count} events)'],
+                colors=['#2ecc71', '#e74c3c'], autopct='%1.1f%%', startangle=90)
+    
+    ax2.set_title('Class UID Match Distribution', pad=20)
+
+    # Adjust layout and save
+    plt.savefig('field_matching_analysis.png', dpi=300, bbox_inches='tight')
+    plt.close()
+
+    # Print summary statistics
+    print("\nSummary Statistics:")
+    print(f"Average match percentage: {df_fields['Match Percentage'].mean():.1f}%")
+    print(f"Best matching event: {df_fields.loc[df_fields['Match Percentage'].idxmax(), 'Event Code']} "
+          f"({df_fields['Match Percentage'].max():.1f}%)")
+    print(f"Worst matching event: {df_fields.loc[df_fields['Match Percentage'].idxmin(), 'Event Code']} "
+          f"({df_fields['Match Percentage'].min():.1f}%)")
     
 def main():
     parser = argparse.ArgumentParser(description='Process sample logs for classification benchmarking')

@@ -13,13 +13,9 @@
   "activity_id": 1,
   "activity_name": "Logon",
   "type_uid": 300201,
-  "type_name": "Authentication: Logon",
   "class_uid": 3002,
-  "class_name": "Authentication",
   "category_uid": 3,
-  "category_name": "Identity & Access Management",
   "severity_id": 1,
-  "severity": "Informational",
   "user": {
     "name": "SYSTEM",
     "uid": "NT AUTHORITY\\\\SYSTEM",
@@ -36,10 +32,8 @@
     }
   },
   "authentication": {
-    "type": 5,
-    "protocol": "Negotiate",
+    "type": "Negotiate",
+    "logon_type": 5,
     "process": "Advapi"
-  },
-  "status": "Success",
-  "status_id": 1
+  }
 }

@@ -3,11 +3,11 @@
   "category_uid": 3,
   "class_uid": 3005,
   "metadata": {
+    "version": "1.0.0",
     "product": {
-      "name": "Microsoft Windows Security Auditing",
+      "name": "Microsoft Windows Security",
       "vendor_name": "Microsoft"
-    },
-    "version": "1.0.0"
+    }
   },
   "privileges": [
     "SeTcbPrivilege"
@@ -16,10 +16,9 @@
   "time": "2022-01-28T16:12:19Z",
   "type_uid": 300501,
   "user": {
-    "account": {
-      "domain": "SESTEST"
-    },
     "name": "splunker",
-    "uid": "SESTEST\\\\splunker"
+    "account": {
+      "name": "SESTEST"
+    }
   }
 }

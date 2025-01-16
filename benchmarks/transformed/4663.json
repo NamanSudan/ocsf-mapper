@@ -2,7 +2,7 @@
   "metadata": {
     "version": "1.0.0",
     "product": {
-      "name": "Microsoft Windows",
+      "name": "Windows Security Auditing",
       "vendor_name": "Microsoft"
     }
   },
@@ -11,8 +11,8 @@
   "class_uid": 201001,
   "category_uid": 1,
   "activity_id": 3,
-  "action_id": 1,
   "severity_id": 1,
+  "action_id": 1,
   "device": {
     "hostname": "szusoidc1.soi.dir.acme080.com",
     "type_id": 1

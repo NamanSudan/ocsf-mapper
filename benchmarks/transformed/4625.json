@@ -2,7 +2,10 @@
   "metadata": {
     "version": "1.0.0",
     "product": {
-      "name": "Microsoft Windows Security Auditing",
+      "name": "Microsoft Windows",
+      "feature": {
+        "name": "Security Auditing"
+      },
       "vendor_name": "Microsoft"
     }
   },
@@ -24,15 +27,16 @@
   "status_detail": "Unknown user name or bad password",
   "authentication": {
     "type": "NTLM",
-    "protocol": "NtLmSsp"
+    "protocol": "NtLmSsp",
+    "logon_type": 3
   },
   "dst_endpoint": {
     "hostname": "EC2AMAZ-6KJ2BPP",
-    "process": {
-      "pid": 0
+    "os": {
+      "type": "Windows"
     }
   },
-  "logon_type": 3,
-  "error_code": "0xC000006D",
-  "sub_error_code": "0xC000006A"
+  "process": {
+    "pid": 0
+  }
 }
