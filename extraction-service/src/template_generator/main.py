@@ -9,6 +9,7 @@ from .extractors.filterer import extract_required_attributes, extract_required_a
 from .extractors.object_extractor import extract_objects
 from .extractors.required_objects_extractor import extract_required_objects
 from .extractors.required_objects_with_constraints import extract_required_with_constraints
+from .extractors.template_generator import generate_templates
 from .config import (
     CLASS_EXTRACTION_DIR, 
     CLASS_EXTRACTION_REQUIRED_DIR,
@@ -16,6 +17,7 @@ from .config import (
     OBJECT_EXTRACTION_DIR,
     OBJECT_EXTRACTION_REQUIRED_FOR_CLASSES_DIR,
     OBJECT_EXTRACTION_REQUIRED_WITH_CONSTRAINTS_DIR,
+    TEMPLATES_DIR,
     OBJECTS_FILE
 )
 
@@ -38,15 +40,15 @@ def main():
     parser.add_argument('--filter-type', choices=['required', 'required_and_recommended'],
                       default='required',
                       help='Type of attribute filtering to perform')
-    parser.add_argument('--steps', nargs='+', choices=['1', '2', '3.1', '3.2', '3.4'],
+    parser.add_argument('--steps', nargs='+', choices=['1', '2', '3.1', '3.2', '3.4', '4'],
                       help='Specific steps to run (1: class extraction, 2: attribute filtering, '
                            '3.1: object extraction, 3.2: required objects extraction, '
-                           '3.4: required objects with constraints)')
+                           '3.4: required objects with constraints, 4: template generation)')
     parser.add_argument('--force', action='store_true',
                       help='Force re-run steps even if output files exist')
     
     args = parser.parse_args()
-    steps_to_run: Set[str] = set(args.steps) if args.steps else {'1', '2', '3.1', '3.2', '3.4'}
+    steps_to_run: Set[str] = set(args.steps) if args.steps else {'1', '2', '3.1', '3.2', '3.4', '4'}
     
     try:
         # Step 1: Extract all classes
@@ -106,6 +108,15 @@ def main():
                 logger.info("Required objects with constraints extraction completed successfully")
             else:
                 logger.info("Skipping required objects with constraints extraction - files already exist")
+        
+        # Step 4: Generate templates
+        if '4' in steps_to_run:
+            if args.force or not directory_has_files(TEMPLATES_DIR):
+                logger.info("Starting template generation")
+                generate_templates()
+                logger.info("Template generation completed successfully")
+            else:
+                logger.info("Skipping template generation - files already exist")
         
     except Exception as e:
         logger.error(f"Template generation failed: {str(e)}")

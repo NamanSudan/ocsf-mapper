@@ -1,0 +1,22 @@
+{
+  "EventID": "4672",
+  "Provider": "Microsoft-Windows-Security-Auditing",
+  "TimeCreated": "2025-01-15T02:16:13.8493175Z",
+  "EventRecordID": "1524896",
+  "Correlation": {
+    "ActivityID": "{d296e6a3-6702-0004-24e7-96d20267db01}"
+  },
+  "Execution": {
+    "ProcessID": "1276",
+    "ThreadID": "12044"
+  },
+  "Channel": "Security",
+  "Computer": "DESKTOP-7NCE8GH",
+  "EventData": {
+    "SubjectUserSid": "S-1-5-18",
+    "SubjectUserName": "SYSTEM",
+    "SubjectDomainName": "NT AUTHORITY",
+    "SubjectLogonId": "0x3e7",
+    "PrivilegeList": "SeAssignPrimaryTokenPrivilege\n\t\t\tSeTcbPrivilege\n\t\t\tSeSecurityPrivilege\n\t\t\tSeTakeOwnershipPrivilege\n\t\t\tSeLoadDriverPrivilege\n\t\t\tSeBackupPrivilege\n\t\t\tSeRestorePrivilege\n\t\t\tSeDebugPrivilege\n\t\t\tSeAuditPrivilege\n\t\t\tSeSystemEnvironmentPrivilege\n\t\t\tSeImpersonatePrivilege\n\t\t\tSeDelegateSessionUserImpersonatePrivilege"
+  }
+}

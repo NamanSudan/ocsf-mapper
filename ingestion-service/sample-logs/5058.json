@@ -1,0 +1,30 @@
+{
+  "EventID": "5058",
+  "Provider": "Microsoft-Windows-Security-Auditing",
+  "TimeCreated": "2025-01-10T01:56:53.1139238Z",
+  "EventRecordID": "1510556",
+  "Correlation": {
+    "ActivityID": "{50541438-6325-0008-3c15-54502563db01}"
+  },
+  "Execution": {
+    "ProcessID": "1304",
+    "ThreadID": "1392"
+  },
+  "Channel": "Security",
+  "Computer": "DESKTOP-7NCE8GH",
+  "EventData": {
+    "SubjectUserSid": "S-1-5-21-2533670511-2023373108-1750472443-1001",
+    "SubjectUserName": "jason",
+    "SubjectDomainName": "DESKTOP-7NCE8GH",
+    "SubjectLogonId": "0x67e00",
+    "ClientProcessId": "23596",
+    "ClientCreationTime": "2025-01-15T15:09:08.1644648Z",
+    "ProviderName": "Microsoft Software Key Storage Provider",
+    "AlgorithmName": "UNKNOWN",
+    "KeyName": "233e48bd-9f67-4ca0-b844-6a19621c83e7",
+    "KeyType": "%%2500",
+    "KeyFilePath": "C:\\Users\\jason\\AppData\\Roaming\\Microsoft\\Crypto\\Keys\\34e759d30668a1a0983e4cf1d5f548fa_fdc1945a-42ea-4bb0-bd36-8987896978ec",
+    "Operation": "%%2458",
+    "ReturnCode": "0x0"
+  }
+}

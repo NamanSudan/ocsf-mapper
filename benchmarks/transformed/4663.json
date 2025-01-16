@@ -1,0 +1,37 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "product": {
+      "name": "Microsoft Windows",
+      "vendor_name": "Microsoft"
+    }
+  },
+  "time": "2015-01-14T20:30:54Z",
+  "type_uid": 20100103,
+  "class_uid": 201001,
+  "category_uid": 1,
+  "activity_id": 3,
+  "action_id": 1,
+  "severity_id": 1,
+  "device": {
+    "hostname": "szusoidc1.soi.dir.acme080.com",
+    "type_id": 1
+  },
+  "actor": {
+    "user": {
+      "name": "SZUSOIDC1$",
+      "domain": "SOI",
+      "uid": "NT AUTHORITY\\\\SYSTEM",
+      "type_id": 1
+    },
+    "process": {
+      "name": "services.exe",
+      "path": "C:\\\\Windows\\\\System32\\\\services.exe",
+      "pid": "0x214"
+    }
+  },
+  "reg_key": {
+    "path": "\\\\REGISTRY\\\\MACHINE\\\\SYSTEM\\\\ControlSet001\\\\Services\\\\EventLog\\\\Security",
+    "handle_id": "0x564"
+  }
+}

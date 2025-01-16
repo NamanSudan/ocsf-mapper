@@ -1,0 +1,36 @@
+{
+  "activity_id": 1,
+  "action_id": 1,
+  "actor": {
+    "process": {
+      "pid": "0xf6c",
+      "name": "C:\\\\Windows\\\\System32\\\\cmd.exe"
+    },
+    "user": {
+      "name": "Administrator",
+      "domain": "ATTACKRANGE",
+      "uid": "ATTACKRANGE\\\\Administrator"
+    }
+  },
+  "category_uid": 1,
+  "class_uid": 1007,
+  "device": {
+    "hostname": "win-dc-725.attackrange.local",
+    "type_id": 1
+  },
+  "metadata": {
+    "product": {
+      "name": "Microsoft Windows",
+      "vendor_name": "Microsoft"
+    },
+    "version": "1.0.0"
+  },
+  "process": {
+    "cmd_line": "reg save HKLM\\\\system C:\\\\Users\\\\ADMINI~1\\\\AppData\\\\Local\\\\Temp\\\\system",
+    "name": "C:\\\\Windows\\\\System32\\\\reg.exe",
+    "pid": "0x1258"
+  },
+  "severity_id": 1,
+  "time": "2021-03-12T10:48:14Z",
+  "type_uid": 100701
+}

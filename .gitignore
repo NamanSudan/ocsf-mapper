@@ -101,7 +101,7 @@ trieve-data/
 
 # Large files and data
 *.csv
-*.json
+# *.json
 *.parquet
 *.arrow
 data/

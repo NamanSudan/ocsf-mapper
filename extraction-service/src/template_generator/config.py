@@ -18,6 +18,8 @@ OBJECT_EXTRACTION_REQUIRED_DIR = PREPARATION_DIR / "object-extraction-required"
 OBJECT_EXTRACTION_REQUIRED_FOR_CLASSES_DIR = OBJECT_EXTRACTION_REQUIRED_DIR / "required-object-for-classes"
 OBJECT_EXTRACTION_REQUIRED_WITH_CONSTRAINTS_DIR = OBJECT_EXTRACTION_REQUIRED_DIR / "concatenate-required-object-and-class"
 
+TEMPLATES_DIR = DATA_DIR / "templates"
+
 # Source schema path
 SCHEMA_FILE_PATH = DATA_DIR / "ocsf" / "ocsf_schema.json"
 

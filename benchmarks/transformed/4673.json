@@ -1,0 +1,25 @@
+{
+  "activity_id": 1,
+  "category_uid": 3,
+  "class_uid": 3005,
+  "metadata": {
+    "product": {
+      "name": "Microsoft Windows Security Auditing",
+      "vendor_name": "Microsoft"
+    },
+    "version": "1.0.0"
+  },
+  "privileges": [
+    "SeTcbPrivilege"
+  ],
+  "severity_id": 2,
+  "time": "2022-01-28T16:12:19Z",
+  "type_uid": 300501,
+  "user": {
+    "account": {
+      "domain": "SESTEST"
+    },
+    "name": "splunker",
+    "uid": "SESTEST\\\\splunker"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "EventID": "4798",
+  "Provider": "Microsoft-Windows-Security-Auditing",
+  "TimeCreated": "2025-01-15T02:46:16.1739876Z",
+  "EventRecordID": "1524958",
+  "Correlation": {
+    "ActivityID": "{d296e6a3-6702-0004-24e7-96d20267db01}"
+  },
+  "Execution": {
+    "ProcessID": "1276",
+    "ThreadID": "5704"
+  },
+  "Channel": "Security",
+  "Computer": "DESKTOP-7NCE8GH",
+  "EventData": {
+    "TargetUserName": "jason",
+    "TargetDomainName": "DESKTOP-7NCE8GH",
+    "TargetSid": "S-1-5-21-2533670511-2023373108-1750472443-1001",
+    "SubjectUserSid": "S-1-5-21-2533670511-2023373108-1750472443-1001",
+    "SubjectUserName": "jason",
+    "SubjectDomainName": "DESKTOP-7NCE8GH",
+    "SubjectLogonId": "0x67e00",
+    "CallerProcessId": "0x1858",
+    "CallerProcessName": "C:\\Windows\\explorer.exe"
+  }
+}

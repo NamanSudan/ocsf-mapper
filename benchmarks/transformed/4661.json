@@ -1,0 +1,58 @@
+{
+  "type_uid": 20100301,
+  "class_uid": 201003,
+  "activity_id": 1,
+  "category_uid": 1,
+  "time": "2019-01-09T00:46:00Z",
+  "severity_id": 1,
+  "action_id": 1,
+  "metadata": {
+    "version": "1.0.0",
+    "product": {
+      "name": "Microsoft Windows",
+      "vendor_name": "Microsoft",
+      "feature": {
+        "name": "Security Auditing"
+      }
+    }
+  },
+  "device": {
+    "hostname": "STLDIRDC1.dir.solutia.com",
+    "type_id": 1
+  },
+  "actor": {
+    "user": {
+      "name": "STLDIRDC1$",
+      "domain": "DIR",
+      "uid": "NT AUTHORITY\\\\SYSTEM",
+      "type": "System"
+    },
+    "process": {
+      "name": "lsass.exe",
+      "path": "C:\\\\Windows\\\\System32\\\\lsass.exe",
+      "pid": "0x1ec"
+    }
+  },
+  "win_resource": {
+    "type": "SAM_DOMAIN",
+    "name": "DC=dir,DC=solutia,DC=com",
+    "handle_id": "0x7f79620",
+    "server": "Security Account Manager",
+    "access_mask": "0x2d",
+    "access_requested": [
+      "DELETE",
+      "READ_CONTROL",
+      "WRITE_DAC",
+      "WRITE_OWNER",
+      "ReadPasswordParameters",
+      "WritePasswordParameters",
+      "ReadOtherParameters",
+      "WriteOtherParameters",
+      "CreateUser",
+      "CreateGlobalGroup",
+      "CreateLocalGroup",
+      "GetLocalGroupMembership",
+      "ListAccounts"
+    ]
+  }
+}

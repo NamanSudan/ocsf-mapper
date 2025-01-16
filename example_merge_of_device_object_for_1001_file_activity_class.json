@@ -1,0 +1,158 @@
+{
+    "device": {
+      "type": "object_t",
+      "description": "An addressable device, computer system or host.",
+      "group": "primary",
+      "requirement": "required",
+      "object_name": "Device",
+      "object_type": "device",
+      "caption": "Device",
+      "name": "device",
+        "extends": "endpoint",
+        "constraints": {
+        "at_least_one": [
+            "ip",
+            "uid",
+            "name",
+            "hostname",
+            "instance_uid",
+            "interface_uid",
+            "interface_name"
+        ]
+        },
+        "profiles": [
+        "container",
+        "datetime"
+        ],
+        "observable": 20,
+        "attributes": {
+        "type_id": {
+            "type": "integer_t",
+            "enum": {
+            "3": {
+                "description": "A <a target='_blank' href='https://d3fend.mitre.org/dao/artifact/d3f:LaptopComputer/'>laptop computer</a>.",
+                "caption": "Laptop"
+            },
+            "6": {
+                "description": "A <a target='_blank' href='https://d3fend.mitre.org/dao/artifact/d3f:VirtualizationSoftware/'>virtual machine</a>.",
+                "caption": "Virtual"
+            },
+            "0": {
+                "description": "The type is unknown.",
+                "caption": "Unknown"
+            },
+            "1": {
+                "description": "A <a target='_blank' href='https://d3fend.mitre.org/dao/artifact/d3f:Server/'>server</a>.",
+                "caption": "Server"
+            },
+            "2": {
+                "description": "A <a target='_blank' href='https://d3fend.mitre.org/dao/artifact/d3f:DesktopComputer/'>desktop computer</a>.",
+                "caption": "Desktop"
+            },
+            "99": {
+                "description": "The type is not mapped. See the <code>type</code> attribute, which contains a data source specific value.",
+                "caption": "Other"
+            },
+            "4": {
+                "description": "A <a target='_blank' href='https://d3fend.mitre.org/dao/artifact/d3f:TabletComputer/'>tablet computer</a>.",
+                "caption": "Tablet"
+            },
+            "5": {
+                "description": "A <a target='_blank' href='https://d3fend.mitre.org/dao/artifact/d3f:MobilePhone/'>mobile phone</a>.",
+                "caption": "Mobile"
+            },
+            "7": {
+                "description": "An <a target='_blank' href='https://www.techtarget.com/iotagenda/definition/IoT-device'>IOT (Internet of Things) device</a>.",
+                "caption": "IOT"
+            },
+            "8": {
+                "description": "A <a target='_blank' href='https://d3fend.mitre.org/dao/artifact/d3f:Browser/'>web browser</a>.",
+                "caption": "Browser"
+            },
+            "9": {
+                "description": "A <a target='_blank' href='https://d3fend.mitre.org/dao/artifact/d3f:Firewall/'>networking firewall</a>.",
+                "caption": "Firewall"
+            },
+            "10": {
+                "description": "A <a target='_blank' href='https://d3fend.mitre.org/dao/artifact/d3f:Switch/'>networking switch</a>.",
+                "caption": "Switch"
+            },
+            "11": {
+                "description": "A <a target='_blank' href='https://en.wikipedia.org/wiki/Ethernet_hub'>networking hub</a>.",
+                "caption": "Hub"
+            },
+            "14": {
+                "description": "An <a target='_blank' href='https://d3fend.mitre.org/dao/artifact/d3f:IntrusionPreventionSystem/'>intrusion prevention system</a>.",
+                "caption": "IPS"
+            },
+            "15": {
+                "description": "A <a target='_blank' href='https://en.wikipedia.org/wiki/Load_balancing_(computing)'> Load Balancer device.",
+                "caption": "Load Balancer"
+            },
+            "12": {
+                "description": "A <a target='_blank' href='https://d3fend.mitre.org/dao/artifact/d3f:Router/'>networking router</a>.",
+                "caption": "Router"
+            },
+            "13": {
+                "description": "An <a target='_blank' href='https://d3fend.mitre.org/dao/artifact/d3f:IntrusionDetectionSystem/'>intrusion detection system</a>.",
+                "caption": "IDS"
+            }
+            },
+            "description": "The device type ID.",
+            "requirement": "required",
+            "sibling": "type",
+            "caption": "Type ID",
+            "type_name": "Integer"
+        },
+        "ip": {
+            "type": "ip_t",
+            "description": "The device IP address, in either IPv4 or IPv6 format.",
+            "requirement": "optional",
+            "caption": "IP Address",
+            "type_name": "IP Address"
+        },
+        "interface_name": {
+            "type": "string_t",
+            "description": "The name of the network interface (e.g. eth2).",
+            "requirement": "recommended",
+            "caption": "Network Interface Name",
+            "type_name": "String"
+        },
+        "interface_uid": {
+            "type": "string_t",
+            "description": "The unique identifier of the network interface.",
+            "requirement": "recommended",
+            "caption": "Network Interface ID",
+            "type_name": "String"
+        },
+        "instance_uid": {
+            "type": "string_t",
+            "description": "The unique identifier of a VM instance.",
+            "requirement": "recommended",
+            "caption": "Instance ID",
+            "type_name": "String"
+        },
+        "name": {
+            "type": "string_t",
+            "description": "The alternate device name, ordinarily as assigned by an administrator. <p><b>Note:</b> The <b>Name</b> could be any other string that helps to identify the device, such as a phone number; for example <code>310-555-1234</code>.</p>",
+            "requirement": "optional",
+            "caption": "Name",
+            "type_name": "String"
+        },
+        "uid": {
+            "type": "string_t",
+            "description": "The unique identifier of the device. For example the Windows TargetSID or AWS EC2 ARN.",
+            "requirement": "recommended",
+            "caption": "Unique ID",
+            "type_name": "String"
+        },
+        "hostname": {
+            "type": "hostname_t",
+            "description": "The device hostname.",
+            "requirement": "recommended",
+            "caption": "Hostname",
+            "type_name": "Hostname"
+        }
+        }
+    }
+}
