@@ -1,0 +1,36 @@
+{
+  "activity_id": 1,
+  "action_id": 1,
+  "class_uid": 1007,
+  "category_uid": 1,
+  "type_uid": 100701,
+  "time": "2021-03-12T10:48:14Z",
+  "severity_id": 1,
+  "metadata": {
+    "version": "1.0.0",
+    "product": {
+      "name": "Windows Security Auditing",
+      "vendor_name": "Microsoft"
+    }
+  },
+  "device": {
+    "hostname": "win-dc-725.attackrange.local",
+    "type_id": 1
+  },
+  "actor": {
+    "user": {
+      "name": "Administrator",
+      "domain": "ATTACKRANGE",
+      "uid": "ATTACKRANGE\\\\Administrator"
+    },
+    "process": {
+      "name": "C:\\\\Windows\\\\System32\\\\cmd.exe",
+      "pid": "0xf6c"
+    }
+  },
+  "process": {
+    "name": "C:\\\\Windows\\\\System32\\\\reg.exe",
+    "pid": "0x1258",
+    "cmd_line": "reg save HKLM\\\\system C:\\\\Users\\\\ADMINI~1\\\\AppData\\\\Local\\\\Temp\\\\system"
+  }
+}

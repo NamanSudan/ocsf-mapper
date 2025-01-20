@@ -1,0 +1,26 @@
+{
+  "EventID": "4799",
+  "Provider": "Microsoft-Windows-Security-Auditing",
+  "TimeCreated": "2025-01-12T20:49:20.2918398Z",
+  "EventRecordID": "1517096",
+  "Correlation": {
+    "ActivityID": "{2214a184-63e9-0004-96a1-1422e963db01}"
+  },
+  "Execution": {
+    "ProcessID": "1280",
+    "ThreadID": "30624"
+  },
+  "Channel": "Security",
+  "Computer": "DESKTOP-7NCE8GH",
+  "EventData": {
+    "TargetUserName": "Administrators",
+    "TargetDomainName": "Builtin",
+    "TargetSid": "S-1-5-32-544",
+    "SubjectUserSid": "S-1-5-18",
+    "SubjectUserName": "DESKTOP-7NCE8GH$",
+    "SubjectDomainName": "WORKGROUP",
+    "SubjectLogonId": "0x3e7",
+    "CallerProcessId": "0x4f40",
+    "CallerProcessName": "C:\\Windows\\System32\\svchost.exe"
+  }
+}

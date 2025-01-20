@@ -1,0 +1,39 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "product": {
+      "name": "Microsoft Windows",
+      "vendor_name": "Microsoft",
+      "feature": {
+        "name": "Security Auditing"
+      }
+    }
+  },
+  "time": "2021-03-12T10:48:14Z",
+  "activity_id": 1,
+  "activity_name": "Logon",
+  "type_uid": 300201,
+  "class_uid": 3002,
+  "category_uid": 3,
+  "severity_id": 1,
+  "user": {
+    "name": "SYSTEM",
+    "uid": "NT AUTHORITY\\\\SYSTEM",
+    "account": {
+      "name": "NT AUTHORITY",
+      "type": "System"
+    }
+  },
+  "dst_endpoint": {
+    "hostname": "win-dc-725.attackrange.local",
+    "process": {
+      "pid": 848,
+      "name": "C:\\\\Windows\\\\System32\\\\services.exe"
+    }
+  },
+  "authentication": {
+    "type": "Negotiate",
+    "logon_type": 5,
+    "process": "Advapi"
+  }
+}

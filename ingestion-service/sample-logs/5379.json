@@ -1,0 +1,28 @@
+{
+  "EventID": "5379",
+  "Provider": "Microsoft-Windows-Security-Auditing",
+  "TimeCreated": "2025-01-09T23:19:04.5133564Z",
+  "EventRecordID": "1509930",
+  "Correlation": {
+    "ActivityID": "{50541438-6325-0008-3c15-54502563db01}"
+  },
+  "Execution": {
+    "ProcessID": "1304",
+    "ThreadID": "7328"
+  },
+  "Channel": "Security",
+  "Computer": "DESKTOP-7NCE8GH",
+  "EventData": {
+    "SubjectUserSid": "S-1-5-21-2533670511-2023373108-1750472443-1001",
+    "SubjectUserName": "jason",
+    "SubjectDomainName": "DESKTOP-7NCE8GH",
+    "SubjectLogonId": "0x67e00",
+    "TargetName": "MicrosoftOffice16_Data:live:cid=*",
+    "Type": "0",
+    "CountOfCredentialsReturned": "0",
+    "ReadOperation": "%%8100",
+    "ReturnCode": "3221226021",
+    "ProcessCreationTime": "2025-01-15T15:09:27.7154715Z",
+    "ClientProcessId": "7384"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "product": {
+      "name": "Microsoft Windows",
+      "feature": {
+        "name": "Security Auditing"
+      },
+      "vendor_name": "Microsoft"
+    }
+  },
+  "time": "2020-10-08T12:41:47Z",
+  "activity_id": 1,
+  "activity_name": "Logon",
+  "type_uid": 300201,
+  "class_uid": 3002,
+  "category_uid": 3,
+  "severity_id": 2,
+  "user": {
+    "name": "Administrator",
+    "account": {
+      "name": "Administrator",
+      "domain": "EC2AMAZ-6KJ2BPP"
+    }
+  },
+  "status": "FAILURE",
+  "status_detail": "Unknown user name or bad password",
+  "authentication": {
+    "type": "NTLM",
+    "protocol": "NtLmSsp",
+    "logon_type": 3
+  },
+  "dst_endpoint": {
+    "hostname": "EC2AMAZ-6KJ2BPP",
+    "os": {
+      "type": "Windows"
+    }
+  },
+  "process": {
+    "pid": 0
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "EventID": "5061",
+  "Provider": "Microsoft-Windows-Security-Auditing",
+  "TimeCreated": "2025-01-11T04:06:53.8447558Z",
+  "EventRecordID": "1513169",
+  "Correlation": {
+    "ActivityID": "{2214a184-63e9-0004-96a1-1422e963db01}"
+  },
+  "Execution": {
+    "ProcessID": "1280",
+    "ThreadID": "12980"
+  },
+  "Channel": "Security",
+  "Computer": "DESKTOP-7NCE8GH",
+  "EventData": {
+    "SubjectUserSid": "S-1-5-21-2533670511-2023373108-1750472443-1001",
+    "SubjectUserName": "jason",
+    "SubjectDomainName": "DESKTOP-7NCE8GH",
+    "SubjectLogonId": "0x67e00",
+    "ProviderName": "Microsoft Software Key Storage Provider",
+    "AlgorithmName": "RSA",
+    "KeyName": "233e48bd-9f67-4ca0-b844-6a19621c83e7",
+    "KeyType": "%%2500",
+    "Operation": "%%2480",
+    "ReturnCode": "0x0"
+  }
+}

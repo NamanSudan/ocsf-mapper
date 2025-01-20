@@ -1,0 +1,24 @@
+{
+  "activity_id": 1,
+  "category_uid": 3,
+  "class_uid": 3005,
+  "metadata": {
+    "version": "1.0.0",
+    "product": {
+      "name": "Microsoft Windows Security",
+      "vendor_name": "Microsoft"
+    }
+  },
+  "privileges": [
+    "SeTcbPrivilege"
+  ],
+  "severity_id": 2,
+  "time": "2022-01-28T16:12:19Z",
+  "type_uid": 300501,
+  "user": {
+    "name": "splunker",
+    "account": {
+      "name": "SESTEST"
+    }
+  }
+}

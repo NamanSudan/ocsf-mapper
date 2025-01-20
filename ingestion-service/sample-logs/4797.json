@@ -1,0 +1,24 @@
+{
+  "EventID": "4797",
+  "Provider": "Microsoft-Windows-Security-Auditing",
+  "TimeCreated": "2025-01-15T15:09:20.1242699Z",
+  "EventRecordID": "1532087",
+  "Correlation": {
+    "ActivityID": "{d296e6a3-6702-0004-24e7-96d20267db01}"
+  },
+  "Execution": {
+    "ProcessID": "1276",
+    "ThreadID": "25836"
+  },
+  "Channel": "Security",
+  "Computer": "DESKTOP-7NCE8GH",
+  "EventData": {
+    "SubjectUserSid": "S-1-5-21-2533670511-2023373108-1750472443-1001",
+    "SubjectUserName": "jason",
+    "SubjectDomainName": "DESKTOP-7NCE8GH",
+    "SubjectLogonId": "0x67e00",
+    "Workstation": "DESKTOP-7NCE8GH",
+    "TargetUserName": "WDAGUtilityAccount",
+    "TargetDomainName": "DESKTOP-7NCE8GH"
+  }
+}

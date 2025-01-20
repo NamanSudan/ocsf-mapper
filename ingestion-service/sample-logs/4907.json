@@ -1,0 +1,27 @@
+{
+  "EventID": "4907",
+  "Provider": "Microsoft-Windows-Security-Auditing",
+  "TimeCreated": "2025-01-15T14:13:26.1086160Z",
+  "EventRecordID": "1527638",
+  "Correlation": {},
+  "Execution": {
+    "ProcessID": "4",
+    "ThreadID": "19840"
+  },
+  "Channel": "Security",
+  "Computer": "DESKTOP-7NCE8GH",
+  "EventData": {
+    "SubjectUserSid": "S-1-5-18",
+    "SubjectUserName": "DESKTOP-7NCE8GH$",
+    "SubjectDomainName": "WORKGROUP",
+    "SubjectLogonId": "0x3e7",
+    "ObjectServer": "Security",
+    "ObjectType": "File",
+    "ObjectName": "C:\\Windows\\servicing\\Packages\\Microsoft-Windows-Client-Desktop-Required-WOW64-Package~31bf3856ad364e35~amd64~en-US~10.0.22621.4751.cat",
+    "HandleId": "0x7c8",
+    "OldSd": "S:AI(AU;SAFA;0x1f0116;;;WD)",
+    "NewSd": null,
+    "ProcessId": "0x6f70",
+    "ProcessName": "C:\\Windows\\WinSxS\\amd64_microsoft-windows-servicingstack_31bf3856ad364e35_10.0.22621.4740_none_e928b4ac42f6002b\\TiWorker.exe"
+  }
+}

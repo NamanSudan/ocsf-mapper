@@ -1,0 +1,385 @@
+{
+  "name": "group_management",
+  "description": "Group Management events report management updates to a group, including updates to membership and permissions.",
+  "uid": 3006,
+  "extends": "iam",
+  "category": "iam",
+  "constraints": {
+    "at_least_one": [
+      "privileges",
+      "user"
+    ]
+  },
+  "profiles": [
+    "cloud",
+    "datetime",
+    "osint",
+    "host",
+    "data_classification",
+    "container",
+    "linux/linux_users"
+  ],
+  "caption": "Group Management",
+  "category_uid": 3,
+  "category_name": "Identity & Access Management",
+  "attributes": {
+    "time": {
+      "type": "timestamp_t",
+      "description": "The normalized event occurrence time or the finding creation time.",
+      "group": "occurrence",
+      "requirement": "required",
+      "caption": "Event Time",
+      "type_name": "Timestamp"
+    },
+    "activity_id": {
+      "type": "integer_t",
+      "enum": {
+        "3": {
+          "description": "Add user to a group.",
+          "caption": "Add User"
+        },
+        "6": {
+          "description": "A group was created.",
+          "caption": "Create"
+        },
+        "0": {
+          "description": "The event activity is unknown.",
+          "caption": "Unknown"
+        },
+        "1": {
+          "description": "Assign privileges to a group.",
+          "caption": "Assign Privileges"
+        },
+        "2": {
+          "description": "Revoke privileges from a group.",
+          "caption": "Revoke Privileges"
+        },
+        "99": {
+          "description": "The event activity is not mapped. See the <code>activity_name</code> attribute, which contains a data source specific value.",
+          "caption": "Other"
+        },
+        "4": {
+          "description": "Remove user from a group.",
+          "caption": "Remove User"
+        },
+        "5": {
+          "description": "A group was deleted.",
+          "caption": "Delete"
+        }
+      },
+      "description": "The normalized identifier of the activity that triggered the event.",
+      "group": "classification",
+      "requirement": "required",
+      "sibling": "activity_name",
+      "caption": "Activity ID",
+      "type_name": "Integer",
+      "suppress_checks": [
+        "sibling_convention"
+      ]
+    },
+    "metadata": {
+      "type": "object_t",
+      "description": "The metadata associated with the event or a finding.",
+      "group": "context",
+      "requirement": "required",
+      "object_name": "Metadata",
+      "object_type": "metadata",
+      "caption": "Metadata",
+      "profiles": [
+        "data_classification",
+        "datetime"
+      ],
+      "name": "metadata",
+      "extends": "object",
+      "attributes": {
+        "version": {
+          "type": "string_t",
+          "description": "The version of the OCSF schema, using Semantic Versioning Specification (<a target='_blank' href='https://semver.org'>SemVer</a>). For example: 1.0.0. Event consumers use the version to determine the available event attributes.",
+          "requirement": "required",
+          "caption": "Version",
+          "type_name": "String"
+        },
+        "product": {
+          "type": "object_t",
+          "description": "The product that reported the event.",
+          "requirement": "required",
+          "object_name": "Product",
+          "object_type": "product",
+          "caption": "Product"
+        }
+      }
+    },
+    "group": {
+      "type": "object_t",
+      "description": "Group that was the target of the event.",
+      "group": "primary",
+      "requirement": "required",
+      "object_name": "Group",
+      "object_type": "group",
+      "caption": "Group",
+      "name": "group",
+      "extends": "_entity",
+      "attributes": {
+        "name": {
+          "type": "string_t",
+          "description": "The group name.",
+          "requirement": "recommended",
+          "caption": "Name",
+          "type_name": "String"
+        },
+        "uid": {
+          "type": "string_t",
+          "description": "The unique identifier of the group. For example, for Windows events this is the security identifier (SID) of the group.",
+          "requirement": "recommended",
+          "caption": "Unique ID",
+          "type_name": "String"
+        }
+      },
+      "constraints": {
+        "at_least_one": [
+          "name",
+          "uid"
+        ]
+      }
+    },
+    "type_uid": {
+      "type": "long_t",
+      "enum": {
+        "300603": {
+          "description": "Add user to a group.",
+          "caption": "Group Management: Add User"
+        },
+        "300606": {
+          "description": "A group was created.",
+          "caption": "Group Management: Create"
+        },
+        "300600": {
+          "caption": "Group Management: Unknown"
+        },
+        "300601": {
+          "description": "Assign privileges to a group.",
+          "caption": "Group Management: Assign Privileges"
+        },
+        "300602": {
+          "description": "Revoke privileges from a group.",
+          "caption": "Group Management: Revoke Privileges"
+        },
+        "300699": {
+          "caption": "Group Management: Other"
+        },
+        "300604": {
+          "description": "Remove user from a group.",
+          "caption": "Group Management: Remove User"
+        },
+        "300605": {
+          "description": "A group was deleted.",
+          "caption": "Group Management: Delete"
+        }
+      },
+      "description": "The event/finding type ID. It identifies the event's semantics and structure. The value is calculated by the logging system as: <code>class_uid * 100 + activity_id</code>.",
+      "group": "classification",
+      "requirement": "required",
+      "sibling": "type_name",
+      "caption": "Type ID",
+      "type_name": "Long"
+    },
+    "cloud": {
+      "profile": "cloud",
+      "type": "object_t",
+      "description": "Describes details about the Cloud environment where the event was originally created or logged.",
+      "group": "primary",
+      "requirement": "required",
+      "object_name": "Cloud",
+      "object_type": "cloud",
+      "caption": "Cloud",
+      "name": "cloud",
+      "extends": "object",
+      "attributes": {
+        "provider": {
+          "type": "string_t",
+          "description": "The unique name of the Cloud services provider, such as AWS, MS Azure, GCP, etc.",
+          "requirement": "required",
+          "caption": "Provider",
+          "type_name": "String"
+        }
+      }
+    },
+    "class_uid": {
+      "type": "integer_t",
+      "enum": {
+        "3006": {
+          "description": "Group Management events report management updates to a group, including updates to membership and permissions.",
+          "caption": "Group Management"
+        }
+      },
+      "description": "The unique identifier of a class. A class describes the attributes available in an event.",
+      "group": "classification",
+      "requirement": "required",
+      "sibling": "class_name",
+      "caption": "Class ID",
+      "type_name": "Integer"
+    },
+    "severity_id": {
+      "type": "integer_t",
+      "enum": {
+        "3": {
+          "description": "Action is required but the situation is not serious at this time.",
+          "caption": "Medium"
+        },
+        "6": {
+          "description": "An error occurred but it is too late to take remedial action.",
+          "caption": "Fatal"
+        },
+        "0": {
+          "description": "The event/finding severity is unknown.",
+          "caption": "Unknown"
+        },
+        "1": {
+          "description": "Informational message. No action required.",
+          "caption": "Informational"
+        },
+        "2": {
+          "description": "The user decides if action is needed.",
+          "caption": "Low"
+        },
+        "99": {
+          "description": "The event/finding severity is not mapped. See the <code>severity</code> attribute, which contains a data source specific value.",
+          "caption": "Other"
+        },
+        "4": {
+          "description": "Action is required immediately.",
+          "caption": "High"
+        },
+        "5": {
+          "description": "Action is required immediately and the scope is broad.",
+          "caption": "Critical"
+        }
+      },
+      "description": "<p>The normalized identifier of the event/finding severity.</p>The normalized severity is a measurement the effort and expense required to manage and resolve an event or incident. Smaller numerical values represent lower impact events, and larger numerical values represent higher impact events.",
+      "group": "classification",
+      "requirement": "required",
+      "sibling": "severity",
+      "caption": "Severity ID",
+      "type_name": "Integer"
+    },
+    "osint": {
+      "profile": "osint",
+      "type": "object_t",
+      "description": "The OSINT (Open Source Intelligence) object contains details related to an indicator such as the indicator itself, related indicators, geolocation, registrar information, subdomains, analyst commentary, and other contextual information. This information can be used to further enrich a detection or finding by providing decisioning support to other analysts and engineers.",
+      "group": "primary",
+      "is_array": true,
+      "requirement": "required",
+      "object_name": "OSINT",
+      "object_type": "osint",
+      "caption": "OSINT",
+      "attributes": {
+        "value": {
+          "type": "string_t",
+          "description": "The actual indicator value in scope, e.g., a SHA-256 hash hexdigest or a domain name.",
+          "requirement": "required",
+          "caption": "Indicator",
+          "type_name": "String"
+        },
+        "type_id": {
+          "type": "integer_t",
+          "enum": {
+            "3": {
+              "description": "A hostname or computer name.",
+              "caption": "Hostname"
+            },
+            "6": {
+              "description": "A User Agent typically seen in HTTP request headers.",
+              "caption": "User Agent"
+            },
+            "0": {
+              "description": "The indicator type is ambiguous or there is not a related indicator for the OSINT object.",
+              "caption": "Unknown"
+            },
+            "1": {
+              "description": "An IPv4 or IPv6 address.",
+              "caption": "IP Address"
+            },
+            "2": {
+              "description": "A full-qualified domain name (FQDN), subdomain, or partial domain.",
+              "caption": "Domain"
+            },
+            "99": {
+              "description": "The indicator type is not directly listed.",
+              "caption": "Other"
+            },
+            "4": {
+              "description": "Any type of hash e.g., MD5, SHA1, SHA2, BLAKE, BLAKE2, etc. generated from a file, malware sample, request header, or otherwise.",
+              "caption": "Hash"
+            },
+            "5": {
+              "description": "A Uniform Resource Locator (URL) or Uniform Resource Indicator (URI).",
+              "caption": "URL"
+            },
+            "7": {
+              "description": "The serial number, fingerprint, or full content of an X.509 digital certificate.",
+              "caption": "Digital Certificate"
+            },
+            "8": {
+              "description": "The contents of an email or any related information to an email object.",
+              "caption": "Email"
+            },
+            "9": {
+              "description": "An email address.",
+              "caption": "Email Address"
+            },
+            "10": {
+              "description": "A CVE ID, CWE ID, or other identifier for a weakness, exploit, bug, or misconfiguration.",
+              "caption": "Vulnerability"
+            }
+          },
+          "description": "The OSINT indicator type ID.",
+          "requirement": "required",
+          "sibling": "type",
+          "caption": "Indicator Type ID",
+          "type_name": "Integer"
+        },
+        "name": {
+          "type": "string_t",
+          "description": "The name of the entity.",
+          "requirement": "recommended",
+          "caption": "Name",
+          "type_name": "String"
+        },
+        "uid": {
+          "type": "string_t",
+          "description": "The unique identifier of the entity.",
+          "requirement": "recommended",
+          "caption": "Unique ID",
+          "type_name": "String"
+        }
+      },
+      "constraints": {
+        "at_least_one": [
+          "name",
+          "uid"
+        ]
+      },
+      "name": "osint",
+      "profiles": [
+        "data_classification"
+      ],
+      "extends": "_entity"
+    },
+    "category_uid": {
+      "type": "integer_t",
+      "enum": {
+        "3": {
+          "description": "Identity & Access Management (IAM) events relate to the supervision of the system's authentication and access control model. Examples of such events are the success or failure of authentication, granting of authority, password change, entity change, privileged use etc.",
+          "uid": 3,
+          "caption": "Identity & Access Management"
+        }
+      },
+      "description": "The category unique identifier of the event.",
+      "group": "classification",
+      "requirement": "required",
+      "sibling": "category_name",
+      "caption": "Category ID",
+      "type_name": "Integer"
+    }
+  }
+}
