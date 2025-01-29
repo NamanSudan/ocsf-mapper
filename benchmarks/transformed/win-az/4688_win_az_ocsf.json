@@ -1,0 +1,42 @@
+{
+    "activity_id": 1,
+    "class_uid": 1007,
+    "category_uid": 1,
+    "type_uid": 100701,
+    "time": "2024-12-17T11:11:59Z",
+    "severity_id": 1,
+    "action_id": 1,
+    "device": {
+        "hostname": "DESKTOP1.google.net",
+        "type_id": 2
+    },
+    "actor": {
+        "user": {
+            "uid": "S-1-5-18",
+            "name": "DESKTOP1$",
+            "domain": "GOOGLE"
+        },
+        "process": {
+            "pid": "0x16b4",
+            "name": "C:\\PROGRA~1\\HP\\HPBTOS~1\bin\\AHSCollector.exe"
+        },
+        "session": {
+            "uid": "0x1Z9"
+        }
+    },
+    "process": {
+        "pid": "0x1458",
+        "name": "C:\\Program Files\\HP\\HP BTO Software\bin\\win64\\ovconfget.exe",
+        "uid": "S-1-16-16384"
+    },
+    "metadata": {
+        "version": "1.0.0",
+        "product": {
+            "name": "Microsoft Windows Security Auditing",
+            "feature": {
+                "name": "Security"
+            },
+            "vendor_name": "Microsoft"
+        }
+    }
+}

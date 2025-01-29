@@ -1,0 +1,236 @@
+{
+    "fields": 
+    [
+        {
+            "key": "HostHiddenStatus",
+            "value": 
+            {
+                "string_value": "Visible"
+            }
+        },
+        {
+            "key": "Country",
+            "value": 
+            {
+                "string_value": "United States"
+            }
+        },
+        {
+            "key": "Time",
+            "value": 
+            {
+                "string_value": "1735174584.000"
+            }
+        },
+        {
+            "key": "Version",
+            "value": 
+            {
+                "string_value": "Ubuntu 22.04"
+            }
+        },
+        {
+            "key": "aid",
+            "value": 
+            {
+                "string_value": "fb7501ae8ab64535b235e59b8530aa50"
+            }
+        },
+        {
+            "key": "AgentTimeOffset",
+            "value": 
+            {
+                "string_value": "4283665"
+            }
+        },
+        {
+            "key": "BiosVersion",
+            "value": 
+            {
+                "string_value": "5.27"
+            }
+        },
+        {
+            "key": "PointerSize",
+            "value": 
+            {
+                "string_value": "none"
+            }
+        },
+        {
+            "key": "ConfigBuild",
+            "value": 
+            {
+                "string_value": "1007.8.0017005.1"
+            }
+        },
+        {
+            "key": "event_platform",
+            "value": 
+            {
+                "string_value": "Lin"
+            }
+        },
+        {
+            "key": "FirstSeen",
+            "value": 
+            {
+                "string_value": "1730919510.000"
+            }
+        },
+        {
+            "key": "ConfigIDBuild",
+            "value": 
+            {
+                "string_value": "17005"
+            }
+        },
+        {
+            "key": "cid",
+            "value": 
+            {
+                "string_value": "f7cd2a26cda04d14b59e27ae15c6e6c6"
+            }
+        },
+        {
+            "key": "OU",
+            "value": 
+            {
+                "string_value": "none"
+            }
+        },
+        {
+            "key": "ProductType",
+            "value": 
+            {
+                "string_value": "none"
+            }
+        },
+        {
+            "key": "ServicePackMajor",
+            "value": 
+            {
+                "string_value": "none"
+            }
+        },
+        {
+            "key": "City",
+            "value": 
+            {
+                "string_value": "none"
+            }
+        },
+        {
+            "key": "SystemManufacturer",
+            "value": 
+            {
+                "string_value": "ZOTAC"
+            }
+        },
+        {
+            "key": "ParserExtensionStatus",
+            "value": 
+            {
+                "string_value": "ParserExtensionApplied"
+            }
+        },
+        {
+            "key": "SensorGroupingTags",
+            "value": 
+            {
+                "string_value": "'SensorGroupingTags/Retail;SensorGroupingTags/NoSep'"
+            }
+        },
+        {
+            "key": "SiteName",
+            "value": 
+            {
+                "string_value": "none"
+            }
+        },
+        {
+            "key": "MachineDomain",
+            "value": 
+            {
+                "string_value": "none"
+            }
+        },
+        {
+            "key": "SystemProductName",
+            "value": 
+            {
+                "string_value": "ZBOX-MI351"
+            }
+        },
+        {
+            "key": "aip",
+            "value": 
+            {
+                "string_value": "192.168.1.198"
+            }
+        },
+        {
+            "key": "FalconGroupingTags",
+            "value": 
+            {
+                "string_value": "none"
+            }
+        },
+        {
+            "key": "ComputerName",
+            "value": 
+            {
+                "string_value": "dcwks-lah-061"
+            }
+        },
+        {
+            "key": "AgentVersion",
+            "value": 
+            {
+                "string_value": "7.17.17005.0"
+            }
+        },
+        {
+            "key": "Timezone",
+            "value": 
+            {
+                "string_value": "America/Chicago"
+            }
+        },
+        {
+            "key": "ChassisType",
+            "value": 
+            {
+                "string_value": "Desktop"
+            }
+        },
+        {
+            "key": "AgentLocalTime",
+            "value": 
+            {
+                "string_value": "1730890919.891"
+            }
+        },
+        {
+            "key": "Continent",
+            "value": 
+            {
+                "string_value": "North America"
+            }
+        },
+        {
+            "key": "BiosManufacturer",
+            "value": 
+            {
+                "string_value": "American Megatrends International, LLC."
+            }
+        },
+        {
+            "key": "AgentLoadFlags",
+            "value": 
+            {
+                "string_value": "0"
+            }
+        }
+    ]
+}

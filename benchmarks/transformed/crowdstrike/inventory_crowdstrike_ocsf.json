@@ -1,0 +1,47 @@
+{
+    "class_uid": 5001,
+    "category_uid": 5,
+    "activity_id": 2,
+    "type_uid": 500102,
+    "severity_id": 1,
+    "time": 1735174584000,
+    "device": {
+        "type_id": 2,
+        "hostname": "dcwks-lah-061",
+        "ip": "192.168.1.198",
+        "uid": "fb7501ae8ab64535b235e59b8530aa50",
+        "name": "ZBOX-MI351"
+    },
+    "metadata": {
+        "version": "1.0.0",
+        "product": {
+            "name": "CrowdStrike Falcon",
+            "version": "7.17.17005.0",
+            "feature": {
+                "name": "Agent",
+                "version": "1007.8.0017005.1"
+            }
+        }
+    },
+    "osint": [
+        {
+            "type_id": 1,
+            "value": "192.168.1.198",
+            "name": "Device IP"
+        }
+    ],
+    "device_info": {
+        "os": {
+            "name": "Ubuntu",
+            "version": "22.04"
+        },
+        "bios": {
+            "manufacturer": "American Megatrends International, LLC.",
+            "version": "5.27"
+        },
+        "manufacturer": "ZOTAC",
+        "model": "ZBOX-MI351",
+        "type": "Desktop",
+        "timezone": "America/Chicago"
+    }
+}
