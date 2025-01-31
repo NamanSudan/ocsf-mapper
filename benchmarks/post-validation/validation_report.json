@@ -1,0 +1,126 @@
+{
+  "timestamp": "2025-01-30T22:15:59.446622",
+  "stats": {
+    "processed": 7,
+    "validation_errors": 6,
+    "refinement_success": 4,
+    "refinement_failure": 2,
+    "error_details": {
+      "4661.json": {
+        "initial_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"actor.process.path\"; attribute \"path\" is not defined in object \"process\".",
+            "attribute": "path",
+            "object_name": "process",
+            "attribute_path": "actor.process.path"
+          },
+          {
+            "error": "attribute_required_missing",
+            "message": "Required attribute \"win_resource.type_id\" is missing.",
+            "attribute": "type_id",
+            "attribute_path": "win_resource.type_id"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"win_resource.access_mask\"; attribute \"access_mask\" is not defined in object \"win_resource\".",
+            "attribute": "access_mask",
+            "object_name": "win_resource",
+            "attribute_path": "win_resource.access_mask"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"win_resource.access_privileges\"; attribute \"access_privileges\" is not defined in object \"win_resource\".",
+            "attribute": "access_privileges",
+            "object_name": "win_resource",
+            "attribute_path": "win_resource.access_privileges"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"win_resource.handle_id\"; attribute \"handle_id\" is not defined in object \"win_resource\".",
+            "attribute": "handle_id",
+            "object_name": "win_resource",
+            "attribute_path": "win_resource.handle_id"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"win_resource.server\"; attribute \"server\" is not defined in object \"win_resource\".",
+            "attribute": "server",
+            "object_name": "win_resource",
+            "attribute_path": "win_resource.server"
+          },
+          {
+            "error": "attribute_required_missing",
+            "message": "Required attribute \"metadata.product.vendor_name\" is missing.",
+            "attribute": "vendor_name",
+            "attribute_path": "metadata.product.vendor_name"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"action_id\"; attribute \"action_id\" is not defined in class \"resource_activity\" uid 201003.",
+            "attribute": "action_id",
+            "class_uid": 201003,
+            "class_name": "resource_activity",
+            "attribute_path": "action_id"
+          }
+        ],
+        "remaining_errors": [
+          {
+            "error": "attribute_enum_sibling_incorrect",
+            "message": "Attribute \"win_resource.type\" enum sibling value \"SAM_DOMAIN\" is incorrect for enum \"win_resource.type_id\" value 1; expected \"Directory\", got \"SAM_DOMAIN\".",
+            "value": "SAM_DOMAIN",
+            "attribute": "type",
+            "attribute_path": "win_resource.type",
+            "expected_value": "Directory"
+          }
+        ]
+      },
+      "4624.json": {
+        "initial_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"dst_endpoint.process\"; attribute \"process\" is not defined in object \"network_endpoint\".",
+            "attribute": "process",
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint.process"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"authentication\"; attribute \"authentication\" is not defined in class \"authentication\" uid 3002.",
+            "attribute": "authentication",
+            "class_uid": 3002,
+            "class_name": "authentication",
+            "attribute_path": "authentication"
+          }
+        ],
+        "remaining_errors": [
+          {
+            "error": "attribute_wrong_type",
+            "message": "Attribute \"logon_type\" value has wrong type; expected string_t, got integer_t (integer in range of -2^63 to 2^63 - 1).",
+            "value": 5,
+            "attribute": "logon_type",
+            "value_type": "integer_t",
+            "attribute_path": "logon_type",
+            "expected_type": "string_t"
+          },
+          {
+            "error": "attribute_wrong_type",
+            "message": "Attribute \"logon_process\" value has wrong type; expected process (object), got string_t.",
+            "value": "Advapi",
+            "attribute": "logon_process",
+            "value_type": "string_t",
+            "attribute_path": "logon_process",
+            "expected_type": "process (object)"
+          }
+        ]
+      }
+    },
+    "exception_types": {}
+  },
+  "success_rate": 66.66666666666666,
+  "error_distribution": {
+    "attribute_enum_sibling_incorrect": 1,
+    "attribute_wrong_type": 2
+  },
+  "exception_distribution": {}
+}

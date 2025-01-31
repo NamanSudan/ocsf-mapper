@@ -1,0 +1,34 @@
+{
+  "metadata": {
+    "version": "1.3.0",
+    "product": {
+      "name": "Windows Security Auditing",
+      "vendor_name": "Microsoft"
+    }
+  },
+  "time": 1421267454000,
+  "type_uid": 20100103,
+  "class_uid": 201001,
+  "category_uid": 1,
+  "activity_id": 3,
+  "severity_id": 1,
+  "device": {
+    "hostname": "szusoidc1.soi.dir.acme080.com",
+    "type_id": 1
+  },
+  "actor": {
+    "user": {
+      "name": "SZUSOIDC1$",
+      "domain": "SOI",
+      "uid": "NT AUTHORITY\\\\SYSTEM",
+      "type_id": 1
+    },
+    "process": {
+      "name": "services.exe",
+      "pid": 532
+    }
+  },
+  "reg_key": {
+    "path": "\\\\REGISTRY\\\\MACHINE\\\\SYSTEM\\\\ControlSet001\\\\Services\\\\EventLog\\\\Security"
+  }
+}
