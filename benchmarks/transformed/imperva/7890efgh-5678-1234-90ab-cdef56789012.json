@@ -1,0 +1,40 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "product": {
+      "name": "Imperva Bot Protection",
+      "vendor_name": "Imperva",
+      "feature": {
+        "name": "Bot Protection"
+      }
+    }
+  },
+  "time": 1738260659060,
+  "activity_id": 2,
+  "type_uid": 600402,
+  "class_uid": 6004,
+  "category_uid": 6,
+  "severity_id": 3,
+  "http_request": {
+    "method": "POST",
+    "url_path": "/services/edi/TransactionRequest",
+    "bytes": 212,
+    "referrer": ""
+  },
+  "web_resources": [
+    {
+      "hostname": "www.defaultcompany.com",
+      "path": "/services/edi/TransactionRequest"
+    }
+  ],
+  "osint": [
+    {
+      "type_id": 1,
+      "value": "192.0.2.1"
+    }
+  ],
+  "cloud": {
+    "provider": "AWS",
+    "region": "us-east-1"
+  }
+}

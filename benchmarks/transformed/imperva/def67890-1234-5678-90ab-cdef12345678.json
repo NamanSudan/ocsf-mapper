@@ -1,0 +1,44 @@
+{
+  "class_uid": 6004,
+  "type_uid": 600401,
+  "category_uid": 6,
+  "time": 1738260659050,
+  "activity_id": 1,
+  "severity_id": 1,
+  "metadata": {
+    "version": "1.0.0",
+    "product": {
+      "name": "Imperva Bot Protection",
+      "vendor_name": "Imperva",
+      "feature": {
+        "name": "Bot Detection"
+      }
+    }
+  },
+  "http_request": {
+    "method": "GET",
+    "url": {
+      "path": "/managemyaccount/login",
+      "query": "identityTransaction=9Hvr3LVgNN0TJM1FCLDfT16WA%2FszQ3GFxTdhj4YF5prw9iySPB4xHGnp9UI5QGX1NU5FrPPRLIKa0kWyTL2Ao7g3kF3f%2FqHcHz7N2Rp4s56nvqyBzJCXp61fCPNthIrpdUeHcUUty47yMPRRbqEVvvZLZoNxPkqUIUKtF3hWOMtmuBG1W86fFLDlObDFPcYyyaSHe8NJSaKV5ozscHSw0qeX53d7t2sGxV%2Bh0nPlnIlK3W9%2F7oQD8Ohwioq1vc80gZ6c8C42xehbmt9b9aG%2Bx2a1L1xSnpxdm5AfGONIvmvlSyFSmhZeSsB2gKevdvtoyNGYLgbcqqPN%2BO4g%2FjwTXuINkOB%2FUlo1d2dPHNa0sPUCh1xWgWjZ%2BQu063Jo4Q2GNvwEsQMQrWDPSoTR7gS%2FM2GlR9ZsZ7m8BRci6eGDmmw16bOtaQw2kcK%2F1aq9xqBddtIJSrHET%2BS4SUrONwFkJJHChRSDDfB%2FtMKcZiAu%2FZO2DTQmNbWcaf3NGALI6gNOQJCtMKBS7W769%2FtagADQ5uepRs9Lhdcae6F%2FIkY%2Bql0tESY71FIgzMZhWrhS%2FnWffA68XK74qXqG15FKZjeJWc3lA0XBUYvJvL6ksIWBQ6s%3D"
+    },
+    "referrer": "https://www.defaultcompany.com/dsepublic/",
+    "bytes": 1837,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Safari/604.1"
+  },
+  "web_resources": [
+    {
+      "hostname": "www.defaultcompany.com",
+      "path": "/managemyaccount/login"
+    }
+  ],
+  "osint": [
+    {
+      "type_id": 1,
+      "value": "192.0.2.1"
+    }
+  ],
+  "cloud": {
+    "provider": "AWS",
+    "region": "us-east-1"
+  }
+}

@@ -1,0 +1,1525 @@
+[
+    {
+        "@timestamp": 1738260658978,
+        "event": {
+            "id": "bf2e8a61-3f88-4d34-8ea8-123456789abc",
+            "provider": "imperva",
+            "dataset": "ABP",
+            "category": "web",
+            "code": "",
+            "action": ""
+        },
+        "imperva": {
+            "ids": {
+                "account_id": "13945293-7a57-5615-bf0c-413e3746fda8",
+                "account_name": "Default Company Marketing",
+                "site_id": "452fd0c1-c928-48e1-a1ff-582074f1392e",
+                "site_name": "Default Company Prod Block"
+            }
+        },
+        "abp": {
+            "bot_violations": [
+                "jsat_interstitial_cleared"
+            ],
+            "bot_behaviors": [
+                "geo_org_suspicious"
+            ],
+            "bot_deciding_condition_ids": [],
+            "bot_deciding_condition_names": [],
+            "bot_triggered_condition_ids": [],
+            "bot_triggered_condition_names": [],
+            "campaign_names": [],
+            "customer_request_id": "",
+            "hsig": "uae_l,hf",
+            "pid": "6c93f905-38e5-32f7-9bb8-ff93f65b0d57",
+            "header_id": "192.0.2.1:6c93f905-38e5-32f7-9bb8-ff93f65b0d57",
+            "fpid": "3c6eea30-bdb1-334d-b37c-73f2b1107e90",
+            "zid": "2888363d-e69c-319f-a435-10b8067dfcb8",
+            "zuid": "52499de7-a971-3a87-bb62-0e0038b4f629",
+            "random_id": "8ddb1bd9-c9d2-4c78-b42c-0963c818b444",
+            "token_id": "a8717c02-8b6e-51d2-a4e1-98ca8adb279f",
+            "policy_id": "",
+            "policy_name": "",
+            "selector": "",
+            "selector_derived_id": "",
+            "category": "no_selector",
+            "tls_fingerprint": "Ver == 1.3 & CS >= 9a9a/1301/1302/1303/c02b/c02f/c02c/c030/cca9/cca8/c013/c014/009c/009d/002f/0035 & EXT >= 1a1a/fe0d/000b/0033/0010/0000/001b/002d/000d/002b/000a/4469/ff01/0023/0017/dada",
+            "request_type": "post_challenge",
+            "request_path_decoded": "/v6/challenge/71355aa4-142b-4adf-9647-8d7cb5b2efcd/pon-your-euer-King-O-hoa-Measurall-I-my-Leason-t",
+            "headers_accept": "application/json; charset=utf-8",
+            "headers_accept_charset": "",
+            "headers_accept_encoding": "gzip, deflate, br, zstd",
+            "headers_accept_language": "en-US,en;q=0.9",
+            "headers_cf_connecting_ip": "",
+            "headers_connection": "",
+            "headers_host": "71355aa4-142b-4adf-9647-8d7cb5b2efcd.distil.ninja",
+            "headers_referer": "",
+            "headers_x_forwarded_for": "73.147.95.198",
+            "headers_x_forwarded_proto": "",
+            "headers_x_real_ip": "",
+            "header_names": [
+                "content-length",
+                "sec-ch-ua-platform",
+                "user-agent",
+                "accept",
+                "sec-ch-ua",
+                "content-type",
+                "sec-ch-ua-mobile",
+                "accept-encoding",
+                "accept-language",
+                "x-d-domain",
+                "x-imperva-id",
+                "x-tfp",
+                "cwaf-extras",
+                "host",
+                "cdn-loop",
+                "x-forwarded-for",
+                "incap-client-ip"
+            ],
+            "header_lengths": [
+                5,
+                9,
+                125,
+                31,
+                65,
+                25,
+                2,
+                23,
+                14,
+                13,
+                7,
+                309,
+                848,
+                49,
+                29,
+                13,
+                13
+            ],
+            "headers_cookie_length": 0,
+            "cookie_names": [],
+            "cookie_lengths": [],
+            "monitor_action": "",
+            "apollo_rule_versions": [],
+            "deciding_tags": [],
+            "triggered_tags": [],
+            "token_expire": 1738261858,
+            "requests_per_minute": 0.0,
+            "requests_per_session": 0,
+            "session_length_seconds": 0.0,
+            "requests_with_expired_token": 0,
+            "requests_with_no_token": 0,
+            "seconds_with_expired_token": 0.0,
+            "seconds_with_no_token": 0.0,
+            "rate_limiting_scope": "",
+            "captcha_solved_timestamp": 0,
+            "requests_since_captcha_succeeded": 0,
+            "web_browser_fonts": [],
+            "tcp_rtt_ms": 1,
+            "tls_rtt_ms": 2
+        },
+        "server": {
+            "domain": "www.defaultcompany.com",
+            "geo": {
+                "name": "us-east-1"
+            }
+        },
+        "client": {
+            "ip": "204.110.222.222",
+            "domain": "pool-1-us-va.securly.com.",
+            "geo": {
+                "country_iso_code": "US",
+                "name": "Amazon.com"
+            }
+        },
+        "http": {
+            "request": {
+                "method": "GET",
+                "body": {
+                    "bytes": 2146
+                }
+            }
+        },
+        "url": {
+            "path": "/managemyaccount/login",
+            "query": "identityTransaction=p8dlbwhWGKoUkkNm7KHGWGKy5uaQ4NgQzJMrlMc%2ByXreVN0xC03KBf%2BA5wnmiODeYMrsAVWwxY2DoJ3PUuP%2BWbK0%2F8y%2F1DUs8gtfeuCwMCgfmGUY8KnrnM06wG4Cw0iswZWD5zoAQG0r4DyT0LwWJcZDUZIgWslpQH9O19bXslaJ9x55MViow6qFgY5rDwoZlWwyamoaErkov5QDvke0jt6W5FFfgVE%2FFPhhGWoj7loTnI4P1n7CoEj0dPj%2FB1CxDYssuLEkYHbZRUVhg9yaaLTOsoI9%2B4jQb1PnKsw1Lr5BsyiIrC0zSniDAa6aNIZTi2A%2FPgxpex04S0tnrc6jxg7ZbZces4OnlzMhYqHx3WzcxIC%2BEKx4hN5nTuHBJkpduZAj68%2FtdNlixM8MgmHg2XiCTlsfZ5GxMcQLVrVOynE9AwgqusWUjJvBxk5TcDnljjpKJd7mmoIt1m3mRUfuJtu4xBzfF8TiBSHy9YXdd82GAoIrWSG9%2BBnyNJnGSLYZhNAiZoDXsl3IzxkAly77nVs9Vmvx6oMH1hc5ZW6017i3%2BCjiD8OJGyJl932ugKXSJnR6GJGCM55V7p9Fu3AG78BKELnLChkUkzsjrKt3JCc%3D&appname=AHWEB&branding=aetna&skin&language&channel=web&psuid&biometric_text&business_event=Login"
+        },
+        "user_agent": {
+            "original": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36",
+            "device_name": "web_browser",
+            "name": "Chrome",
+            "version": "132.0.0.0"
+        }
+    },
+    {
+        "@timestamp": 1738260658985,
+        "event": {
+            "id": "ff8a0b83-5c72-41dd-9cac-45af596d40e5",
+            "provider": "abp",
+            "dataset": "ABP",
+            "category": "web",
+            "code": "",
+            "action": ""
+        },
+        "imperva": {
+            "ids": {
+                "account_id": "13945293-7a57-5615-bf0c-413e3746fda8",
+                "account_name": "Default Company Marketing",
+                "site_id": "452fd0c1-c928-48e1-a1ff-582074f1392e",
+                "site_name": "Default Company Prod Block"
+            }
+        },
+        "abp": {
+            "bot_violations": [
+                "bad_user_agent",
+                "cloud_service_provider",
+                "no_token"
+            ],
+            "bot_behaviors": [
+                "frequent_flyer",
+                "geo_org_suspicious",
+                "missing_gen_zid",
+                "web_scraping_low_confidence"
+            ],
+            "bot_deciding_condition_ids": [],
+            "bot_deciding_condition_names": [],
+            "bot_triggered_condition_ids": [
+                "cb55942b-794b-4f0e-8ea0-cec45e30b877",
+                "beaf2469-e2d1-4cd6-8e1f-026b4aa3c7ad",
+                "fac5e795-06ec-4b37-9a38-17ef2d27ba12"
+            ],
+            "bot_triggered_condition_names": [
+                "Force Identify"
+            ],
+            "campaign_names": [],
+            "customer_request_id": "39268499519702660",
+            "hsig": "HUL,E_A,",
+            "pid": "fa07fd5e-619c-38c3-83f2-eb07f1b68c83",
+            "header_id": "20.161.75.217:fa07fd5e-619c-38c3-83f2-eb07f1b68c83",
+            "fpid": "",
+            "zid": "",
+            "zuid": "",
+            "random_id": "",
+            "token_id": "",
+            "policy_id": "080fbef4-2c84-4532-b3e6-0815bcdbb5e9",
+            "policy_name": "Default Company Prod Block Default",
+            "selector": "path_prefix: /",
+            "selector_derived_id": "813678c9-c5fe-55b3-bd89-3abb9c303baa",
+            "category": "suspicious",
+            "tls_fingerprint": "Ver == 1.2 & CS >= c02c/c030/009f/cca9/cca8/ccaa/c02b/c02f/009e/c024/c028/006b/c023/c027/0067/c00a/c014/0039/c009/c013/0033/009d/009c/003d/003c/0035/002f/00ff",
+            "request_type": "post_analysis",
+            "request_path_decoded": "/managemyaccount/login",
+            "headers_accept": "application/json, text/plain, */*",
+            "headers_accept_charset": "",
+            "headers_accept_encoding": "gzip, deflate, br, zstd",
+            "headers_accept_language": "en-US,en;q=0.9",
+            "headers_cf_connecting_ip": "",
+            "headers_connection": "",
+            "headers_host": "www.defaultcompany.com",
+            "headers_referer": "https://health.defaultcompany.com/",
+            "headers_x_forwarded_for": "67.52.232.194",
+            "headers_x_forwarded_proto": "",
+            "headers_x_real_ip": "",
+            "header_names": [
+                "Host",
+                "Upgrade-Insecure-Requests",
+                "User-Agent",
+                "Accept",
+                "Sec-Fetch-Site",
+                "Sec-Fetch-Mode",
+                "Sec-Fetch-User",
+                "Sec-Fetch-Dest",
+                "Sec-Ch-Ua",
+                "Sec-Ch-Ua-Mobile",
+                "Sec-Ch-Ua-Platform",
+                "Accept-Encoding",
+                "Accept-Language",
+                "Cookie",
+                "Via",
+                "X-Forwarded-For",
+                "Cache-Control",
+                "Connection"
+            ],
+            "header_lengths": [
+                13,
+                1,
+                111,
+                135,
+                10,
+                8,
+                2,
+                8,
+                65,
+                2,
+                9,
+                23,
+                14,
+                572,
+                23,
+                13,
+                14,
+                10
+            ],
+            "headers_cookie_length": 572,
+            "cookie_names": [
+                "reese84"
+            ],
+            "cookie_lengths": [
+                564
+            ],
+            "monitor_action": "block",
+            "apollo_rule_versions": [],
+            "deciding_tags": [],
+            "triggered_tags": [
+                "force_identify",
+                "invalid_token"
+            ],
+            "token_expire": 0,
+            "requests_per_minute": 0.0,
+            "requests_per_session": 0,
+            "session_length_seconds": 0.0,
+            "requests_with_expired_token": 0,
+            "requests_with_no_token": 2,
+            "seconds_with_expired_token": 0.0,
+            "seconds_with_no_token": 482.853263456,
+            "rate_limiting_scope": "",
+            "captcha_solved_timestamp": 0,
+            "requests_since_captcha_succeeded": 0,
+            "web_browser_fonts": [],
+            "tcp_rtt_ms": 5,
+            "tls_rtt_ms": 5
+        },
+        "server": {
+            "domain": "www.defaultcompany.com",
+            "geo": {
+                "name": "us-east-1"
+            }
+        },
+        "client": {
+            "ip": "199.96.233.194",
+            "domain": "",
+            "geo": {
+                "country_iso_code": "US",
+                "name": "Default Company"
+            }
+        },
+        "http": {
+            "request": {
+                "method": "POST",
+                "body": {
+                    "bytes": 530
+                }
+            }
+        },
+        "url": {
+            "path": "/services/edi/TransactionRequest",
+            "query": ""
+        },
+        "user_agent": {
+            "original": "",
+            "device_name": "",
+            "name": "",
+            "version": ""
+        }
+    },
+    {
+        "@timestamp": 1738260658976,
+        "event": {
+            "id": "e30017e9-f095-40f8-b9c4-9fb2879f369c",
+            "provider": "abp",
+            "dataset": "ABP",
+            "category": "web",
+            "code": "",
+            "action": ""
+        },
+        "imperva": {
+            "ids": {
+                "account_id": "13945293-7a57-5615-bf0c-413e3746fda8",
+                "account_name": "Default Company Marketing",
+                "site_id": "452fd0c1-c928-48e1-a1ff-582074f1392e",
+                "site_name": "Default Company Prod Block"
+            }
+        },
+        "abp": {
+            "bot_violations": [
+                "jsat_interstitial_cleared"
+            ],
+            "bot_behaviors": [],
+            "bot_deciding_condition_ids": [],
+            "bot_deciding_condition_names": [],
+            "bot_triggered_condition_ids": [],
+            "bot_triggered_condition_names": [],
+            "campaign_names": [],
+            "customer_request_id": "4068214574417670",
+            "hsig": "HUA_E_L,",
+            "pid": "6c93f905-38e5-32f7-9bb8-ff93f65b0d57",
+            "header_id": "73.160.52.105:6c93f905-38e5-32f7-9bb8-ff93f65b0d57",
+            "fpid": "7f8e1783-7ae4-30f9-9b14-109657afaa98",
+            "zid": "a06ef80e-0b6b-38b8-b1d0-e2a251f31db4",
+            "zuid": "97d54a03-6713-3f40-bfc3-69ba833a1c54",
+            "random_id": "c8efe18c-7844-4da9-bdd6-2069f9846900",
+            "token_id": "64c92469-3d76-5bce-a32f-ccea48611fab",
+            "policy_id": "",
+            "policy_name": "",
+            "selector": "",
+            "selector_derived_id": "",
+            "category": "no_selector",
+            "tls_fingerprint": "Ver == 1.3 & CS >= baba/1301/1302/1303/c02b/c02f/c02c/c030/cca9/cca8/c013/c014/009c/009d/002f/0035",
+            "request_type": "post_challenge",
+            "request_path_decoded": "/v6/challenge/71355aa4-142b-4adf-9647-8d7cb5b2efcd/pon-your-euer-King-O-hoa-Measurall-I-my-Leason-t",
+            "headers_accept": "application/json; charset=utf-8",
+            "headers_accept_charset": "",
+            "headers_accept_encoding": "gzip, deflate, br, zstd",
+            "headers_accept_language": "en-US,en;q=0.9",
+            "headers_cf_connecting_ip": "",
+            "headers_connection": "",
+            "headers_host": "71355aa4-142b-4adf-9647-8d7cb5b2efcd.distil.ninja",
+            "headers_referer": "",
+            "headers_x_forwarded_for": "100.34.24.52",
+            "headers_x_forwarded_proto": "",
+            "headers_x_real_ip": "",
+            "header_names": [
+                "content-length",
+                "sec-ch-ua-platform",
+                "user-agent",
+                "accept",
+                "sec-ch-ua",
+                "content-type",
+                "sec-ch-ua-mobile",
+                "accept-encoding",
+                "accept-language",
+                "x-d-domain",
+                "x-imperva-id",
+                "x-tfp",
+                "cwaf-extras",
+                "host",
+                "cdn-loop",
+                "x-forwarded-for",
+                "incap-client-ip"
+            ],
+            "header_lengths": [
+                6,
+                7,
+                117,
+                31,
+                65,
+                25,
+                2,
+                23,
+                35,
+                13,
+                7,
+                314,
+                772,
+                49,
+                29,
+                12,
+                12
+            ],
+            "headers_cookie_length": 0,
+            "cookie_names": [],
+            "cookie_lengths": [],
+            "monitor_action": "identify",
+            "apollo_rule_versions": [
+                "t=2025-01-30T18:17:03Z",
+                "t=2025-01-30T18:22:03Z",
+                "t=2025-01-30T18:28:03Z",
+                "t=2025-01-30T18:42:03Z",
+                "t=2025-01-30T18:54:03Z",
+                "t=2025-01-30T21:13:03Z"
+            ],
+            "deciding_tags": [],
+            "triggered_tags": [
+                "force_identify",
+                "identify_eventually"
+            ],
+            "token_expire": 0,
+            "requests_per_minute": 0.0,
+            "requests_per_session": 0,
+            "session_length_seconds": 0.0,
+            "requests_with_expired_token": 0,
+            "requests_with_no_token": 8,
+            "seconds_with_expired_token": 0.0,
+            "seconds_with_no_token": 1681.97313628,
+            "rate_limiting_scope": "MMA Login GET",
+            "captcha_solved_timestamp": 0,
+            "requests_since_captcha_succeeded": 0,
+            "web_browser_fonts": [],
+            "tcp_rtt_ms": 5,
+            "tls_rtt_ms": 5
+        },
+        "server": {
+            "domain": "www.defaultcompany.com",
+            "geo": {
+                "name": "us-east-1"
+            }
+        },
+        "client": {
+            "ip": "199.96.233.194",
+            "domain": "",
+            "geo": {
+                "country_iso_code": "US",
+                "name": "Default Company"
+            }
+        },
+        "http": {
+            "request": {
+                "method": "POST",
+                "body": {
+                    "bytes": 527
+                }
+            }
+        },
+        "url": {
+            "path": "/services/edi/TransactionRequest",
+            "query": ""
+        },
+        "user_agent": {
+            "original": "",
+            "device_name": "",
+            "name": "",
+            "version": ""
+        }
+    },
+    {
+        "@timestamp": 1738260658986,
+        "event": {
+            "id": "41e4b18b-2441-48f2-883e-2c87c8b49fdc",
+            "provider": "abp",
+            "dataset": "ABP",
+            "category": "web",
+            "code": "",
+            "action": ""
+        },
+        "imperva": {
+            "ids": {
+                "account_id": "13945293-7a57-5615-bf0c-413e3746fda8",
+                "account_name": "Default Company Marketing",
+                "site_id": "452fd0c1-c928-48e1-a1ff-582074f1392e",
+                "site_name": "Default Company Prod Block"
+            }
+        },
+        "abp": {
+            "bot_violations": [
+                "jsat_interstitial_cleared"
+            ],
+            "bot_behaviors": [],
+            "bot_deciding_condition_ids": [],
+            "bot_deciding_condition_names": [],
+            "bot_triggered_condition_ids": [],
+            "bot_triggered_condition_names": [],
+            "campaign_names": [],
+            "customer_request_id": "1106991918922991122",
+            "hsig": "HUA_E_L,",
+            "pid": "e30017e9-f095-40f8-b9c4-9fb2879f369c",
+            "header_id": "96.249.213.175:6c93f905-38e5-32f7-9bb8-ff93f65b0d57",
+            "fpid": "d051268a-04d8-3b7b-8528-4e48b233921b",
+            "zid": "c94f1030-f332-38a1-bb4f-7d917c8efe6a",
+            "zuid": "d578243f-1c14-386b-b650-c7f3cbd121a2",
+            "random_id": "0619383a-c9ad-4943-92f2-4d13b24d8d45",
+            "token_id": "4714de4e-6865-5b56-86c6-a1026fc5eaff",
+            "policy_id": "dcd9f47d-f006-4dfe-8fdc-0fb8c8ca0d7a",
+            "policy_name": "Default Company QA Passive Default",
+            "selector": "path_prefix: /",
+            "selector_derived_id": "2a5aeb00-6f89-5418-aaed-93be67e91182",
+            "category": "suspicious",
+            "tls_fingerprint": "Ver == 1.2 & CS >= c02c/c030/009f/cca9/cca8/ccaa/c02b/c02f/009e/c024/c028/006b/c023/c027/0067/c00a/c014/0039/c009/c013/0033/009d/009c/003d/003c/0035/002f/00ff",
+            "request_type": "post_analysis",
+            "request_path_decoded": "/services/edi/TransactionRequest",
+            "headers_accept": "*/*",
+            "headers_accept_charset": "",
+            "headers_accept_encoding": "",
+            "headers_accept_language": "",
+            "headers_cf_connecting_ip": "",
+            "headers_connection": "",
+            "headers_host": "www20.defaultcompany.com",
+            "headers_referer": "",
+            "headers_x_forwarded_for": "",
+            "headers_x_forwarded_proto": "",
+            "headers_x_real_ip": "",
+            "header_names": [
+                "Host",
+                "Authorization",
+                "User-Agent",
+                "Accept",
+                "Content-Type",
+                "Content-Length"
+            ],
+            "header_lengths": [
+                15,
+                30,
+                11,
+                3,
+                8,
+                3
+            ],
+            "headers_cookie_length": 0,
+            "cookie_names": [],
+            "cookie_lengths": [],
+            "monitor_action": "captcha",
+            "apollo_rule_versions": [
+                "t=2025-01-30T18:22:03Z",
+                "t=2025-01-30T18:28:03Z",
+                "t=2025-01-30T18:35:03Z",
+                "t=2025-01-30T18:42:03Z",
+                "t=2025-01-30T21:13:03Z"
+            ],
+            "deciding_tags": [],
+            "triggered_tags": [
+                "force_identify",
+                "identify_eventually"
+            ],
+            "token_expire": 0,
+            "requests_per_minute": 0.0,
+            "requests_per_session": 0,
+            "session_length_seconds": 0.0,
+            "requests_with_expired_token": 0,
+            "requests_with_no_token": 5352901,
+            "seconds_with_expired_token": 0.0,
+            "seconds_with_no_token": 370240.5618214,
+            "rate_limiting_scope": "",
+            "captcha_solved_timestamp": 0,
+            "requests_since_captcha_succeeded": 0,
+            "web_browser_fonts": [],
+            "tcp_rtt_ms": 9,
+            "tls_rtt_ms": 37
+        },
+        "server": {
+            "domain": "www20.defaultcompany.com",
+            "geo": {
+                "name": "us-east-1"
+            }
+        },
+        "client": {
+            "ip": "199.96.233.194",
+            "domain": "",
+            "geo": {
+                "country_iso_code": "US",
+                "name": "Default Company"
+            }
+        },
+        "http": {
+            "request": {
+                "method": "POST",
+                "body": {
+                    "bytes": 184
+                }
+            }
+        },
+        "url": {
+            "path": "/services/edi/TransactionRequest",
+            "query": ""
+        },
+        "user_agent": {
+            "original": "",
+            "device_name": "",
+            "name": "",
+            "version": ""
+        }
+    },
+    {
+        "@timestamp": 1738260659034,
+        "event": {
+            "id": "abc12345-def6-7890-abcd-ef1234567890",
+            "provider": "imperva",
+            "dataset": "ABP",
+            "category": "web",
+            "code": "",
+            "action": ""
+        },
+        "imperva": {
+            "ids": {
+                "account_id": "13945293-7a57-5615-bf0c-413e3746fda8",
+                "account_name": "Default Company Marketing",
+                "site_id": "519335e6-7ba3-47b5-9519-6f3982c9f4ec",
+                "site_name": "Default Company Prod Passive"
+            }
+        },
+        "abp": {
+            "bot_violations": [
+                "no_token"
+            ],
+            "bot_behaviors": [
+                "frequent_flyer",
+                "geo_org_suspicious",
+                "heavy_scraper"
+            ],
+            "bot_deciding_condition_ids": [],
+            "bot_deciding_condition_names": [],
+            "bot_triggered_condition_ids": [
+                "62d96924-bea2-4d40-a31b-089c8045dae7"
+            ],
+            "bot_triggered_condition_names": [
+                "Identify Eventually"
+            ],
+            "campaign_names": [],
+            "customer_request_id": "42877259869783682",
+            "hsig": "AUH",
+            "pid": "14cdb9b4-de01-3faa-aff5-65bc2f771745",
+            "header_id": "192.0.2.1:14cdb9b4-de01-3faa-aff5-65bc2f771745",
+            "fpid": "",
+            "zid": "",
+            "zuid": "",
+            "random_id": "",
+            "token_id": "",
+            "policy_id": "dcd9f47d-f006-4dfe-8fdc-0fb8c8ca0d7a",
+            "policy_name": "Default Company QA Passive Default",
+            "selector": "path_prefix: /",
+            "selector_derived_id": "2a5aeb00-6f89-5418-aaed-93be67e91182",
+            "category": "suspicious",
+            "tls_fingerprint": "Ver == 1.2 & CS >= c02c/c030/009f/009e/c024/c023/c028/c027",
+            "request_type": "post_analysis",
+            "request_path_decoded": "/services/edi/TransactionRequest",
+            "headers_accept": "text/plain",
+            "headers_accept_charset": "",
+            "headers_accept_encoding": "",
+            "headers_accept_language": "",
+            "headers_cf_connecting_ip": "",
+            "headers_connection": "Close",
+            "headers_host": "www.defaultcompany.com",
+            "headers_referer": "",
+            "headers_x_forwarded_for": "",
+            "headers_x_forwarded_proto": "",
+            "headers_x_real_ip": "",
+            "header_names": [
+                "Content-Type",
+                "Authorization",
+                "Host",
+                "Content-Length",
+                "Expect"
+            ],
+            "header_lengths": [
+                33,
+                30,
+                15,
+                3,
+                12
+            ],
+            "headers_cookie_length": 0,
+            "cookie_names": [],
+            "cookie_lengths": [],
+            "monitor_action": "identify",
+            "apollo_rule_versions": [
+                "t=2025-01-30T18:17:03Z",
+                "t=2025-01-30T18:22:03Z",
+                "t=2025-01-30T18:28:03Z"
+            ],
+            "deciding_tags": [],
+            "triggered_tags": [
+                "force_identify",
+                "identify_eventually"
+            ],
+            "token_expire": 0,
+            "requests_per_minute": 0.0,
+            "requests_per_session": 0,
+            "session_length_seconds": 0.0,
+            "requests_with_expired_token": 0,
+            "requests_with_no_token": 106831115,
+            "seconds_with_expired_token": 0.0,
+            "seconds_with_no_token": 10428153.694,
+            "rate_limiting_scope": "",
+            "captcha_solved_timestamp": 0,
+            "requests_since_captcha_succeeded": 0,
+            "web_browser_fonts": [],
+            "tcp_rtt_ms": 1,
+            "tls_rtt_ms": 3
+        },
+        "server": {
+            "domain": "www.defaultcompany.com",
+            "geo": {
+                "name": "us-east-1"
+            }
+        },
+        "client": {
+            "ip": "192.0.2.1",
+            "domain": "",
+            "geo": {
+                "country_iso_code": "US",
+                "name": "AT&T Wireless"
+            }
+        },
+        "http": {
+            "request": {
+                "method": "GET",
+                "body": {
+                    "bytes": 1257
+                }
+            }
+        },
+        "url": {
+            "path": "/dsepublic/components/medicare/permanentResidence.html",
+            "query": "v=vyqcg"
+        },
+        "user_agent": {
+            "original": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36",
+            "device_name": "web_browser",
+            "name": "Chrome",
+            "version": "132.0.0.0"
+        }
+    },
+    {
+        "@timestamp": 1738260659050,
+        "event": {
+            "id": "def67890-1234-5678-90ab-cdef12345678",
+            "provider": "abp",
+            "dataset": "ABP",
+            "category": "web",
+            "code": "",
+            "action": ""
+        },
+        "imperva": {
+            "ids": {
+                "account_id": "13945293-7a57-5615-bf0c-413e3746fda8",
+                "account_name": "Default Company Marketing",
+                "site_id": "707fd05e-4b5e-4b41-bf1e-b818eb0f4577",
+                "site_name": "www.defaultcompany.com"
+            }
+        },
+        "abp": {
+            "bot_violations": [
+                "known_violator_header_id",
+                "known_violator_zuid"
+            ],
+            "bot_behaviors": [
+                "fingerprint_manipulation_network_account",
+                "frequent_flyer",
+                "frequent_flyer_account",
+                "high_volume_day",
+                "missing_util_zid",
+                "web_scraping_high_confidence",
+                "web_scraping_medium_confidence"
+            ],
+            "bot_deciding_condition_ids": [
+                "34d163f5-3d11-43fd-943c-421846120f19",
+                "0a3d2e96-7160-44bd-8668-16bb5094f200",
+                "3af5e126-f3bb-4b88-9468-d3de57cc8021"
+            ],
+            "bot_deciding_condition_names": [
+                "VPN Whitelist Rule"
+            ],
+            "bot_triggered_condition_ids": [
+                "36e394d7-449e-429a-bd97-40a90b5c8ebe",
+                "34d163f5-3d11-43fd-943c-421846120f19",
+                "02d3b908-bd77-4639-8559-f4f2fb85daef",
+                "0a3d2e96-7160-44bd-8668-16bb5094f200",
+                "33b288f8-9613-4829-a7a7-5ea022e01aa8",
+                "3af5e126-f3bb-4b88-9468-d3de57cc8021"
+            ],
+            "bot_triggered_condition_names": [
+                "Custom Bad User Agents",
+                "VPN Whitelist Rule"
+            ],
+            "campaign_names": [],
+            "customer_request_id": "886783722976708177",
+            "hsig": "euia,fl,h",
+            "pid": "0b459df1-2695-3173-882b-64908f679262",
+            "header_id": "192.0.2.1:0b459df1-2695-3173-882b-64908f679262",
+            "fpid": "6bd55bad-944b-3358-8ea6-eb0828d832b2",
+            "zid": "88213bef-287d-3dfd-ba4f-2fe604a0bfb1",
+            "zuid": "122d7ea6-6da2-3d91-bac4-4817eca0e59a",
+            "random_id": "2bf03999-d717-4ebf-8a57-872d1492ca04",
+            "token_id": "c31fe2bf-b839-5c9d-a7a6-12d4a776c439",
+            "policy_id": "1ce48a65-614d-4802-9219-30cb6bd632ae",
+            "policy_name": "www.defaultcompany.com Default",
+            "selector": "path_prefix: /",
+            "selector_derived_id": "e1efac58-3a56-5622-9003-562e09a2e03c",
+            "category": "allowlisted",
+            "tls_fingerprint": "Ver == 1.3 & CS >= 1302/1303/1301/c02c/c030/009f/cca9/cca8/ccaa/c02b/c02f/009e/c024/c028/006b/c023/c027/0067/c00a/c014/0039/c009/c013/0033/009d/009c/003d/003c/0035/002f/00ff",
+            "request_type": "post_analysis",
+            "request_path_decoded": "/managemyaccount/login",
+            "headers_accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+            "headers_accept_charset": "",
+            "headers_accept_encoding": "gzip, deflate, br",
+            "headers_accept_language": "ru",
+            "headers_cf_connecting_ip": "",
+            "headers_connection": "",
+            "headers_host": "www.defaultcompany.com",
+            "headers_referer": "https://www.defaultcompany.com/dsepublic/",
+            "headers_x_forwarded_for": "",
+            "headers_x_forwarded_proto": "",
+            "headers_x_real_ip": "",
+            "header_names": [
+                "Host",
+                "Accept",
+                "Sec-Fetch-Site",
+                "Priority",
+                "Sec-Fetch-Mode",
+                "User-Agent",
+                "Accept-Language",
+                "Sec-Fetch-Dest",
+                "Referer",
+                "Accept-Encoding",
+                "Cookie"
+            ],
+            "header_lengths": [
+                13,
+                63,
+                9,
+                6,
+                8,
+                139,
+                2,
+                8,
+                25,
+                17,
+                572
+            ],
+            "headers_cookie_length": 572,
+            "cookie_names": [
+                "reese84"
+            ],
+            "cookie_lengths": [
+                564
+            ],
+            "monitor_action": "identify",
+            "apollo_rule_versions": [],
+            "deciding_tags": [],
+            "triggered_tags": [],
+            "token_expire": 1738261856,
+            "requests_per_minute": 0.0,
+            "requests_per_session": 1,
+            "session_length_seconds": 2.898578172,
+            "requests_with_expired_token": 0,
+            "requests_with_no_token": 1437,
+            "seconds_with_expired_token": 0.0,
+            "seconds_with_no_token": 98782.848429592,
+            "rate_limiting_scope": "Docfind",
+            "captcha_solved_timestamp": 0,
+            "requests_since_captcha_succeeded": 0,
+            "web_browser_fonts": [],
+            "tcp_rtt_ms": 17,
+            "tls_rtt_ms": 43
+        },
+        "server": {
+            "domain": "www.defaultcompany.com",
+            "geo": {
+                "name": "us-east-1"
+            }
+        },
+        "client": {
+            "ip": "192.0.2.1",
+            "domain": "c-24-98-160-78.hsd1.ga.comcast.net.",
+            "geo": {
+                "country_iso_code": "US",
+                "name": "Comcast Cable"
+            }
+        },
+        "http": {
+            "request": {
+                "method": "GET",
+                "body": {
+                    "bytes": 1837
+                }
+            }
+        },
+        "url": {
+            "path": "/managemyaccount/login",
+            "query": "identityTransaction=9Hvr3LVgNN0TJM1FCLDfT16WA%2FszQ3GFxTdhj4YF5prw9iySPB4xHGnp9UI5QGX1NU5FrPPRLIKa0kWyTL2Ao7g3kF3f%2FqHcHz7N2Rp4s56nvqyBzJCXp61fCPNthIrpdUeHcUUty47yMPRRbqEVvvZLZoNxPkqUIUKtF3hWOMtmuBG1W86fFLDlObDFPcYyyaSHe8NJSaKV5ozscHSw0qeX53d7t2sGxV%2Bh0nPlnIlK3W9%2F7oQD8Ohwioq1vc80gZ6c8C42xehbmt9b9aG%2Bx2a1L1xSnpxdm5AfGONIvmvlSyFSmhZeSsB2gKevdvtoyNGYLgbcqqPN%2BO4g%2FjwTXuINkOB%2FUlo1d2dPHNa0sPUCh1xWgWjZ%2BQu063Jo4Q2GNvwEsQMQrWDPSoTR7gS%2FM2GlR9ZsZ7m8BRci6eGDmmw16bOtaQw2kcK%2F1aq9xqBddtIJSrHET%2BS4SUrONwFkJJHChRSDDfB%2FtMKcZiAu%2FZO2DTQmNbWcaf3NGALI6gNOQJCtMKBS7W769%2FtagADQ5uepRs9Lhdcae6F%2FIkY%2Bql0tESY71FIgzMZhWrhS%2FnWffA68XK74qXqG15FKZjeJWc3lA0XBUYvJvL6ksIWBQ6s%3D&appname=AHWEB&branding=defaultcompany&skin&language&channel=iPhone&psuid&biometric_text&business_event=Login"
+        },
+        "user_agent": {
+            "original": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Safari/604.1",
+            "device_name": "",
+            "name": "Safari",
+            "version": "18.1.1"
+        }
+    },
+    {
+        "@timestamp": 1738260659055,
+        "event": {
+            "id": "3456abcd-1234-5678-90ab-abcdef123456",
+            "provider": "imperva",
+            "dataset": "ABP",
+            "category": "web",
+            "code": "",
+            "action": ""
+        },
+        "imperva": {
+            "ids": {
+                "account_id": "13945293-7a57-5615-bf0c-413e3746fda8",
+                "account_name": "Default Company Marketing",
+                "site_id": "519335e6-7ba3-47b5-9519-6f3982c9f4ec",
+                "site_name": "Default Company Prod Passive"
+            }
+        },
+        "abp": {
+            "bot_violations": [
+                "no_token",
+                "missing_user_agent"
+            ],
+            "bot_behaviors": [
+                "frequent_flyer",
+                "heavy_scraper"
+            ],
+            "bot_deciding_condition_ids": [],
+            "bot_deciding_condition_names": [],
+            "bot_triggered_condition_ids": [
+                "d41370c5-4939-41b7-b383-e78d79c1152e"
+            ],
+            "bot_triggered_condition_names": [
+                "Identify Eventually"
+            ],
+            "campaign_names": [],
+            "customer_request_id": "12345678901234567",
+            "hsig": "H",
+            "pid": "14cdb9b4-de01-3faa-aff5-65bc2f771745",
+            "header_id": "192.0.2.1:14cdb9b4-de01-3faa-aff5-65bc2f771745",
+            "fpid": "",
+            "zid": "",
+            "zuid": "",
+            "random_id": "",
+            "token_id": "",
+            "policy_id": "dcd9f47d-f006-4dfe-8fdc-0fb8c8ca0d7a",
+            "policy_name": "Default Company QA Passive Default",
+            "selector": "path_prefix: /",
+            "selector_derived_id": "2a5aeb00-6f89-5418-aaed-93be67e91182",
+            "category": "suspicious",
+            "tls_fingerprint": "Ver == 1.2 & CS >= c02c/c030/009f/009e/c024/c023/c028/c027",
+            "request_type": "post_analysis",
+            "request_path_decoded": "/services/edi/TransactionRequest",
+            "headers_accept": "text/plain",
+            "headers_accept_charset": "",
+            "headers_accept_encoding": "",
+            "headers_accept_language": "",
+            "headers_cf_connecting_ip": "",
+            "headers_connection": "Close",
+            "headers_host": "www.defaultcompany.com",
+            "headers_referer": "",
+            "headers_x_forwarded_for": "",
+            "headers_x_forwarded_proto": "",
+            "headers_x_real_ip": "",
+            "header_names": [
+                "Content-Type",
+                "Authorization",
+                "Host",
+                "Content-Length",
+                "Expect"
+            ],
+            "header_lengths": [
+                33,
+                30,
+                15,
+                3,
+                12
+            ],
+            "headers_cookie_length": 0,
+            "cookie_names": [],
+            "cookie_lengths": [],
+            "monitor_action": "identify",
+            "apollo_rule_versions": [
+                "t=2025-01-30T18:17:03Z",
+                "t=2025-01-30T18:22:03Z"
+            ],
+            "deciding_tags": [],
+            "triggered_tags": [
+                "force_identify",
+                "identify_eventually"
+            ],
+            "token_expire": 0,
+            "requests_per_minute": 0.0,
+            "requests_per_session": 0,
+            "session_length_seconds": 0.0,
+            "requests_with_expired_token": 0,
+            "requests_with_no_token": 50000000,
+            "seconds_with_expired_token": 0.0,
+            "seconds_with_no_token": 5000000.0,
+            "rate_limiting_scope": "",
+            "captcha_solved_timestamp": 0,
+            "requests_since_captcha_succeeded": 0,
+            "web_browser_fonts": [],
+            "tcp_rtt_ms": 2,
+            "tls_rtt_ms": 3
+        },
+        "server": {
+            "domain": "www.defaultcompany.com",
+            "geo": {
+                "name": "us-east-1"
+            }
+        },
+        "client": {
+            "ip": "203.0.113.1",
+            "domain": "client.example.com",
+            "geo": {
+                "country_iso_code": "US",
+                "name": "Example ISP"
+            }
+        },
+        "http": {
+            "request": {
+                "method": "POST",
+                "body": {
+                    "bytes": 300
+                }
+            }
+        },
+        "url": {
+            "path": "/api/submit",
+            "query": "id=12345"
+        },
+        "user_agent": {
+            "original": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36",
+            "device_name": "web_browser",
+            "name": "Chrome",
+            "version": "132.0.0.0"
+        }
+    },
+    {
+        "@timestamp": 1738260659060,
+        "event": {
+            "id": "7890efgh-5678-1234-90ab-cdef56789012",
+            "provider": "abp",
+            "dataset": "ABP",
+            "category": "web",
+            "code": "",
+            "action": ""
+        },
+        "imperva": {
+            "ids": {
+                "account_id": "13945293-7a57-5615-bf0c-413e3746fda8",
+                "account_name": "Default Company Marketing",
+                "site_id": "452fd0c1-c928-48e1-a1ff-582074f1392e",
+                "site_name": "Default Company Prod Block"
+            }
+        },
+        "abp": {
+            "bot_violations": [
+                "invalid_token"
+            ],
+            "bot_behaviors": [
+                "geo_org_suspicious"
+            ],
+            "bot_deciding_condition_ids": [],
+            "bot_deciding_condition_names": [],
+            "bot_triggered_condition_ids": [
+                "cb55942b-794b-4f0e-8ea0-cec45e30b877",
+                "47c246c5-9119-4e45-b894-d109cb93de91"
+            ],
+            "bot_triggered_condition_names": [
+                "Force Identify",
+                "Invalid token"
+            ],
+            "campaign_names": [],
+            "customer_request_id": "65568620129027606",
+            "hsig": "HUA_E_L,",
+            "pid": "6c93f905-38e5-32f7-9bb8-ff93f65b0d57",
+            "header_id": "142.111.214.198:6c93f905-38e5-32f7-9bb8-ff93f65b0d57",
+            "fpid": "",
+            "zid": "",
+            "zuid": "",
+            "random_id": "",
+            "token_id": "1a1d67e1-6ba2-5c66-9ca9-2cf3a01c608b",
+            "policy_id": "080fbef4-2c84-4532-b3e6-0815bcdbb5e9",
+            "policy_name": "Default Company Prod Block Default",
+            "selector": "path_prefix: /",
+            "selector_derived_id": "813678c9-c5fe-55b3-bd89-3abb9c303baa",
+            "category": "suspicious",
+            "tls_fingerprint": "Ver == 1.3 & CS >= 1301/1302/1303/c02b/cca9/cca8/c009/c013/009c/002f/c02c/c030/c00a/c014/009d/0035",
+            "request_type": "post_analysis",
+            "request_path_decoded": "/services/edi/TransactionRequest",
+            "headers_accept": "application/json, text/plain, */*",
+            "headers_accept_charset": "",
+            "headers_accept_encoding": "gzip, deflate, br",
+            "headers_accept_language": "en-US,en;q=0.9",
+            "headers_cf_connecting_ip": "",
+            "headers_connection": "",
+            "headers_host": "www.defaultcompany.com",
+            "headers_referer": "",
+            "headers_x_forwarded_for": "",
+            "headers_x_forwarded_proto": "",
+            "headers_x_real_ip": "",
+            "header_names": [
+                "Content-Type",
+                "Authorization",
+                "Host",
+                "Content-Length",
+                "Expect"
+            ],
+            "header_lengths": [
+                33,
+                30,
+                15,
+                3,
+                12
+            ],
+            "headers_cookie_length": 0,
+            "cookie_names": [],
+            "cookie_lengths": [],
+            "monitor_action": "identify",
+            "apollo_rule_versions": [
+                "t=2025-01-30T18:17:03Z",
+                "t=2025-01-30T18:22:03Z",
+                "t=2025-01-30T18:28:03Z",
+                "t=2025-01-30T18:42:03Z",
+                "t=2025-01-30T18:54:03Z",
+                "t=2025-01-30T21:13:03Z",
+                "t=2025-01-31T00:15:03Z"
+            ],
+            "deciding_tags": [],
+            "triggered_tags": [
+                "force_identify",
+                "identify_eventually"
+            ],
+            "token_expire": 0,
+            "requests_per_minute": 0.0,
+            "requests_per_session": 0,
+            "session_length_seconds": 0.0,
+            "requests_with_expired_token": 0,
+            "requests_with_no_token": 69874921,
+            "seconds_with_expired_token": 0.0,
+            "seconds_with_no_token": 4617833.834033984,
+            "rate_limiting_scope": "",
+            "captcha_solved_timestamp": 0,
+            "requests_since_captcha_succeeded": 0,
+            "web_browser_fonts": [],
+            "tcp_rtt_ms": 6,
+            "tls_rtt_ms": 10
+        },
+        "server": {
+            "domain": "www.defaultcompany.com",
+            "geo": {
+                "name": "us-east-1"
+            }
+        },
+        "client": {
+            "ip": "192.0.2.1",
+            "domain": "host250.69.2.207.zirmed.com.",
+            "geo": {
+                "country_iso_code": "US",
+                "name": "Flexential"
+            }
+        },
+        "http": {
+            "request": {
+                "method": "POST",
+                "body": {
+                    "bytes": 212
+                }
+            }
+        },
+        "url": {
+            "path": "/services/edi/TransactionRequest",
+            "query": ""
+        },
+        "user_agent": {
+            "original": "",
+            "device_name": "",
+            "name": "",
+            "version": ""
+        }
+    },
+    {
+        "@timestamp": 1738260659100,
+        "event": {
+            "id": "9e8d76f4-3b5f-4c1a-8b2a-1f3f4b6c7d8e",
+            "provider": "imperva",
+            "dataset": "ABP",
+            "category": "web",
+            "code": "",
+            "action": ""
+        },
+        "imperva": {
+            "ids": {
+                "account_id": "13945293-7a57-5615-bf0c-413e3746fda8",
+                "account_name": "Default Company Marketing",
+                "site_id": "12345678-1234-1234-1234-123456789abc",
+                "site_name": "Default Company Extra Block"
+            }
+        },
+        "abp": {
+            "bot_violations": [
+                "no_token"
+            ],
+            "bot_behaviors": [
+                "heavy_scraper",
+                "missing_gen_zid"
+            ],
+            "bot_deciding_condition_ids": [],
+            "bot_deciding_condition_names": [],
+            "bot_triggered_condition_ids": [
+                "a1b2c3d4-e5f6-7890-abcd-ef0123456789"
+            ],
+            "bot_triggered_condition_names": [
+                "Identify Eventually"
+            ],
+            "campaign_names": [],
+            "customer_request_id": "987654321098765432",
+            "hsig": "HU",
+            "pid": "14cdb9b4-de01-3faa-aff5-65bc2f771745",
+            "header_id": "203.0.113.5:14cdb9b4-de01-3faa-aff5-65bc2f771745",
+            "fpid": "",
+            "zid": "",
+            "zuid": "",
+            "random_id": "",
+            "token_id": "",
+            "policy_id": "dcd9f47d-f006-4dfe-8fdc-0fb8c8ca0d7a",
+            "policy_name": "Default Company QA Passive Default",
+            "selector": "path_prefix: /api",
+            "selector_derived_id": "2a5aeb00-6f89-5418-aaed-93be67e91182",
+            "category": "suspicious",
+            "tls_fingerprint": "Ver == 1.2 & CS >= c02c/c030/009f/009e",
+            "request_type": "post_analysis",
+            "request_path_decoded": "/api/submit",
+            "headers_accept": "application/json",
+            "headers_accept_charset": "",
+            "headers_accept_encoding": "gzip",
+            "headers_accept_language": "en-US",
+            "headers_cf_connecting_ip": "",
+            "headers_connection": "Keep-Alive",
+            "headers_host": "api.defaultcompany.com",
+            "headers_referer": "https://www.defaultcompany.com/home",
+            "headers_x_forwarded_for": "203.0.113.5",
+            "headers_x_forwarded_proto": "https",
+            "headers_x_real_ip": "203.0.113.5",
+            "header_names": [
+                "Content-Type",
+                "Authorization",
+                "Host",
+                "Content-Length"
+            ],
+            "header_lengths": [
+                33,
+                30,
+                15,
+                3
+            ],
+            "headers_cookie_length": 0,
+            "cookie_names": [],
+            "cookie_lengths": [],
+            "monitor_action": "identify",
+            "apollo_rule_versions": [
+                "t=2025-01-30T18:17:03Z"
+            ],
+            "deciding_tags": [],
+            "triggered_tags": [
+                "force_identify",
+                "identify_eventually"
+            ],
+            "token_expire": 0,
+            "requests_per_minute": 0.0,
+            "requests_per_session": 0,
+            "session_length_seconds": 0.0,
+            "requests_with_expired_token": 0,
+            "requests_with_no_token": 10000000,
+            "seconds_with_expired_token": 0.0,
+            "seconds_with_no_token": 5000000.0,
+            "rate_limiting_scope": "",
+            "captcha_solved_timestamp": 0,
+            "requests_since_captcha_succeeded": 0,
+            "web_browser_fonts": [],
+            "tcp_rtt_ms": 2,
+            "tls_rtt_ms": 3
+        },
+        "server": {
+            "domain": "api.defaultcompany.com",
+            "geo": {
+                "name": "us-east-1"
+            }
+        },
+        "client": {
+            "ip": "203.0.113.5",
+            "domain": "client.defaultcompany.com",
+            "geo": {
+                "country_iso_code": "US",
+                "name": "Example Client ISP"
+            }
+        },
+        "http": {
+            "request": {
+                "method": "POST",
+                "body": {
+                    "bytes": 400
+                }
+            }
+        },
+        "url": {
+            "path": "/api/submit",
+            "query": "id=98765"
+        },
+        "user_agent": {
+            "original": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/132.0.0.0 Safari/537.36",
+            "device_name": "web_browser",
+            "name": "Chrome",
+            "version": "132.0.0.0"
+        }
+    },
+    {
+        "@timestamp": 1738260659000,
+        "event": {
+            "id": "cdef1234-5678-90ab-cdef-1234567890ab",
+            "provider": "abp",
+            "dataset": "ABP",
+            "category": "web",
+            "code": "",
+            "action": "allow"
+        },
+        "imperva": {
+            "ids": {
+                "account_id": "13945293-7a57-5615-bf0c-413e3746fda8",
+                "account_name": "Default Company Marketing",
+                "site_id": "452fd0c1-c928-48e1-a1ff-582074f1392e",
+                "site_name": "Default Company Prod Block"
+            }
+        },
+        "abp": {
+            "bot_violations": [
+                "known_violator_header_id",
+                "known_violator_zuid"
+            ],
+            "bot_behaviors": [
+                "fingerprint_manipulation_network_account",
+                "frequent_flyer",
+                "frequent_flyer_account",
+                "high_volume_day",
+                "missing_util_zid",
+                "web_scraping_high_confidence",
+                "web_scraping_medium_confidence"
+            ],
+            "bot_deciding_condition_ids": [
+                "34d163f5-3d11-43fd-943c-421846120f19",
+                "0a3d2e96-7160-44bd-8668-16bb5094f200",
+                "3af5e126-f3bb-4b88-9468-d3de57cc8021"
+            ],
+            "bot_deciding_condition_names": [
+                "VPN Whitelist Rule"
+            ],
+            "bot_triggered_condition_ids": [
+                "36e394d7-449e-429a-bd97-40a90b5c8ebe",
+                "34d163f5-3d11-43fd-943c-421846120f19",
+                "02d3b908-bd77-4639-8559-f4f2fb85daef",
+                "0a3d2e96-7160-44bd-8668-16bb5094f200",
+                "33b288f8-9613-4829-a7a7-5ea022e01aa8",
+                "3af5e126-f3bb-4b88-9468-d3de57cc8021"
+            ],
+            "bot_triggered_condition_names": [
+                "Custom Bad User Agents",
+                "VPN Whitelist Rule"
+            ],
+            "campaign_names": [],
+            "customer_request_id": "886783722976708177",
+            "hsig": "euia,fl,h",
+            "pid": "0b459df1-2695-3173-882b-64908f679262",
+            "header_id": "192.0.2.1:0b459df1-2695-3173-882b-64908f679262",
+            "fpid": "6bd55bad-944b-3358-8ea6-eb0828d832b2",
+            "zid": "88213bef-287d-3dfd-ba4f-2fe604a0bfb1",
+            "zuid": "122d7ea6-6da2-3d91-bac4-4817eca0e59a",
+            "random_id": "442a0a4d-9b16-47ea-ad5f-c7d30aa20c20",
+            "token_id": "d397dab9-4ed5-5cf5-989e-540d5a9fd4e1",
+            "policy_id": "59a59ce9-c5e4-4c1c-b55e-e868e0cdee9c",
+            "policy_name": "Default Company - Docfind prod",
+            "selector": "path_prefix: /dsepublic",
+            "selector_derived_id": "e5a0cfe5-f7f1-51d7-81b8-589ed6adc226",
+            "category": "no_violations",
+            "tls_fingerprint": "Ver == 1.3 & CS >= 3a3a/1301/1302/1303/c02b/c02f/c02c/c030/cca9/cca8/c013/c014/009c/009d/002f/0035",
+            "request_type": "post_analysis",
+            "request_path_decoded": "/dsepublic/components/medicare/permanentResidence.html",
+            "headers_accept": "*/*",
+            "headers_accept_charset": "",
+            "headers_accept_encoding": "gzip, deflate, br, zstd",
+            "headers_accept_language": "en-US,en;q=0.9",
+            "headers_cf_connecting_ip": "",
+            "headers_connection": "",
+            "headers_host": "www.defaultcompany.com",
+            "headers_referer": "https://www.defaultcompany.com/dsepublic/",
+            "headers_x_forwarded_for": "",
+            "headers_x_forwarded_proto": "",
+            "headers_x_real_ip": "",
+            "header_names": [
+                "Host",
+                "Cache-Control",
+                "Sec-Ch-Ua-Platform",
+                "Pragma",
+                "Sec-Ch-Ua",
+                "Sec-Ch-Ua-Mobile",
+                "Adrum",
+                "User-Agent",
+                "If-Modified-Since",
+                "Accept",
+                "Sec-Fetch-Site",
+                "Sec-Fetch-Mode",
+                "Sec-Fetch-Dest",
+                "Referer",
+                "Accept-Encoding",
+                "Accept-Language",
+                "Priority",
+                "Cookie"
+            ],
+            "header_lengths": [
+                13,
+                8,
+                7,
+                8,
+                64,
+                2,
+                11,
+                117,
+                29,
+                3,
+                11,
+                4,
+                5,
+                32,
+                23,
+                14,
+                6,
+                552
+            ],
+            "headers_cookie_length": 552,
+            "cookie_names": [
+                "reese84"
+            ],
+            "cookie_lengths": [
+                564
+            ],
+            "monitor_action": "identify",
+            "apollo_rule_versions": [
+                "1.0.0"
+            ],
+            "deciding_tags": [],
+            "triggered_tags": [],
+            "token_expire": 1738261856,
+            "requests_per_minute": 0.0,
+            "requests_per_session": 1,
+            "session_length_seconds": 2.898578172,
+            "requests_with_expired_token": 0,
+            "requests_with_no_token": 1437,
+            "seconds_with_expired_token": 0.0,
+            "seconds_with_no_token": 98782.848429592,
+            "rate_limiting_scope": "Docfind",
+            "captcha_solved_timestamp": 0,
+            "requests_since_captcha_succeeded": 0,
+            "web_browser_fonts": [],
+            "tcp_rtt_ms": 17,
+            "tls_rtt_ms": 43
+        },
+        "server": {
+            "domain": "www.defaultcompany.com",
+            "geo": {
+                "name": "us-east-1"
+            }
+        },
+        "client": {
+            "ip": "192.0.2.1",
+            "domain": "",
+            "geo": {
+                "country_iso_code": "US",
+                "name": "AT&T Wireless"
+            }
+        },
+        "http": {
+            "request": {
+                "method": "GET",
+                "body": {
+                    "bytes": 1837
+                }
+            }
+        },
+        "url": {
+            "path": "/dsepublic/components/medicare/permanentResidence.html",
+            "query": "v=vyqcg"
+        },
+        "user_agent": {
+            "original": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36",
+            "device_name": "web_browser",
+            "name": "Chrome",
+            "version": "132.0.0.0"
+        }
+    }
+]

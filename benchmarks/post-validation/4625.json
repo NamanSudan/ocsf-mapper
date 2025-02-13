@@ -24,6 +24,7 @@
   },
   "status": "FAILURE",
   "status_detail": "Unknown user name or bad password",
+  "status_code": "0xC000006D",
   "dst_endpoint": {
     "hostname": "EC2AMAZ-6KJ2BPP",
     "os": {

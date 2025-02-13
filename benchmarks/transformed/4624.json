@@ -3,7 +3,6 @@
     "version": "1.0.0",
     "product": {
       "name": "Microsoft Windows",
-      "vendor_name": "Microsoft",
       "feature": {
         "name": "Security Auditing"
       }
@@ -21,7 +20,7 @@
     "uid": "NT AUTHORITY\\\\SYSTEM",
     "account": {
       "name": "NT AUTHORITY",
-      "type": "System"
+      "type": "system"
     }
   },
   "dst_endpoint": {
@@ -34,6 +33,9 @@
   "authentication": {
     "type": "Negotiate",
     "logon_type": 5,
-    "process": "Advapi"
+    "process": "Advapi",
+    "session": {
+      "id": "0x3E7"
+    }
   }
 }

@@ -1,0 +1,45 @@
+{
+  "class_uid": 4002,
+  "type_uid": 400203,
+  "category_uid": 4,
+  "time": 1738260659034,
+  "activity_id": 3,
+  "action_id": 1,
+  "severity_id": 2,
+  "metadata": {
+    "version": "1.0.0",
+    "product": {
+      "name": "Imperva Advanced Bot Protection",
+      "vendor_name": "Imperva",
+      "feature": {
+        "name": "Bot Detection"
+      }
+    }
+  },
+  "http_request": {
+    "method": "GET",
+    "body_size": 1257,
+    "url": {
+      "path": "/dsepublic/components/medicare/permanentResidence.html",
+      "query": "v=vyqcg"
+    }
+  },
+  "dst_endpoint": {
+    "hostname": "www.defaultcompany.com",
+    "location": {
+      "name": "us-east-1"
+    }
+  },
+  "src_endpoint": {
+    "ip": "192.0.2.1",
+    "location": {
+      "country": "US",
+      "isp": "AT&T Wireless"
+    }
+  },
+  "user_agent": {
+    "original": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36",
+    "name": "Chrome",
+    "version": "132.0.0.0"
+  }
+}

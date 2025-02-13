@@ -21,16 +21,19 @@
     "user": {
       "name": "Administrator",
       "domain": "ATTACKRANGE",
-      "uid": "ATTACKRANGE\\\\Administrator"
+      "uid": "ATTACKRANGE\\\\Administrator",
+      "session": {
+        "uid": "0x55E621"
+      }
     },
     "process": {
-      "name": "C:\\\\Windows\\\\System32\\\\cmd.exe",
-      "pid": "0xf6c"
+      "pid": "0xf6c",
+      "name": "C:\\\\Windows\\\\System32\\\\cmd.exe"
     }
   },
   "process": {
-    "name": "C:\\\\Windows\\\\System32\\\\reg.exe",
     "pid": "0x1258",
+    "name": "C:\\\\Windows\\\\System32\\\\reg.exe",
     "cmd_line": "reg save HKLM\\\\system C:\\\\Users\\\\ADMINI~1\\\\AppData\\\\Local\\\\Temp\\\\system"
   }
 }

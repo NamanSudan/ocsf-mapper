@@ -1,0 +1,43 @@
+{
+  "class_uid": 6004,
+  "category_uid": 6,
+  "time": 1738260658978,
+  "type_uid": 600402,
+  "activity_id": 2,
+  "severity_id": 2,
+  "metadata": {
+    "version": "1.0.0",
+    "product": {
+      "name": "Imperva Advanced Bot Protection",
+      "vendor_name": "Imperva",
+      "feature": {
+        "name": "Bot Detection"
+      }
+    }
+  },
+  "http_request": {
+    "method": "GET",
+    "url": {
+      "path": "/managemyaccount/login",
+      "query": "identityTransaction=p8dlbwhWGKoUkkNm7KHGWGKy5uaQ4NgQzJMrlMc%2ByXreVN0xC03KBf%2BA5wnmiODeYMrsAVWwxY2DoJ3PUuP%2BWbK0%2F8y%2F1DUs8gtfeuCwMCgfmGUY8KnrnM06wG4Cw0iswZWD5zoAQG0r4DyT0LwWJcZDUZIgWslpQH9O19bXslaJ9x55MViow6qFgY5rDwoZlWwyamoaErkov5QDvke0jt6W5FFfgVE%2FFPhhGWoj7loTnI4P1n7CoEj0dPj%2FB1CxDYssuLEkYHbZRUVhg9yaaLTOsoI9%2B4jQb1PnKsw1Lr5BsyiIrC0zSniDAa6aNIZTi2A%2FPgxpex04S0tnrc6jxg7ZbZces4OnlzMhYqHx3WzcxIC%2BEKx4hN5nTuHBJkpduZAj68%2FtdNlixM8MgmHg2XiCTlsfZ5GxMcQLVrVOynE9AwgqusWUjJvBxk5TcDnljjpKJd7mmoIt1m3mRUfuJtu4xBzfF8TiBSHy9YXdd82GAoIrWSG9%2BBnyNJnGSLYZhNAiZoDXsl3IzxkAly77nVs9Vmvx6oMH1hc5ZW6017i3%2BCjiD8OJGyJl932ugKXSJnR6GJGCM55V7p9Fu3AG78BKELnLChkUkzsjrKt3JCc%3D&appname=AHWEB&branding=aetna&skin&language&channel=web"
+    },
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36",
+    "bytes": 2146
+  },
+  "web_resources": [
+    {
+      "hostname": "www.defaultcompany.com",
+      "path": "/managemyaccount/login"
+    }
+  ],
+  "osint": [
+    {
+      "type_id": 1,
+      "value": "204.110.222.222"
+    }
+  ],
+  "cloud": {
+    "provider": "AWS",
+    "region": "us-east-1"
+  }
+}

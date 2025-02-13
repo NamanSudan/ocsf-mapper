@@ -2,17 +2,18 @@
   "metadata": {
     "version": "1.0.0",
     "product": {
-      "name": "Windows Security Auditing",
-      "vendor_name": "Microsoft"
+      "name": "Microsoft Windows",
+      "feature": {
+        "name": "Security Auditing"
+      }
     }
   },
   "time": "2015-01-14T20:30:54Z",
   "type_uid": 20100103,
   "class_uid": 201001,
-  "category_uid": 1,
   "activity_id": 3,
+  "category_uid": 1,
   "severity_id": 1,
-  "action_id": 1,
   "device": {
     "hostname": "szusoidc1.soi.dir.acme080.com",
     "type_id": 1
@@ -33,5 +34,6 @@
   "reg_key": {
     "path": "\\\\REGISTRY\\\\MACHINE\\\\SYSTEM\\\\ControlSet001\\\\Services\\\\EventLog\\\\Security",
     "handle_id": "0x564"
-  }
+  },
+  "action_id": 1
 }

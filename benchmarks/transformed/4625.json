@@ -25,18 +25,16 @@
   },
   "status": "FAILURE",
   "status_detail": "Unknown user name or bad password",
+  "status_code": "0xC000006D",
   "authentication": {
-    "type": "NTLM",
-    "protocol": "NtLmSsp",
-    "logon_type": 3
+    "type": 3,
+    "protocol": "NTLM",
+    "process": "NtLmSsp"
   },
   "dst_endpoint": {
     "hostname": "EC2AMAZ-6KJ2BPP",
     "os": {
       "type": "Windows"
     }
-  },
-  "process": {
-    "pid": 0
   }
 }

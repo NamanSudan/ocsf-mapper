@@ -1,0 +1,41 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "product": {
+      "name": "Imperva Cloud WAF",
+      "vendor_name": "Imperva",
+      "feature": {
+        "name": "Bot Protection"
+      }
+    }
+  },
+  "time": 1738260658976,
+  "class_uid": 6004,
+  "category_uid": 6,
+  "type_uid": 600402,
+  "activity_id": 2,
+  "severity_id": 3,
+  "http_request": {
+    "method": "POST",
+    "url": {
+      "path": "/services/edi/TransactionRequest"
+    },
+    "bytes": 527
+  },
+  "web_resources": [
+    {
+      "hostname": "www.defaultcompany.com",
+      "url": "/services/edi/TransactionRequest"
+    }
+  ],
+  "cloud": {
+    "provider": "AWS",
+    "region": "us-east-1"
+  },
+  "osint": [
+    {
+      "type_id": 1,
+      "value": "199.96.233.194"
+    }
+  ]
+}
