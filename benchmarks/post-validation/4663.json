@@ -1,14 +1,15 @@
 {
   "metadata": {
-    "version": "1.0.0",
+    "version": "1.3.0",
     "product": {
       "name": "Microsoft Windows",
+      "vendor_name": "Microsoft",
       "feature": {
         "name": "Security Auditing"
       }
     }
   },
-  "time": "2015-01-14T20:30:54Z",
+  "time": 1421267454000,
   "type_uid": 20100103,
   "class_uid": 201001,
   "activity_id": 3,
@@ -27,13 +28,10 @@
     },
     "process": {
       "name": "services.exe",
-      "path": "C:\\\\Windows\\\\System32\\\\services.exe",
-      "pid": "0x214"
+      "pid": 532
     }
   },
   "reg_key": {
-    "path": "\\\\REGISTRY\\\\MACHINE\\\\SYSTEM\\\\ControlSet001\\\\Services\\\\EventLog\\\\Security",
-    "handle_id": "0x564"
-  },
-  "action_id": 1
+    "path": "\\\\REGISTRY\\\\MACHINE\\\\SYSTEM\\\\ControlSet001\\\\Services\\\\EventLog\\\\Security"
+  }
 }

@@ -1,0 +1,1080 @@
+{
+  "timestamp": "2025-02-12T18:09:53.218932",
+  "stats": {
+    "processed": 21,
+    "validation_errors": 21,
+    "refinement_success": 3,
+    "refinement_failure": 18,
+    "error_details": {
+      "vpc_log_7.json": {
+        "initial_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"dst_endpoint.interface\"; attribute \"interface\" is not defined in object \"network_endpoint\".",
+            "attribute": "interface",
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint.interface"
+          },
+          {
+            "error": "constraint_failed",
+            "message": "Constraint failed: \"at_least_one\" from object \"network_endpoint\" at \"dst_endpoint\"; expected at least one constraint attribute, bot got none.",
+            "constraint": {
+              "at_least_one": [
+                "ip",
+                "uid",
+                "name",
+                "hostname",
+                "svc_name",
+                "instance_uid",
+                "interface_uid",
+                "interface_name"
+              ]
+            },
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"action_id\"; attribute \"action_id\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "action_id",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "action_id"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"cloud\"; attribute \"cloud\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "cloud",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "cloud"
+          }
+        ],
+        "remaining_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"cloud_provider\"; attribute \"cloud_provider\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "cloud_provider",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "cloud_provider"
+          }
+        ]
+      },
+      "vpc_log_10.json": {
+        "initial_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"dst_endpoint.instance\"; attribute \"instance\" is not defined in object \"network_endpoint\".",
+            "attribute": "instance",
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint.instance"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"dst_endpoint.interface\"; attribute \"interface\" is not defined in object \"network_endpoint\".",
+            "attribute": "interface",
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint.interface"
+          },
+          {
+            "error": "constraint_failed",
+            "message": "Constraint failed: \"at_least_one\" from object \"network_endpoint\" at \"dst_endpoint\"; expected at least one constraint attribute, bot got none.",
+            "constraint": {
+              "at_least_one": [
+                "ip",
+                "uid",
+                "name",
+                "hostname",
+                "svc_name",
+                "instance_uid",
+                "interface_uid",
+                "interface_name"
+              ]
+            },
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"action_id\"; attribute \"action_id\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "action_id",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "action_id"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"cloud\"; attribute \"cloud\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "cloud",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "cloud"
+          }
+        ],
+        "remaining_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"cloud_platform\"; attribute \"cloud_platform\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "cloud_platform",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "cloud_platform"
+          }
+        ]
+      },
+      "vpc_log_11.json": {
+        "initial_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"dst_endpoint.instance\"; attribute \"instance\" is not defined in object \"network_endpoint\".",
+            "attribute": "instance",
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint.instance"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"dst_endpoint.interface\"; attribute \"interface\" is not defined in object \"network_endpoint\".",
+            "attribute": "interface",
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint.interface"
+          },
+          {
+            "error": "constraint_failed",
+            "message": "Constraint failed: \"at_least_one\" from object \"network_endpoint\" at \"dst_endpoint\"; expected at least one constraint attribute, bot got none.",
+            "constraint": {
+              "at_least_one": [
+                "ip",
+                "uid",
+                "name",
+                "hostname",
+                "svc_name",
+                "instance_uid",
+                "interface_uid",
+                "interface_name"
+              ]
+            },
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"action_id\"; attribute \"action_id\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "action_id",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "action_id"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"cloud\"; attribute \"cloud\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "cloud",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "cloud"
+          }
+        ],
+        "remaining_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"cloud_provider\"; attribute \"cloud_provider\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "cloud_provider",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "cloud_provider"
+          }
+        ]
+      },
+      "vpc_log_20.json": {
+        "initial_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"dst_endpoint.subnet\"; attribute \"subnet\" is not defined in object \"network_endpoint\".",
+            "attribute": "subnet",
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint.subnet"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"action_id\"; attribute \"action_id\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "action_id",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "action_id"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"cloud\"; attribute \"cloud\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "cloud",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "cloud"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"network\"; attribute \"network\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "network",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "network"
+          }
+        ],
+        "remaining_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"bytes\"; attribute \"bytes\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "bytes",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "bytes"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"packets\"; attribute \"packets\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "packets",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "packets"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"protocol_id\"; attribute \"protocol_id\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "protocol_id",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "protocol_id"
+          }
+        ]
+      },
+      "vpc_log_1.json": {
+        "initial_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"dst_endpoint.instance_id\"; attribute \"instance_id\" is not defined in object \"network_endpoint\".",
+            "attribute": "instance_id",
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint.instance_id"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"dst_endpoint.interface_id\"; attribute \"interface_id\" is not defined in object \"network_endpoint\".",
+            "attribute": "interface_id",
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint.interface_id"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"dst_endpoint.subnet\"; attribute \"subnet\" is not defined in object \"network_endpoint\".",
+            "attribute": "subnet",
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint.subnet"
+          },
+          {
+            "error": "constraint_failed",
+            "message": "Constraint failed: \"at_least_one\" from object \"network_endpoint\" at \"dst_endpoint\"; expected at least one constraint attribute, bot got none.",
+            "constraint": {
+              "at_least_one": [
+                "ip",
+                "uid",
+                "name",
+                "hostname",
+                "svc_name",
+                "instance_uid",
+                "interface_uid",
+                "interface_name"
+              ]
+            },
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"action_id\"; attribute \"action_id\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "action_id",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "action_id"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"cloud\"; attribute \"cloud\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "cloud",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "cloud"
+          }
+        ],
+        "remaining_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"cloud_platform\"; attribute \"cloud_platform\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "cloud_platform",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "cloud_platform"
+          }
+        ]
+      },
+      "vpc_log_16.json": {
+        "initial_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"dst_endpoint.instance\"; attribute \"instance\" is not defined in object \"network_endpoint\".",
+            "attribute": "instance",
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint.instance"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"dst_endpoint.interface\"; attribute \"interface\" is not defined in object \"network_endpoint\".",
+            "attribute": "interface",
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint.interface"
+          },
+          {
+            "error": "constraint_failed",
+            "message": "Constraint failed: \"at_least_one\" from object \"network_endpoint\" at \"dst_endpoint\"; expected at least one constraint attribute, bot got none.",
+            "constraint": {
+              "at_least_one": [
+                "ip",
+                "uid",
+                "name",
+                "hostname",
+                "svc_name",
+                "instance_uid",
+                "interface_uid",
+                "interface_name"
+              ]
+            },
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"action_id\"; attribute \"action_id\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "action_id",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "action_id"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"cloud\"; attribute \"cloud\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "cloud",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "cloud"
+          }
+        ],
+        "remaining_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"cloud_platform\"; attribute \"cloud_platform\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "cloud_platform",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "cloud_platform"
+          }
+        ]
+      },
+      "vpc_log_21.json": {
+        "initial_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"dst_endpoint.bytes_received\"; attribute \"bytes_received\" is not defined in object \"network_endpoint\".",
+            "attribute": "bytes_received",
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint.bytes_received"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"action_id\"; attribute \"action_id\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "action_id",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "action_id"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"cloud\"; attribute \"cloud\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "cloud",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "cloud"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"network\"; attribute \"network\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "network",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "network"
+          }
+        ],
+        "remaining_errors": [
+          {
+            "error": "attribute_required_missing",
+            "message": "Required attribute \"connection_info.direction_id\" is missing.",
+            "attribute": "direction_id",
+            "attribute_path": "connection_info.direction_id"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"connection_info.bytes_received\"; attribute \"bytes_received\" is not defined in object \"network_connection_info\".",
+            "attribute": "bytes_received",
+            "object_name": "network_connection_info",
+            "attribute_path": "connection_info.bytes_received"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"connection_info.packets\"; attribute \"packets\" is not defined in object \"network_connection_info\".",
+            "attribute": "packets",
+            "object_name": "network_connection_info",
+            "attribute_path": "connection_info.packets"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"connection_info.protocol_id\"; attribute \"protocol_id\" is not defined in object \"network_connection_info\".",
+            "attribute": "protocol_id",
+            "object_name": "network_connection_info",
+            "attribute_path": "connection_info.protocol_id"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"resources\"; attribute \"resources\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "resources",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "resources"
+          }
+        ]
+      },
+      "vpc_log_18.json": {
+        "initial_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"dst_endpoint.interface\"; attribute \"interface\" is not defined in object \"network_endpoint\".",
+            "attribute": "interface",
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint.interface"
+          },
+          {
+            "error": "constraint_failed",
+            "message": "Constraint failed: \"at_least_one\" from object \"network_endpoint\" at \"dst_endpoint\"; expected at least one constraint attribute, bot got none.",
+            "constraint": {
+              "at_least_one": [
+                "ip",
+                "uid",
+                "name",
+                "hostname",
+                "svc_name",
+                "instance_uid",
+                "interface_uid",
+                "interface_name"
+              ]
+            },
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"action_id\"; attribute \"action_id\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "action_id",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "action_id"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"cloud\"; attribute \"cloud\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "cloud",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "cloud"
+          }
+        ],
+        "remaining_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"cloud_provider\"; attribute \"cloud_provider\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "cloud_provider",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "cloud_provider"
+          }
+        ]
+      },
+      "vpc_log_14.json": {
+        "initial_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"dst_endpoint.vpc\"; attribute \"vpc\" is not defined in object \"network_endpoint\".",
+            "attribute": "vpc",
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint.vpc"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"action_id\"; attribute \"action_id\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "action_id",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "action_id"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"cloud\"; attribute \"cloud\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "cloud",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "cloud"
+          }
+        ],
+        "remaining_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"cloud_provider\"; attribute \"cloud_provider\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "cloud_provider",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "cloud_provider"
+          }
+        ]
+      },
+      "vpc_log_3.json": {
+        "initial_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"dst_endpoint.instance\"; attribute \"instance\" is not defined in object \"network_endpoint\".",
+            "attribute": "instance",
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint.instance"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"dst_endpoint.interface\"; attribute \"interface\" is not defined in object \"network_endpoint\".",
+            "attribute": "interface",
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint.interface"
+          },
+          {
+            "error": "constraint_failed",
+            "message": "Constraint failed: \"at_least_one\" from object \"network_endpoint\" at \"dst_endpoint\"; expected at least one constraint attribute, bot got none.",
+            "constraint": {
+              "at_least_one": [
+                "ip",
+                "uid",
+                "name",
+                "hostname",
+                "svc_name",
+                "instance_uid",
+                "interface_uid",
+                "interface_name"
+              ]
+            },
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"action_id\"; attribute \"action_id\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "action_id",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "action_id"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"cloud\"; attribute \"cloud\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "cloud",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "cloud"
+          }
+        ],
+        "remaining_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"cloud_provider\"; attribute \"cloud_provider\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "cloud_provider",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "cloud_provider"
+          }
+        ]
+      },
+      "vpc_log_15.json": {
+        "initial_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"dst_endpoint.instance\"; attribute \"instance\" is not defined in object \"network_endpoint\".",
+            "attribute": "instance",
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint.instance"
+          },
+          {
+            "error": "constraint_failed",
+            "message": "Constraint failed: \"at_least_one\" from object \"network_endpoint\" at \"dst_endpoint\"; expected at least one constraint attribute, bot got none.",
+            "constraint": {
+              "at_least_one": [
+                "ip",
+                "uid",
+                "name",
+                "hostname",
+                "svc_name",
+                "instance_uid",
+                "interface_uid",
+                "interface_name"
+              ]
+            },
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"action_id\"; attribute \"action_id\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "action_id",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "action_id"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"cloud\"; attribute \"cloud\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "cloud",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "cloud"
+          }
+        ],
+        "remaining_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"cloud_provider\"; attribute \"cloud_provider\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "cloud_provider",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "cloud_provider"
+          }
+        ]
+      },
+      "vpc_log_19.json": {
+        "initial_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"action_id\"; attribute \"action_id\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "action_id",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "action_id"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"cloud\"; attribute \"cloud\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "cloud",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "cloud"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"network\"; attribute \"network\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "network",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "network"
+          }
+        ],
+        "remaining_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"traffic.protocol_id\"; attribute \"protocol_id\" is not defined in object \"network_traffic\".",
+            "attribute": "protocol_id",
+            "object_name": "network_traffic",
+            "attribute_path": "traffic.protocol_id"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"cloud_platform\"; attribute \"cloud_platform\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "cloud_platform",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "cloud_platform"
+          }
+        ]
+      },
+      "vpc_log_12.json": {
+        "initial_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"dst_endpoint.instance_id\"; attribute \"instance_id\" is not defined in object \"network_endpoint\".",
+            "attribute": "instance_id",
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint.instance_id"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"dst_endpoint.interface_id\"; attribute \"interface_id\" is not defined in object \"network_endpoint\".",
+            "attribute": "interface_id",
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint.interface_id"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"dst_endpoint.subnet\"; attribute \"subnet\" is not defined in object \"network_endpoint\".",
+            "attribute": "subnet",
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint.subnet"
+          },
+          {
+            "error": "constraint_failed",
+            "message": "Constraint failed: \"at_least_one\" from object \"network_endpoint\" at \"dst_endpoint\"; expected at least one constraint attribute, bot got none.",
+            "constraint": {
+              "at_least_one": [
+                "ip",
+                "uid",
+                "name",
+                "hostname",
+                "svc_name",
+                "instance_uid",
+                "interface_uid",
+                "interface_name"
+              ]
+            },
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"action_id\"; attribute \"action_id\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "action_id",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "action_id"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"cloud\"; attribute \"cloud\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "cloud",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "cloud"
+          }
+        ],
+        "remaining_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"cloud_platform\"; attribute \"cloud_platform\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "cloud_platform",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "cloud_platform"
+          }
+        ]
+      },
+      "vpc_log_5.json": {
+        "initial_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"dst_endpoint.interface\"; attribute \"interface\" is not defined in object \"network_endpoint\".",
+            "attribute": "interface",
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint.interface"
+          },
+          {
+            "error": "constraint_failed",
+            "message": "Constraint failed: \"at_least_one\" from object \"network_endpoint\" at \"dst_endpoint\"; expected at least one constraint attribute, bot got none.",
+            "constraint": {
+              "at_least_one": [
+                "ip",
+                "uid",
+                "name",
+                "hostname",
+                "svc_name",
+                "instance_uid",
+                "interface_uid",
+                "interface_name"
+              ]
+            },
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"action_id\"; attribute \"action_id\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "action_id",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "action_id"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"cloud\"; attribute \"cloud\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "cloud",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "cloud"
+          }
+        ],
+        "remaining_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"cloud_platform\"; attribute \"cloud_platform\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "cloud_platform",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "cloud_platform"
+          }
+        ]
+      },
+      "vpc_log_9.json": {
+        "initial_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"dst_endpoint.instance\"; attribute \"instance\" is not defined in object \"network_endpoint\".",
+            "attribute": "instance",
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint.instance"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"dst_endpoint.subnet\"; attribute \"subnet\" is not defined in object \"network_endpoint\".",
+            "attribute": "subnet",
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint.subnet"
+          },
+          {
+            "error": "constraint_failed",
+            "message": "Constraint failed: \"at_least_one\" from object \"network_endpoint\" at \"dst_endpoint\"; expected at least one constraint attribute, bot got none.",
+            "constraint": {
+              "at_least_one": [
+                "ip",
+                "uid",
+                "name",
+                "hostname",
+                "svc_name",
+                "instance_uid",
+                "interface_uid",
+                "interface_name"
+              ]
+            },
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"action_id\"; attribute \"action_id\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "action_id",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "action_id"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"cloud\"; attribute \"cloud\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "cloud",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "cloud"
+          }
+        ],
+        "remaining_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"cloud_platform\"; attribute \"cloud_platform\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "cloud_platform",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "cloud_platform"
+          }
+        ]
+      },
+      "vpc_log_8.json": {
+        "initial_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"dst_endpoint.interface\"; attribute \"interface\" is not defined in object \"network_endpoint\".",
+            "attribute": "interface",
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint.interface"
+          },
+          {
+            "error": "constraint_failed",
+            "message": "Constraint failed: \"at_least_one\" from object \"network_endpoint\" at \"dst_endpoint\"; expected at least one constraint attribute, bot got none.",
+            "constraint": {
+              "at_least_one": [
+                "ip",
+                "uid",
+                "name",
+                "hostname",
+                "svc_name",
+                "instance_uid",
+                "interface_uid",
+                "interface_name"
+              ]
+            },
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"action_id\"; attribute \"action_id\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "action_id",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "action_id"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"cloud\"; attribute \"cloud\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "cloud",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "cloud"
+          }
+        ],
+        "remaining_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"cloud_platform\"; attribute \"cloud_platform\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "cloud_platform",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "cloud_platform"
+          }
+        ]
+      },
+      "vpc_log_4.json": {
+        "initial_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"dst_endpoint.instance\"; attribute \"instance\" is not defined in object \"network_endpoint\".",
+            "attribute": "instance",
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint.instance"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"dst_endpoint.interface\"; attribute \"interface\" is not defined in object \"network_endpoint\".",
+            "attribute": "interface",
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint.interface"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"dst_endpoint.subnet\"; attribute \"subnet\" is not defined in object \"network_endpoint\".",
+            "attribute": "subnet",
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint.subnet"
+          },
+          {
+            "error": "constraint_failed",
+            "message": "Constraint failed: \"at_least_one\" from object \"network_endpoint\" at \"dst_endpoint\"; expected at least one constraint attribute, bot got none.",
+            "constraint": {
+              "at_least_one": [
+                "ip",
+                "uid",
+                "name",
+                "hostname",
+                "svc_name",
+                "instance_uid",
+                "interface_uid",
+                "interface_name"
+              ]
+            },
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"action_id\"; attribute \"action_id\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "action_id",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "action_id"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"cloud\"; attribute \"cloud\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "cloud",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "cloud"
+          }
+        ],
+        "remaining_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"cloud_provider\"; attribute \"cloud_provider\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "cloud_provider",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "cloud_provider"
+          }
+        ]
+      },
+      "vpc_log_13.json": {
+        "initial_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"dst_endpoint.instance\"; attribute \"instance\" is not defined in object \"network_endpoint\".",
+            "attribute": "instance",
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint.instance"
+          },
+          {
+            "error": "constraint_failed",
+            "message": "Constraint failed: \"at_least_one\" from object \"network_endpoint\" at \"dst_endpoint\"; expected at least one constraint attribute, bot got none.",
+            "constraint": {
+              "at_least_one": [
+                "ip",
+                "uid",
+                "name",
+                "hostname",
+                "svc_name",
+                "instance_uid",
+                "interface_uid",
+                "interface_name"
+              ]
+            },
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"action_id\"; attribute \"action_id\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "action_id",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "action_id"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"cloud\"; attribute \"cloud\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "cloud",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "cloud"
+          }
+        ],
+        "remaining_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"cloud_platform\"; attribute \"cloud_platform\" is not defined in class \"network_activity\" uid 4001.",
+            "attribute": "cloud_platform",
+            "class_uid": 4001,
+            "class_name": "network_activity",
+            "attribute_path": "cloud_platform"
+          }
+        ]
+      }
+    },
+    "exception_types": {}
+  },
+  "success_rate": 14.285714285714285,
+  "error_distribution": {
+    "attribute_unknown": 24,
+    "attribute_required_missing": 1
+  },
+  "exception_distribution": {}
+}

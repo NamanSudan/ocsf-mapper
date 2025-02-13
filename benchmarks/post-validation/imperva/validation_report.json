@@ -1,0 +1,401 @@
+{
+  "timestamp": "2025-02-12T15:36:08.432996",
+  "stats": {
+    "processed": 10,
+    "validation_errors": 10,
+    "refinement_success": 5,
+    "refinement_failure": 5,
+    "error_details": {
+      "9e8d76f4-3b5f-4c1a-8b2a-1f3f4b6c7d8e.json": {
+        "initial_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"dst_endpoint.location.name\"; attribute \"name\" is not defined in object \"location\".",
+            "attribute": "name",
+            "object_name": "location",
+            "attribute_path": "dst_endpoint.location.name"
+          },
+          {
+            "error": "constraint_failed",
+            "message": "Constraint failed: \"at_least_one\" from object \"location\" at \"dst_endpoint.location\"; expected at least one constraint attribute, bot got none.",
+            "constraint": {
+              "at_least_one": [
+                "city",
+                "country",
+                "postal_code",
+                "region"
+              ]
+            },
+            "object_name": "location",
+            "attribute_path": "dst_endpoint.location"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"http_request.url.query\"; attribute \"query\" is not defined in object \"url\".",
+            "attribute": "query",
+            "object_name": "url",
+            "attribute_path": "http_request.url.query"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"http_request.bytes\"; attribute \"bytes\" is not defined in object \"http_request\".",
+            "attribute": "bytes",
+            "object_name": "http_request",
+            "attribute_path": "http_request.bytes"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"http_request.method\"; attribute \"method\" is not defined in object \"http_request\".",
+            "attribute": "method",
+            "object_name": "http_request",
+            "attribute_path": "http_request.method"
+          },
+          {
+            "error": "attribute_required_missing",
+            "message": "Required attribute \"http_response\" is missing.",
+            "attribute": "http_response",
+            "attribute_path": "http_response"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"src_endpoint.location.name\"; attribute \"name\" is not defined in object \"location\".",
+            "attribute": "name",
+            "object_name": "location",
+            "attribute_path": "src_endpoint.location.name"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"action_id\"; attribute \"action_id\" is not defined in class \"http_activity\" uid 4002.",
+            "attribute": "action_id",
+            "class_uid": 4002,
+            "class_name": "http_activity",
+            "attribute_path": "action_id"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"user_agent\"; attribute \"user_agent\" is not defined in class \"http_activity\" uid 4002.",
+            "attribute": "user_agent",
+            "class_uid": 4002,
+            "class_name": "http_activity",
+            "attribute_path": "user_agent"
+          }
+        ],
+        "remaining_errors": [
+          {
+            "error": "attribute_required_missing",
+            "message": "Required attribute \"http_response.code\" is missing.",
+            "attribute": "code",
+            "attribute_path": "http_response.code"
+          }
+        ]
+      },
+      "7890efgh-5678-1234-90ab-cdef56789012.json": {
+        "initial_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"web_resources[0].hostname\"; attribute \"hostname\" is not defined in object \"web_resource\".",
+            "attribute": "hostname",
+            "object_name": "web_resource",
+            "attribute_path": "web_resources[0].hostname"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"web_resources[0].path\"; attribute \"path\" is not defined in object \"web_resource\".",
+            "attribute": "path",
+            "object_name": "web_resource",
+            "attribute_path": "web_resources[0].path"
+          },
+          {
+            "error": "constraint_failed",
+            "message": "Constraint failed: \"at_least_one\" from object \"web_resource\" at \"web_resources[0]\"; expected at least one constraint attribute, bot got none.",
+            "constraint": {
+              "at_least_one": [
+                "name",
+                "uid"
+              ]
+            },
+            "object_name": "web_resource",
+            "attribute_path": "web_resources[0]"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"http_request.bytes\"; attribute \"bytes\" is not defined in object \"http_request\".",
+            "attribute": "bytes",
+            "object_name": "http_request",
+            "attribute_path": "http_request.bytes"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"http_request.method\"; attribute \"method\" is not defined in object \"http_request\".",
+            "attribute": "method",
+            "object_name": "http_request",
+            "attribute_path": "http_request.method"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"http_request.url_path\"; attribute \"url_path\" is not defined in object \"http_request\".",
+            "attribute": "url_path",
+            "object_name": "http_request",
+            "attribute_path": "http_request.url_path"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"cloud\"; attribute \"cloud\" is not defined in class \"web_resource_access_activity\" uid 6004.",
+            "attribute": "cloud",
+            "class_uid": 6004,
+            "class_name": "web_resource_access_activity",
+            "attribute_path": "cloud"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"osint\"; attribute \"osint\" is not defined in class \"web_resource_access_activity\" uid 6004.",
+            "attribute": "osint",
+            "class_uid": 6004,
+            "class_name": "web_resource_access_activity",
+            "attribute_path": "osint"
+          }
+        ],
+        "remaining_errors": [
+          {
+            "error": "attribute_required_missing",
+            "message": "Required attribute \"http_request\" is missing.",
+            "attribute": "http_request",
+            "attribute_path": "http_request"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"http\"; attribute \"http\" is not defined in class \"web_resource_access_activity\" uid 6004.",
+            "attribute": "http",
+            "class_uid": 6004,
+            "class_name": "web_resource_access_activity",
+            "attribute_path": "http"
+          }
+        ]
+      },
+      "41e4b18b-2441-48f2-883e-2c87c8b49fdc.json": {
+        "initial_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"dst_endpoint.geo\"; attribute \"geo\" is not defined in object \"network_endpoint\".",
+            "attribute": "geo",
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint.geo"
+          },
+          {
+            "error": "attribute_wrong_type",
+            "message": "Attribute \"http_request.url\" value has wrong type; expected url (object), got string_t.",
+            "value": "/services/edi/TransactionRequest",
+            "attribute": "url",
+            "value_type": "string_t",
+            "attribute_path": "http_request.url",
+            "expected_type": "url (object)"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"http_request.bytes\"; attribute \"bytes\" is not defined in object \"http_request\".",
+            "attribute": "bytes",
+            "object_name": "http_request",
+            "attribute_path": "http_request.bytes"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"http_request.method\"; attribute \"method\" is not defined in object \"http_request\".",
+            "attribute": "method",
+            "object_name": "http_request",
+            "attribute_path": "http_request.method"
+          },
+          {
+            "error": "attribute_required_missing",
+            "message": "Required attribute \"http_response\" is missing.",
+            "attribute": "http_response",
+            "attribute_path": "http_response"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"action_id\"; attribute \"action_id\" is not defined in class \"http_activity\" uid 4002.",
+            "attribute": "action_id",
+            "class_uid": 4002,
+            "class_name": "http_activity",
+            "attribute_path": "action_id"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"cloud\"; attribute \"cloud\" is not defined in class \"http_activity\" uid 4002.",
+            "attribute": "cloud",
+            "class_uid": 4002,
+            "class_name": "http_activity",
+            "attribute_path": "cloud"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"osint\"; attribute \"osint\" is not defined in class \"http_activity\" uid 4002.",
+            "attribute": "osint",
+            "class_uid": 4002,
+            "class_name": "http_activity",
+            "attribute_path": "osint"
+          }
+        ],
+        "remaining_errors": [
+          {
+            "error": "attribute_required_missing",
+            "message": "Required attribute \"http_response.code\" is missing.",
+            "attribute": "code",
+            "attribute_path": "http_response.code"
+          }
+        ]
+      },
+      "cdef1234-5678-90ab-cdef-1234567890ab.json": {
+        "initial_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"dst_endpoint.geo\"; attribute \"geo\" is not defined in object \"network_endpoint\".",
+            "attribute": "geo",
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint.geo"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"http_request.url.query\"; attribute \"query\" is not defined in object \"url\".",
+            "attribute": "query",
+            "object_name": "url",
+            "attribute_path": "http_request.url.query"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"http_request.bytes\"; attribute \"bytes\" is not defined in object \"http_request\".",
+            "attribute": "bytes",
+            "object_name": "http_request",
+            "attribute_path": "http_request.bytes"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"http_request.method\"; attribute \"method\" is not defined in object \"http_request\".",
+            "attribute": "method",
+            "object_name": "http_request",
+            "attribute_path": "http_request.method"
+          },
+          {
+            "error": "attribute_required_missing",
+            "message": "Required attribute \"http_response\" is missing.",
+            "attribute": "http_response",
+            "attribute_path": "http_response"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"src_endpoint.geo\"; attribute \"geo\" is not defined in object \"network_endpoint\".",
+            "attribute": "geo",
+            "object_name": "network_endpoint",
+            "attribute_path": "src_endpoint.geo"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"action_id\"; attribute \"action_id\" is not defined in class \"http_activity\" uid 4002.",
+            "attribute": "action_id",
+            "class_uid": 4002,
+            "class_name": "http_activity",
+            "attribute_path": "action_id"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"osint\"; attribute \"osint\" is not defined in class \"http_activity\" uid 4002.",
+            "attribute": "osint",
+            "class_uid": 4002,
+            "class_name": "http_activity",
+            "attribute_path": "osint"
+          }
+        ],
+        "remaining_errors": [
+          {
+            "error": "attribute_required_missing",
+            "message": "Required attribute \"http_response.code\" is missing.",
+            "attribute": "code",
+            "attribute_path": "http_response.code"
+          }
+        ]
+      },
+      "abc12345-def6-7890-abcd-ef1234567890.json": {
+        "initial_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"dst_endpoint.location.name\"; attribute \"name\" is not defined in object \"location\".",
+            "attribute": "name",
+            "object_name": "location",
+            "attribute_path": "dst_endpoint.location.name"
+          },
+          {
+            "error": "constraint_failed",
+            "message": "Constraint failed: \"at_least_one\" from object \"location\" at \"dst_endpoint.location\"; expected at least one constraint attribute, bot got none.",
+            "constraint": {
+              "at_least_one": [
+                "city",
+                "country",
+                "postal_code",
+                "region"
+              ]
+            },
+            "object_name": "location",
+            "attribute_path": "dst_endpoint.location"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"http_request.url.query\"; attribute \"query\" is not defined in object \"url\".",
+            "attribute": "query",
+            "object_name": "url",
+            "attribute_path": "http_request.url.query"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"http_request.body_size\"; attribute \"body_size\" is not defined in object \"http_request\".",
+            "attribute": "body_size",
+            "object_name": "http_request",
+            "attribute_path": "http_request.body_size"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"http_request.method\"; attribute \"method\" is not defined in object \"http_request\".",
+            "attribute": "method",
+            "object_name": "http_request",
+            "attribute_path": "http_request.method"
+          },
+          {
+            "error": "attribute_required_missing",
+            "message": "Required attribute \"http_response\" is missing.",
+            "attribute": "http_response",
+            "attribute_path": "http_response"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"action_id\"; attribute \"action_id\" is not defined in class \"http_activity\" uid 4002.",
+            "attribute": "action_id",
+            "class_uid": 4002,
+            "class_name": "http_activity",
+            "attribute_path": "action_id"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"user_agent\"; attribute \"user_agent\" is not defined in class \"http_activity\" uid 4002.",
+            "attribute": "user_agent",
+            "class_uid": 4002,
+            "class_name": "http_activity",
+            "attribute_path": "user_agent"
+          }
+        ],
+        "remaining_errors": [
+          {
+            "error": "attribute_required_missing",
+            "message": "Required attribute \"http_response.code\" is missing.",
+            "attribute": "code",
+            "attribute_path": "http_response.code"
+          }
+        ]
+      }
+    },
+    "exception_types": {}
+  },
+  "success_rate": 50.0,
+  "error_distribution": {
+    "attribute_required_missing": 5,
+    "attribute_unknown": 1
+  },
+  "exception_distribution": {}
+}

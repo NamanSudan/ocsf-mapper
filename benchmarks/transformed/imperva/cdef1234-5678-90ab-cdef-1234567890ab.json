@@ -1,0 +1,47 @@
+{
+  "class_uid": 4002,
+  "type_uid": 400203,
+  "activity_id": 3,
+  "category_uid": 4,
+  "time": 1738260659000,
+  "action_id": 1,
+  "severity_id": 2,
+  "metadata": {
+    "version": "1.0.0",
+    "product": {
+      "name": "Imperva Bot Protection",
+      "vendor_name": "Imperva",
+      "feature": {
+        "name": "Bot Protection"
+      }
+    }
+  },
+  "http_request": {
+    "method": "GET",
+    "url": {
+      "path": "/dsepublic/components/medicare/permanentResidence.html",
+      "query": "v=vyqcg"
+    },
+    "bytes": 1837,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36"
+  },
+  "dst_endpoint": {
+    "hostname": "www.defaultcompany.com",
+    "geo": {
+      "region": "us-east-1"
+    }
+  },
+  "src_endpoint": {
+    "ip": "192.0.2.1",
+    "geo": {
+      "country": "US",
+      "isp": "AT&T Wireless"
+    }
+  },
+  "osint": [
+    {
+      "type_id": 6,
+      "value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36"
+    }
+  ]
+}

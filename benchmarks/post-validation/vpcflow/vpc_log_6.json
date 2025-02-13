@@ -1,0 +1,19 @@
+{
+  "metadata": {
+    "version": "1.3.0",
+    "product": {
+      "name": "VPC Flow Logs",
+      "vendor_name": "AWS"
+    }
+  },
+  "time": 1738419829,
+  "activity_id": 6,
+  "type_uid": 400106,
+  "class_uid": 4001,
+  "category_uid": 4,
+  "severity_id": 1,
+  "dst_endpoint": {
+    "instance_uid": "subnet-000000000000000000",
+    "interface_uid": "eni-000000000000000000"
+  }
+}

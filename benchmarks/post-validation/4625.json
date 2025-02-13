@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "version": "1.0.0",
+    "version": "1.3.0",
     "product": {
       "name": "Microsoft Windows",
       "feature": {
@@ -9,7 +9,7 @@
       "vendor_name": "Microsoft"
     }
   },
-  "time": "2020-10-08T12:41:47Z",
+  "time": 1602160907000,
   "activity_id": 1,
   "activity_name": "Logon",
   "type_uid": 300201,
@@ -19,22 +19,18 @@
   "user": {
     "name": "Administrator",
     "account": {
-      "name": "Administrator",
-      "domain": "EC2AMAZ-6KJ2BPP"
+      "name": "Administrator"
     }
   },
   "status": "FAILURE",
   "status_detail": "Unknown user name or bad password",
   "status_code": "0xC000006D",
-  "authentication": {
-    "type": 3,
-    "protocol": "NTLM",
-    "process": "NtLmSsp"
-  },
   "dst_endpoint": {
     "hostname": "EC2AMAZ-6KJ2BPP",
     "os": {
-      "type": "Windows"
+      "type": "Windows",
+      "name": "Windows",
+      "type_id": 100
     }
   }
 }

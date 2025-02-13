@@ -1,0 +1,40 @@
+{
+  "metadata": {
+    "version": "4",
+    "product": {
+      "name": "VPC Flow Logs",
+      "vendor_name": "AWS"
+    }
+  },
+  "time": 1738419881,
+  "action_id": 1,
+  "activity_id": 6,
+  "type_uid": 400106,
+  "class_uid": 4001,
+  "category_uid": 4,
+  "severity_id": 1,
+  "dst_endpoint": {
+    "ip": "192.168.1.1",
+    "port": 4169,
+    "subnet": "subnet-000000000000000000"
+  },
+  "src_endpoint": {
+    "ip": "192.168.1.2",
+    "port": 50001
+  },
+  "cloud": {
+    "provider": "AWS",
+    "region": "us-east-1",
+    "account": {
+      "uid": "074244117111"
+    },
+    "vpc": {
+      "uid": "vpc-0000000000"
+    }
+  },
+  "network": {
+    "protocol_id": 6,
+    "bytes": 54846,
+    "packets": 132
+  }
+}

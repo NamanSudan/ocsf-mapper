@@ -1,0 +1,44 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "product": {
+      "name": "Imperva Advanced Bot Protection",
+      "vendor_name": "Imperva",
+      "feature": {
+        "name": "Bot Protection"
+      }
+    }
+  },
+  "time": 1738260659055,
+  "activity_id": 2,
+  "type_uid": 600402,
+  "class_uid": 6004,
+  "category_uid": 6,
+  "severity_id": 3,
+  "http_request": {
+    "method": "POST",
+    "url": {
+      "path": "/api/submit",
+      "query": "id=12345"
+    },
+    "bytes": 300,
+    "referrer": "",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36"
+  },
+  "web_resources": [
+    {
+      "hostname": "www.defaultcompany.com",
+      "path": "/services/edi/TransactionRequest"
+    }
+  ],
+  "cloud": {
+    "provider": "aws",
+    "region": "us-east-1"
+  },
+  "osint": [
+    {
+      "type_id": 1,
+      "value": "203.0.113.1"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "class_uid": 4002,
+  "type_uid": 400206,
+  "category_uid": 4,
+  "time": 1738260659100,
+  "activity_id": 6,
+  "action_id": 2,
+  "severity_id": 3,
+  "metadata": {
+    "version": "1.0.0",
+    "product": {
+      "name": "Imperva Advanced Bot Protection",
+      "vendor_name": "Imperva",
+      "feature": {
+        "name": "Bot Detection"
+      }
+    }
+  },
+  "http_request": {
+    "method": "POST",
+    "url": {
+      "path": "/api/submit",
+      "query": "id=98765"
+    },
+    "bytes": 400,
+    "referrer": "https://www.defaultcompany.com/home"
+  },
+  "dst_endpoint": {
+    "hostname": "api.defaultcompany.com",
+    "location": {
+      "name": "us-east-1"
+    }
+  },
+  "src_endpoint": {
+    "ip": "203.0.113.5",
+    "hostname": "client.defaultcompany.com",
+    "location": {
+      "country": "US",
+      "name": "Example Client ISP"
+    }
+  },
+  "user_agent": {
+    "original": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/132.0.0.0 Safari/537.36",
+    "name": "Chrome",
+    "version": "132.0.0.0"
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "timestamp": "2025-02-06T13:46:39.359789",
+  "stats": {
+    "processed": 7,
+    "validation_errors": 6,
+    "refinement_success": 5,
+    "refinement_failure": 1,
+    "error_details": {
+      "4624.json": {
+        "initial_errors": [
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"dst_endpoint.process\"; attribute \"process\" is not defined in object \"network_endpoint\".",
+            "attribute": "process",
+            "object_name": "network_endpoint",
+            "attribute_path": "dst_endpoint.process"
+          },
+          {
+            "error": "attribute_required_missing",
+            "message": "Required attribute \"metadata.product.vendor_name\" is missing.",
+            "attribute": "vendor_name",
+            "attribute_path": "metadata.product.vendor_name"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"authentication\"; attribute \"authentication\" is not defined in class \"authentication\" uid 3002.",
+            "attribute": "authentication",
+            "class_uid": 3002,
+            "class_name": "authentication",
+            "attribute_path": "authentication"
+          }
+        ],
+        "remaining_errors": [
+          {
+            "error": "attribute_wrong_type",
+            "message": "Attribute \"logon_type\" value has wrong type; expected string_t, got integer_t (integer in range of -2^63 to 2^63 - 1).",
+            "value": 5,
+            "attribute": "logon_type",
+            "value_type": "integer_t",
+            "attribute_path": "logon_type",
+            "expected_type": "string_t"
+          },
+          {
+            "error": "attribute_wrong_type",
+            "message": "Attribute \"logon_process\" value has wrong type; expected process (object), got string_t.",
+            "value": "Advapi",
+            "attribute": "logon_process",
+            "value_type": "string_t",
+            "attribute_path": "logon_process",
+            "expected_type": "process (object)"
+          },
+          {
+            "error": "attribute_unknown",
+            "message": "Unknown attribute at \"session_id\"; attribute \"session_id\" is not defined in class \"authentication\" uid 3002.",
+            "attribute": "session_id",
+            "class_uid": 3002,
+            "class_name": "authentication",
+            "attribute_path": "session_id"
+          }
+        ]
+      }
+    },
+    "exception_types": {}
+  },
+  "success_rate": 83.33333333333334,
+  "error_distribution": {
+    "attribute_wrong_type": 2,
+    "attribute_unknown": 1
+  },
+  "exception_distribution": {}
+}

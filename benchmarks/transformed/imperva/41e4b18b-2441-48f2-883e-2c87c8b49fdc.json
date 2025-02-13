@@ -1,0 +1,47 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "product": {
+      "name": "Imperva Bot Protection",
+      "vendor_name": "Imperva",
+      "feature": {
+        "name": "Bot Protection"
+      }
+    }
+  },
+  "time": 1738260658986,
+  "type_uid": 400206,
+  "class_uid": 4002,
+  "category_uid": 4,
+  "activity_id": 6,
+  "severity_id": 2,
+  "action_id": 2,
+  "http_request": {
+    "method": "POST",
+    "url": "/services/edi/TransactionRequest",
+    "bytes": 184
+  },
+  "dst_endpoint": {
+    "hostname": "www20.defaultcompany.com",
+    "ip": "199.96.233.194",
+    "geo": {
+      "country": "US",
+      "region": "us-east-1"
+    }
+  },
+  "cloud": {
+    "provider": "AWS"
+  },
+  "osint": [
+    {
+      "type_id": 1,
+      "value": "199.96.233.194",
+      "name": "Client IP"
+    },
+    {
+      "type_id": 3,
+      "value": "www20.defaultcompany.com",
+      "name": "Target Hostname"
+    }
+  ]
+}
