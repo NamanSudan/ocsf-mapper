@@ -1,5 +1,3 @@
-Below is one way to design your schema. In this example we separate a chat "session" (conversation) from the individual messages. Each chat session is associated with a user (by user_id) and can have a title (or summary) plus start/end times. Every message belongs to a session and contains the message text plus (when available) the tool input (tool_use) and tool output (tool_response) generated via your MCP/ClickHouse calls. (The tool_response field is where your plotly visualization JSON is stored or, in the case of Grafana, a link may be embedded in the message.) This two‐table design makes it easy for users to browse their conversation history (per session) and then drill into individual messages if needed.
-
 ──────────────────────────────
 1. Data Model (data_model.md)
 ──────────────────────────────
